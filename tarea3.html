@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ACT-003 | Guía rápida de HTML5</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root{
+      --bg:#1a1a1a;--panel:#222;--card:#2e2e2e;
+      --gold:#f5c518;--gold2:#e0a800;--green:#1db954;
+      --orange:#e66400;
+      --mono:'Share Tech Mono',monospace;--display:'Orbitron',sans-serif;
+      --body:'Rajdhani',sans-serif;--light:#e8e8e8;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg);font-family:var(--body);color:var(--light);min-height:100vh}
+
+    nav{background:#111;border-bottom:2px solid var(--gold);padding:14px 30px;display:flex;align-items:center;gap:16px}
+    nav a{font-family:var(--mono);font-size:.7rem;color:var(--gold);text-decoration:none;letter-spacing:.15em}
+    nav span{color:#444}
+
+    .hero{
+      background:#0d2b1a;
+      background-image:
+        repeating-linear-gradient(0deg,transparent,transparent 29px,rgba(29,185,84,.06) 30px),
+        repeating-linear-gradient(90deg,transparent,transparent 29px,rgba(29,185,84,.06) 30px);
+      padding:60px 40px 50px;text-align:center;border-bottom:2px solid var(--gold);
+    }
+    .hero-label{font-family:var(--mono);font-size:.65rem;letter-spacing:.4em;color:var(--green);margin-bottom:12px}
+    .hero h1{font-family:var(--display);font-size:clamp(1.8rem,5vw,3rem);font-weight:900;
+      background:linear-gradient(135deg,#e66400,#f5c518);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
+    .hero-sub{font-family:var(--mono);font-size:.8rem;color:rgba(232,232,232,.5);letter-spacing:.2em}
+
+    .content{max-width:900px;margin:0 auto;padding:40px 24px}
+
+    .section-block{background:var(--panel);border-radius:12px;border:1px solid #333;
+      border-left:4px solid var(--orange);padding:28px;margin-bottom:28px}
+    .block-title{font-family:var(--display);font-size:.8rem;letter-spacing:.3em;
+      color:var(--gold);text-transform:uppercase;margin-bottom:16px;
+      display:flex;align-items:center;gap:10px}
+    .block-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--gold2),transparent)}
+    .block-text{font-family:var(--body);font-size:1rem;line-height:1.75;color:#ccc}
+    .block-text p{margin-bottom:12px}
+
+    /* Code blocks */
+    .code-box{background:#111;border:1px solid #333;border-left:3px solid var(--orange);
+      border-radius:8px;padding:18px 20px;margin:14px 0;overflow-x:auto}
+    .code-box pre{font-family:var(--mono);font-size:.78rem;line-height:1.7;color:#ccc;white-space:pre}
+    .tag{color:#e66400}
+    .attr{color:#f5c518}
+    .val{color:#1db954}
+    .com{color:#666;font-style:italic}
+    .txt{color:#ccc}
+
+    /* Tags reference grid */
+    .tags-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-top:10px}
+    .tag-item{background:var(--card);border-radius:8px;padding:14px 16px;border:1px solid #3a3a3a;
+      display:flex;flex-direction:column;gap:5px}
+    .tag-name{font-family:var(--mono);font-size:.8rem;color:var(--orange)}
+    .tag-desc{font-family:var(--body);font-size:.85rem;color:#aaa;line-height:1.4}
+
+    table{width:100%;border-collapse:collapse;margin-top:10px}
+    th{background:var(--orange);color:#fff;font-family:var(--display);font-size:.7rem;
+      letter-spacing:.15em;padding:10px 14px;text-align:left}
+    td{padding:10px 14px;border-bottom:1px solid #333;font-family:var(--body);font-size:.9rem;color:#ccc}
+    tr:last-child td{border-bottom:none}
+    tr:hover td{background:rgba(230,100,0,.06)}
+    td:first-child{font-family:var(--mono);font-size:.78rem;color:var(--orange)}
+
+    footer{background:#111;border-top:2px solid var(--gold);padding:20px 30px;text-align:center}
+    footer p{font-family:var(--mono);font-size:.65rem;color:rgba(232,232,232,.35);letter-spacing:.1em}
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">← Portafolio</a>
+  <span>/</span>
+  <a href="#">Guía rápida de HTML5</a>
+</nav>
+
+<div class="hero">
+  <p class="hero-label">// ACT-003 //</p>
+  <h1>Guía rápida de HTML5</h1>
+  <p class="hero-sub">Cultura Digital 2 &nbsp;·&nbsp; Inteligencia Artificial</p>
+</div>
+
+<div class="content">
+
+  <!-- ¿Qué es HTML5? -->
+  <div class="section-block">
+    <p class="block-title">¿Qué es HTML5?</p>
+    <div class="block-text">
+      <p><strong style="color:var(--gold)">HTML5</strong> (HyperText Markup Language versión 5) es el lenguaje estándar para crear y estructurar el contenido de páginas web. No es un lenguaje de programación, sino un <strong style="color:var(--orange)">lenguaje de marcado</strong>: usa etiquetas (tags) para describir qué es cada elemento del contenido.</p>
+      <p>Fue desarrollado por el <strong style="color:var(--gold)">W3C</strong> (World Wide Web Consortium) y el <strong style="color:var(--gold)">WHATWG</strong>, y se convirtió en estándar oficial en <strong style="color:var(--gold)">2014</strong>. HTML5 introdujo elementos semánticos, soporte nativo para audio/video y mejoras para aplicaciones web.</p>
+    </div>
+  </div>
+
+  <!-- Estructura básica -->
+  <div class="section-block">
+    <p class="block-title">Estructura básica de un documento HTML5</p>
+    <div class="code-box"><pre>
+<span class="com">&lt;!-- Declaración del tipo de documento --&gt;</span>
+<span class="tag">&lt;!DOCTYPE html&gt;</span>
+
+<span class="com">&lt;!-- Elemento raíz --&gt;</span>
+<span class="tag">&lt;html</span> <span class="attr">lang</span>=<span class="val">"es"</span><span class="tag">&gt;</span>
+
+  <span class="com">&lt;!-- Cabecera (no visible en pantalla) --&gt;</span>
+  <span class="tag">&lt;head&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">charset</span>=<span class="val">"UTF-8"</span><span class="tag">/&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="val">"viewport"</span> <span class="attr">content</span>=<span class="val">"width=device-width, initial-scale=1.0"</span><span class="tag">/&gt;</span>
+    <span class="tag">&lt;title&gt;</span><span class="txt">Mi Página</span><span class="tag">&lt;/title&gt;</span>
+    <span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="val">"stylesheet"</span> <span class="attr">href</span>=<span class="val">"estilos.css"</span><span class="tag">/&gt;</span>
+  <span class="tag">&lt;/head&gt;</span>
+
+  <span class="com">&lt;!-- Cuerpo (contenido visible) --&gt;</span>
+  <span class="tag">&lt;body&gt;</span>
+    <span class="tag">&lt;h1&gt;</span><span class="txt">Hola, mundo</span><span class="tag">&lt;/h1&gt;</span>
+    <span class="tag">&lt;p&gt;</span><span class="txt">Mi primer párrafo.</span><span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;/body&gt;</span>
+
+<span class="tag">&lt;/html&gt;</span>
+    </pre></div>
+  </div>
+
+  <!-- Etiquetas principales -->
+  <div class="section-block">
+    <p class="block-title">Etiquetas principales</p>
+    <div class="tags-grid">
+      <div class="tag-item"><span class="tag-name">&lt;h1&gt; … &lt;h6&gt;</span><span class="tag-desc">Encabezados de nivel 1 al 6. h1 es el más importante.</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;p&gt;</span><span class="tag-desc">Párrafo de texto.</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;a href=""&gt;</span><span class="tag-desc">Enlace/hipervínculo. href indica la URL destino.</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;img src="" alt=""&gt;</span><span class="tag-desc">Inserta una imagen. alt describe la imagen (accesibilidad).</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;ul&gt; / &lt;ol&gt;</span><span class="tag-desc">Lista desordenada (viñetas) u ordenada (números).</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;li&gt;</span><span class="tag-desc">Elemento de lista. Siempre va dentro de ul u ol.</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;div&gt;</span><span class="tag-desc">Contenedor genérico en bloque para agrupar elementos.</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;span&gt;</span><span class="tag-desc">Contenedor en línea para aplicar estilos a fragmentos de texto.</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;table&gt;</span><span class="tag-desc">Define una tabla. Contiene tr, th, td.</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;form&gt;</span><span class="tag-desc">Formulario para recopilar datos del usuario.</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;input&gt;</span><span class="tag-desc">Campo de entrada de datos. type define su comportamiento.</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;button&gt;</span><span class="tag-desc">Botón interactivo.</span></div>
+    </div>
+  </div>
+
+  <!-- Etiquetas semánticas HTML5 -->
+  <div class="section-block">
+    <p class="block-title">Etiquetas semánticas de HTML5</p>
+    <div class="block-text">
+      <p>HTML5 introdujo etiquetas semánticas que <strong style="color:var(--gold)">describen el significado</strong> del contenido, no solo su apariencia. Esto mejora la accesibilidad, el SEO y la organización del código.</p>
+    </div>
+    <table>
+      <thead><tr><th>Etiqueta</th><th>Significado</th><th>Ejemplo de uso</th></tr></thead>
+      <tbody>
+        <tr><td>&lt;header&gt;</td><td>Encabezado de la página o sección</td><td>Logo, menú principal</td></tr>
+        <tr><td>&lt;nav&gt;</td><td>Navegación principal</td><td>Menú de links</td></tr>
+        <tr><td>&lt;main&gt;</td><td>Contenido principal único</td><td>Contenido central de la página</td></tr>
+        <tr><td>&lt;section&gt;</td><td>Sección temática</td><td>Sección "Sobre mí", "Proyectos"</td></tr>
+        <tr><td>&lt;article&gt;</td><td>Contenido independiente</td><td>Post de blog, noticia</td></tr>
+        <tr><td>&lt;aside&gt;</td><td>Contenido secundario/lateral</td><td>Barra lateral, publicidad</td></tr>
+        <tr><td>&lt;footer&gt;</td><td>Pie de página o sección</td><td>Créditos, contacto</td></tr>
+        <tr><td>&lt;figure&gt;</td><td>Imagen con descripción</td><td>Imagen + caption</td></tr>
+        <tr><td>&lt;figcaption&gt;</td><td>Descripción de una figura</td><td>Pie de foto</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Ejemplo de layout semántico -->
+  <div class="section-block">
+    <p class="block-title">Ejemplo: Layout semántico</p>
+    <div class="code-box"><pre>
+<span class="tag">&lt;body&gt;</span>
+
+  <span class="tag">&lt;header&gt;</span>
+    <span class="tag">&lt;nav&gt;</span>
+      <span class="tag">&lt;ul&gt;</span>
+        <span class="tag">&lt;li&gt;&lt;a</span> <span class="attr">href</span>=<span class="val">"#inicio"</span><span class="tag">&gt;</span><span class="txt">Inicio</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span>
+        <span class="tag">&lt;li&gt;&lt;a</span> <span class="attr">href</span>=<span class="val">"#proyectos"</span><span class="tag">&gt;</span><span class="txt">Proyectos</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span>
+      <span class="tag">&lt;/ul&gt;</span>
+    <span class="tag">&lt;/nav&gt;</span>
+  <span class="tag">&lt;/header&gt;</span>
+
+  <span class="tag">&lt;main&gt;</span>
+    <span class="tag">&lt;section</span> <span class="attr">id</span>=<span class="val">"inicio"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;h1&gt;</span><span class="txt">Bienvenido a mi portafolio</span><span class="tag">&lt;/h1&gt;</span>
+      <span class="tag">&lt;p&gt;</span><span class="txt">Especialidad en Inteligencia Artificial</span><span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;/section&gt;</span>
+
+    <span class="tag">&lt;section</span> <span class="attr">id</span>=<span class="val">"proyectos"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;article&gt;</span>
+        <span class="tag">&lt;h2&gt;</span><span class="txt">Proyecto 1</span><span class="tag">&lt;/h2&gt;</span>
+        <span class="tag">&lt;p&gt;</span><span class="txt">Descripción del proyecto...</span><span class="tag">&lt;/p&gt;</span>
+      <span class="tag">&lt;/article&gt;</span>
+    <span class="tag">&lt;/section&gt;</span>
+  <span class="tag">&lt;/main&gt;</span>
+
+  <span class="tag">&lt;footer&gt;</span>
+    <span class="tag">&lt;p&gt;</span><span class="txt">&amp;copy; 2025 Memo · CBTIS 144</span><span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;/footer&gt;</span>
+
+<span class="tag">&lt;/body&gt;</span>
+    </pre></div>
+  </div>
+
+  <!-- Atributos comunes -->
+  <div class="section-block">
+    <p class="block-title">Atributos más comunes</p>
+    <table>
+      <thead><tr><th>Atributo</th><th>Aplica a</th><th>Función</th></tr></thead>
+      <tbody>
+        <tr><td>id</td><td>Cualquier elemento</td><td>Identificador único en la página</td></tr>
+        <tr><td>class</td><td>Cualquier elemento</td><td>Clase CSS para aplicar estilos</td></tr>
+        <tr><td>style</td><td>Cualquier elemento</td><td>Estilos CSS en línea (inline)</td></tr>
+        <tr><td>href</td><td>&lt;a&gt;</td><td>URL de destino del enlace</td></tr>
+        <tr><td>src</td><td>&lt;img&gt;, &lt;script&gt;, &lt;video&gt;</td><td>Ruta del recurso externo</td></tr>
+        <tr><td>alt</td><td>&lt;img&gt;</td><td>Texto alternativo (accesibilidad)</td></tr>
+        <tr><td>type</td><td>&lt;input&gt;, &lt;button&gt;</td><td>Tipo de campo (text, email, number…)</td></tr>
+        <tr><td>placeholder</td><td>&lt;input&gt;</td><td>Texto de ayuda dentro del campo</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<footer>
+  <p>CBTIS 144 &nbsp;·&nbsp; Inteligencia Artificial &nbsp;·&nbsp; Chirino Balcázar Jordy &nbsp;·&nbsp; by Memo</p>
+</footer>
+</body>
+</html>

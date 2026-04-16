@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ACT-001 | El padre del internet</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:#1a1a1a; --panel:#222; --card:#2e2e2e;
+      --gold:#f5c518; --gold2:#e0a800;
+      --green:#1db954; --mono:'Share Tech Mono',monospace;
+      --display:'Orbitron',sans-serif; --body:'Rajdhani',sans-serif;
+      --light:#e8e8e8;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg);font-family:var(--body);color:var(--light);min-height:100vh}
+
+    /* NAV */
+    nav{background:#111;border-bottom:2px solid var(--gold);padding:14px 30px;display:flex;align-items:center;gap:16px}
+    nav a{font-family:var(--mono);font-size:.7rem;color:var(--gold);text-decoration:none;letter-spacing:.15em}
+    nav a:hover{color:#fff}
+    nav span{color:#444}
+
+    /* HERO */
+    .hero{
+      background:#0d2b1a;
+      background-image:
+        repeating-linear-gradient(0deg,transparent,transparent 29px,rgba(29,185,84,.06) 30px),
+        repeating-linear-gradient(90deg,transparent,transparent 29px,rgba(29,185,84,.06) 30px);
+      padding:60px 40px 50px;
+      text-align:center;
+      border-bottom:2px solid var(--gold);
+      position:relative;overflow:hidden;
+    }
+    .hero-label{font-family:var(--mono);font-size:.65rem;letter-spacing:.4em;color:var(--green);margin-bottom:12px}
+    .hero h1{font-family:var(--display);font-size:clamp(1.8rem,5vw,3.2rem);font-weight:900;
+      background:linear-gradient(135deg,#f5c518,#fff176);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+      margin-bottom:8px}
+    .hero-sub{font-family:var(--mono);font-size:.8rem;color:rgba(232,232,232,.5);letter-spacing:.2em}
+
+    /* CONTENT */
+    .content{max-width:860px;margin:0 auto;padding:40px 24px}
+
+    .section-block{background:var(--panel);border-radius:12px;border:1px solid #333;
+      border-left:4px solid var(--gold);padding:28px;margin-bottom:28px}
+    .block-title{font-family:var(--display);font-size:.8rem;letter-spacing:.3em;
+      color:var(--gold);text-transform:uppercase;margin-bottom:14px;
+      display:flex;align-items:center;gap:10px}
+    .block-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--gold2),transparent)}
+    .block-text{font-family:var(--body);font-size:1rem;line-height:1.75;color:#ccc}
+    .block-text strong{color:var(--gold)}
+    .block-text p{margin-bottom:12px}
+
+    /* PROFILE CARD */
+    .profile-card{display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start;
+      background:var(--card);border-radius:12px;padding:24px;border:1px solid #3a3a3a;margin-bottom:28px}
+    .profile-avatar{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,#0d3d1a,#1db954);
+      border:3px solid var(--gold);display:flex;align-items:center;justify-content:center;
+      font-size:2.4rem;flex-shrink:0}
+    .profile-info h2{font-family:var(--display);font-size:1.1rem;color:var(--gold);margin-bottom:6px}
+    .profile-info p{font-family:var(--body);font-size:.9rem;color:#bbb;line-height:1.6}
+
+    /* TIMELINE */
+    .timeline{position:relative;padding-left:28px;margin-top:10px}
+    .timeline::before{content:'';position:absolute;left:6px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--gold),transparent)}
+    .tl-item{position:relative;margin-bottom:20px}
+    .tl-item::before{content:'';position:absolute;left:-25px;top:6px;width:10px;height:10px;
+      border-radius:50%;background:var(--gold);border:2px solid #111}
+    .tl-year{font-family:var(--mono);font-size:.65rem;color:var(--gold);letter-spacing:.15em;margin-bottom:3px}
+    .tl-event{font-family:var(--body);font-size:.95rem;color:#ccc;line-height:1.5}
+
+    /* TABLE */
+    table{width:100%;border-collapse:collapse;margin-top:10px}
+    th{background:var(--gold);color:#111;font-family:var(--display);font-size:.7rem;
+      letter-spacing:.2em;padding:10px 14px;text-align:left}
+    td{padding:10px 14px;border-bottom:1px solid #333;font-family:var(--body);font-size:.9rem;color:#ccc}
+    tr:last-child td{border-bottom:none}
+    tr:hover td{background:rgba(245,197,24,.06)}
+
+    /* FOOTER */
+    footer{background:#111;border-top:2px solid var(--gold);padding:20px 30px;text-align:center}
+    footer p{font-family:var(--mono);font-size:.65rem;color:rgba(232,232,232,.35);letter-spacing:.1em}
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">← Portafolio</a>
+  <span>/</span>
+  <a href="#">El padre del internet</a>
+</nav>
+
+<div class="hero">
+  <p class="hero-label">// ACT-001 //</p>
+  <h1>El padre del internet</h1>
+  <p class="hero-sub">Cultura Digital 2 &nbsp;·&nbsp; Inteligencia Artificial</p>
+</div>
+
+<div class="content">
+
+  <!-- Perfil -->
+  <div class="profile-card">
+    <div class="profile-avatar">🌐</div>
+    <div class="profile-info">
+      <h2>Vint Cerf &amp; Bob Kahn</h2>
+      <p>Considerados los <strong style="color:var(--gold)">padres del internet</strong>, crearon en 1974 el protocolo <strong style="color:var(--gold)">TCP/IP</strong>, la base técnica sobre la que opera toda la Internet moderna. Su trabajo transformó redes militares aisladas en una red global de comunicación abierta.</p>
+    </div>
+  </div>
+
+  <!-- ¿Quién es? -->
+  <div class="section-block">
+    <p class="block-title">¿Quiénes son?</p>
+    <div class="block-text">
+      <p><strong>Vinton Gray "Vint" Cerf</strong> (nacido en 1943, Nuevo Haven, EE. UU.) es informático y uno de los pioneros de Internet. Trabajó en DARPA y co-diseñó el protocolo TCP/IP junto a Bob Kahn. Actualmente es vicepresidente de Google y "Chief Internet Evangelist".</p>
+      <p><strong>Robert Elliot "Bob" Kahn</strong> (nacido en 1938, Brooklyn, EE. UU.) es ingeniero eléctrico. Fue quien originalmente diseñó ARPANET, la red precursora de Internet, y junto a Cerf publicó el histórico artículo de TCP/IP en 1974.</p>
+    </div>
+  </div>
+
+  <!-- Historia -->
+  <div class="section-block">
+    <p class="block-title">Historia del internet</p>
+    <div class="block-text">
+      <p>La Internet no fue inventada por una sola persona, sino que es el resultado de décadas de colaboración científica. Todo comenzó durante la Guerra Fría, cuando el gobierno de los Estados Unidos buscaba una red de comunicación que pudiera sobrevivir un ataque nuclear.</p>
+      <p>En <strong>1969</strong>, la <strong>ARPA</strong> (Agencia de Investigación Avanzada de Defensa) creó <strong>ARPANET</strong>, la primera red de computadoras que conectó cuatro universidades estadounidenses. El primer mensaje enviado fue "LO" (intento de escribir "LOGIN" que colapsó el sistema).</p>
+      <p>Para <strong>1974</strong>, Cerf y Kahn publicaron el protocolo <strong>TCP/IP</strong>, que permitía que distintas redes se comunicaran entre sí de forma estándar. Este fue el momento fundacional de lo que hoy llamamos Internet.</p>
+    </div>
+  </div>
+
+  <!-- Línea del tiempo -->
+  <div class="section-block">
+    <p class="block-title">Línea del tiempo</p>
+    <div class="timeline">
+      <div class="tl-item">
+        <p class="tl-year">1958</p>
+        <p class="tl-event">EE. UU. crea DARPA (Agencia de Proyectos de Investigación Avanzada de Defensa).</p>
+      </div>
+      <div class="tl-item">
+        <p class="tl-year">1969</p>
+        <p class="tl-event">Nace ARPANET. Se envía el primer mensaje entre UCLA y Stanford.</p>
+      </div>
+      <div class="tl-item">
+        <p class="tl-year">1972</p>
+        <p class="tl-event">Bob Kahn organiza la primera demostración pública de ARPANET con 40 máquinas conectadas.</p>
+      </div>
+      <div class="tl-item">
+        <p class="tl-year">1974</p>
+        <p class="tl-event">Cerf y Kahn publican "A Protocol for Packet Network Interconnection": nace TCP/IP.</p>
+      </div>
+      <div class="tl-item">
+        <p class="tl-year">1983</p>
+        <p class="tl-event">ARPANET adopta TCP/IP oficialmente. Este momento se considera el "nacimiento real" de Internet.</p>
+      </div>
+      <div class="tl-item">
+        <p class="tl-year">1991</p>
+        <p class="tl-event">Tim Berners-Lee crea la World Wide Web (WWW), haciendo Internet accesible al público general.</p>
+      </div>
+      <div class="tl-item">
+        <p class="tl-year">2004</p>
+        <p class="tl-event">Cerf y Kahn reciben la Medalla Presidencial de la Libertad y el Premio Turing de la ACM por su trabajo.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabla comparativa -->
+  <div class="section-block">
+    <p class="block-title">Comparativa de contribuciones</p>
+    <table>
+      <thead>
+        <tr><th>Aspecto</th><th>Vint Cerf</th><th>Bob Kahn</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Nacimiento</td><td>1943, New Haven</td><td>1938, Brooklyn</td></tr>
+        <tr><td>Rol principal</td><td>Arquitectura TCP/IP, evangelista</td><td>Diseño de ARPANET y TCP</td></tr>
+        <tr><td>Empleador clave</td><td>DARPA → MCI → Google</td><td>DARPA → CNRI</td></tr>
+        <tr><td>Premio más notable</td><td>Premio Turing (2004), Presidential Medal</td><td>Premio Turing (2004), National Medal of Tech</td></tr>
+        <tr><td>Legado</td><td>Co-creador TCP/IP, "El padre del internet"</td><td>Co-creador TCP/IP, diseñó ARPANET</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Importancia actual -->
+  <div class="section-block">
+    <p class="block-title">¿Por qué es importante hoy?</p>
+    <div class="block-text">
+      <p>El protocolo <strong>TCP/IP</strong> sigue siendo la base de toda comunicación en Internet hoy en día. Cada vez que abres una página web, envías un correo o usas una app, tu dispositivo usa TCP/IP para fragmentar, enviar y reensamblar los datos.</p>
+      <p>Sin el trabajo de Cerf y Kahn, no existiría el comercio electrónico, las redes sociales, el streaming de video, las videollamadas, ni la Inteligencia Artificial conectada a la nube que estudias en esta especialidad.</p>
+      <p>Su legado demuestra que <strong>una idea técnica bien fundamentada puede cambiar la humanidad entera</strong>.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>CBTIS 144 &nbsp;·&nbsp; Inteligencia Artificial &nbsp;·&nbsp; Chirino Balcázar Jordy &nbsp;·&nbsp; by Memo</p>
+</footer>
+</body>
+</html>

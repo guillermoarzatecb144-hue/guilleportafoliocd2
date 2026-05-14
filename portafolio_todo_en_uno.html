@@ -1,0 +1,2077 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portafolio – Cultura Digital 2</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+
+    :root {
+      --bg:        #1a1a1a;
+      --card-bg:   #2a2a2a;
+      --cover-bg:  #0d2b1a;
+      --cover-mid: #0f3d22;
+      --gold:      #f5c518;
+      --gold2:     #e0a800;
+      --green:     #1db954;
+      --text:      #111;
+      --light:     #e8e8e8;
+      --border:    #f5c518;
+      --mono:      'Share Tech Mono', monospace;
+      --display:   'Orbitron', sans-serif;
+      --body-font: 'Rajdhani', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      font-family: var(--body-font);
+      color: var(--light);
+      min-height: 100vh;
+    }
+
+    /* ── PORTADA ────────────────────────────────────────────── */
+    .cover {
+      background: var(--cover-bg);
+      background-image:
+        repeating-linear-gradient(0deg,   transparent, transparent 29px, rgba(29,185,84,.07) 30px),
+        repeating-linear-gradient(90deg,  transparent, transparent 29px, rgba(29,185,84,.07) 30px),
+        radial-gradient(ellipse at 30% 40%, rgba(29,185,84,.18) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 70%, rgba(13,43,26,.9)    0%, transparent 55%);
+      position: relative;
+      overflow: hidden;
+      padding: 60px 40px 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 3px solid var(--gold);
+    }
+
+    /* Chips decorativos tipo PCB */
+    .cover::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      border: 2px solid rgba(29,185,84,.3);
+      box-shadow: 0 0 40px rgba(29,185,84,.15);
+    }
+    .cover::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -80px;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      border: 2px solid rgba(245,197,24,.2);
+    }
+
+    .pcb-lines {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .pcb-lines svg { width: 100%; height: 100%; opacity: .18; }
+
+    .cover-label {
+      font-family: var(--mono);
+      font-size: .65rem;
+      letter-spacing: .35em;
+      text-transform: uppercase;
+      color: var(--green);
+      background: rgba(29,185,84,.12);
+      border: 1px solid rgba(29,185,84,.4);
+      padding: 4px 14px;
+      border-radius: 20px;
+    }
+
+    .cover h1 {
+      font-family: var(--mono);
+      font-size: .85rem;
+      letter-spacing: .5em;
+      text-transform: uppercase;
+      color: rgba(232,232,232,.6);
+    }
+
+    .cover h2 {
+      font-family: var(--display);
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      font-weight: 900;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #f5c518 0%, #e0a800 40%, #fff176 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-align: center;
+      line-height: 1;
+      filter: drop-shadow(0 0 18px rgba(245,197,24,.45));
+    }
+
+    .cover h3 {
+      font-family: var(--display);
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      font-weight: 400;
+      color: var(--green);
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+
+    .cover-divider {
+      width: 120px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 4px 0;
+    }
+
+    .signature {
+      font-family: var(--mono);
+      font-size: .8rem;
+      color: rgba(232,232,232,.5);
+      letter-spacing: .15em;
+    }
+    .signature span { color: var(--gold); }
+
+    .social-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(0,0,0,.35);
+      border: 1px solid rgba(245,197,24,.25);
+      border-radius: 8px;
+      padding: 10px 22px;
+      width: min(380px, 90%);
+      margin-top: 6px;
+    }
+    .social-row svg { flex-shrink: 0; }
+    .social-row { text-decoration: none; cursor: pointer; transition: border-color .2s; }
+    .social-row:hover { border-color: rgba(245,197,24,.7); }
+
+    /* decorative chips */
+    .chips-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .chip {
+      font-family: var(--mono);
+      font-size: .6rem;
+      letter-spacing: .12em;
+      color: rgba(29,185,84,.7);
+      border: 1px solid rgba(29,185,84,.3);
+      border-radius: 4px;
+      padding: 2px 8px;
+    }
+
+    /* ── CONTENEDOR DE CARDS ───────────────────────────────── */
+    .main-container {
+      background: #222;
+      margin: -24px 24px 0;
+      border-radius: 16px;
+      border: 2px solid #333;
+      padding: 36px 28px 40px;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 -8px 40px rgba(0,0,0,.6);
+    }
+
+    .section-title {
+      font-family: var(--display);
+      font-size: .75rem;
+      letter-spacing: .5em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold2), transparent);
+    }
+
+    /* ── GRID DE CARDS ─────────────────────────────────────── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 28px;
+    }
+
+    .card {
+      background: #383838;
+      border-radius: 12px;
+      border: 1px solid #444;
+      position: relative;
+      overflow: visible;
+      transition: transform .25s, box-shadow .25s;
+      margin-top: 14px;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(0,0,0,.5), 0 0 0 1px var(--gold);
+    }
+
+    /* RAM notch */
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -12px;
+      left: 30px;
+      right: 30px;
+      height: 12px;
+      background: #484848;
+      border-radius: 4px 4px 0 0;
+      border: 1px solid #555;
+      border-bottom: none;
+    }
+    /* RAM gold stripe top */
+    .card-top-stripe {
+      height: 5px;
+      background: linear-gradient(90deg,
+        var(--gold) 0%,
+        var(--gold2) 30%,
+        #111 31%,
+        #111 39%,
+        var(--gold) 40%,
+        var(--gold2) 70%,
+        #111 71%,
+        #111 79%,
+        var(--gold) 80%,
+        var(--gold2) 100%);
+      border-radius: 12px 12px 0 0;
+    }
+
+    /* Gold contact fingers at bottom (RAM style) */
+    .card-fingers {
+      height: 18px;
+      display: flex;
+      gap: 5px;
+      padding: 0 18px;
+      align-items: center;
+      background: #2a2a2a;
+      border-radius: 0 0 12px 12px;
+      border-top: 1px solid #444;
+    }
+    .finger {
+      flex: 1;
+      height: 12px;
+      background: linear-gradient(180deg, var(--gold) 0%, var(--gold2) 100%);
+      border-radius: 0 0 3px 3px;
+    }
+
+    /* Card image */
+    .card-img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      border-bottom: 2px solid var(--gold);
+    }
+    /* imagen con fondo blanco (logos) centrada */
+    .card-img.logo {
+      object-fit: contain;
+      background: #fff;
+      padding: 12px;
+      height: 130px;
+    }
+
+    .card-body {
+      padding: 18px 18px 14px;
+    }
+
+    .card-num {
+      font-family: var(--mono);
+      font-size: .6rem;
+      color: var(--gold);
+      letter-spacing: .2em;
+      margin-bottom: 6px;
+    }
+
+    .card-title {
+      font-family: var(--display);
+      font-size: .88rem;
+      font-weight: 700;
+      color: #111;
+      background: var(--gold);
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 4px;
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+
+    .card-desc {
+      font-family: var(--body-font);
+      font-size: .8rem;
+      line-height: 1.5;
+      color: #bbb;
+      margin-bottom: 14px;
+    }
+
+    .card-btn {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: .7rem;
+      letter-spacing: .15em;
+      color: #111;
+      background: var(--gold);
+      border: none;
+      border-radius: 6px;
+      padding: 7px 18px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background .2s, transform .1s;
+      font-weight: 700;
+    }
+    .card-btn:hover {
+      background: #fff176;
+      transform: scale(1.04);
+    }
+
+    /* ── FOOTER ────────────────────────────────────────────── */
+    footer {
+      background: #111;
+      border-top: 2px solid var(--gold);
+      margin-top: 40px;
+      padding: 28px 40px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: center;
+    }
+    footer .f-school {
+      font-family: var(--display);
+      font-size: .75rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    footer .f-esp {
+      font-family: var(--mono);
+      font-size: .7rem;
+      color: var(--green);
+      letter-spacing: .1em;
+    }
+    footer .f-prof {
+      font-family: var(--mono);
+      font-size: .68rem;
+      color: rgba(232,232,232,.45);
+      letter-spacing: .08em;
+    }
+    footer .f-line {
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+      margin: 6px 0;
+    }
+
+    @media (max-width: 520px) {
+      .main-container { margin: -24px 10px 0; padding: 28px 14px 32px; }
+      .cover { padding: 50px 20px 40px; }
+    }
+  
+
+/* ── TASK PAGES ─────────────────────────────────────────── */
+#page-index { display: block; }
+#page-1, #page-2, #page-3, #page-4, #page-5, #page-6 { display: none; }
+
+.task-nav {
+  background: #111;
+  border-bottom: 2px solid var(--gold, #f5c518);
+  padding: 14px 30px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.task-nav a {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .7rem;
+  color: #f5c518;
+  text-decoration: none;
+  letter-spacing: .15em;
+  cursor: pointer;
+}
+.task-nav a:hover { color: #fff; }
+.task-nav span { color: #444; }
+
+/* === TAREA 1 styles === */
+
+    
+    
+
+    /* NAV */
+    nav{background:#111;border-bottom:2px solid var(--gold);padding:14px 30px;display:flex;align-items:center;gap:16px}
+    nav a{font-family:var(--mono);font-size:.7rem;color:var(--gold);text-decoration:none;letter-spacing:.15em}
+    nav a:hover{color:#fff}
+    nav span{color:#444}
+
+    /* HERO */
+    .hero{
+      background:#0d2b1a;
+      background-image:
+        repeating-linear-gradient(0deg,transparent,transparent 29px,rgba(29,185,84,.06) 30px),
+        repeating-linear-gradient(90deg,transparent,transparent 29px,rgba(29,185,84,.06) 30px);
+      padding:60px 40px 50px;
+      text-align:center;
+      border-bottom:2px solid var(--gold);
+      position:relative;overflow:hidden;
+    }
+    .hero-label{font-family:var(--mono);font-size:.65rem;letter-spacing:.4em;color:var(--green);margin-bottom:12px}
+    .hero h1{font-family:var(--display);font-size:clamp(1.8rem,5vw,3.2rem);font-weight:900;
+      background:linear-gradient(135deg,#f5c518,#fff176);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+      margin-bottom:8px}
+    .hero-sub{font-family:var(--mono);font-size:.8rem;color:rgba(232,232,232,.5);letter-spacing:.2em}
+
+    /* CONTENT */
+    .content{max-width:860px;margin:0 auto;padding:40px 24px}
+
+    .section-block{background:var(--panel);border-radius:12px;border:1px solid #333;
+      border-left:4px solid var(--gold);padding:28px;margin-bottom:28px}
+    .block-title{font-family:var(--display);font-size:.8rem;letter-spacing:.3em;
+      color:var(--gold);text-transform:uppercase;margin-bottom:14px;
+      display:flex;align-items:center;gap:10px}
+    .block-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--gold2),transparent)}
+    .block-text{font-family:var(--body);font-size:1rem;line-height:1.75;color:#ccc}
+    .block-text strong{color:var(--gold)}
+    .block-text p{margin-bottom:12px}
+
+    /* PROFILE CARD */
+    .profile-card{display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start;
+      background:var(--card);border-radius:12px;padding:24px;border:1px solid #3a3a3a;margin-bottom:28px}
+    .profile-avatar{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,#0d3d1a,#1db954);
+      border:3px solid var(--gold);display:flex;align-items:center;justify-content:center;
+      font-size:2.4rem;flex-shrink:0}
+    .profile-info h2{font-family:var(--display);font-size:1.1rem;color:var(--gold);margin-bottom:6px}
+    .profile-info p{font-family:var(--body);font-size:.9rem;color:#bbb;line-height:1.6}
+
+    /* TIMELINE */
+    .timeline{position:relative;padding-left:28px;margin-top:10px}
+    .timeline::before{content:'';position:absolute;left:6px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--gold),transparent)}
+    .tl-item{position:relative;margin-bottom:20px}
+    .tl-item::before{content:'';position:absolute;left:-25px;top:6px;width:10px;height:10px;
+      border-radius:50%;background:var(--gold);border:2px solid #111}
+    .tl-year{font-family:var(--mono);font-size:.65rem;color:var(--gold);letter-spacing:.15em;margin-bottom:3px}
+    .tl-event{font-family:var(--body);font-size:.95rem;color:#ccc;line-height:1.5}
+
+    /* TABLE */
+    table{width:100%;border-collapse:collapse;margin-top:10px}
+    th{background:var(--gold);color:#111;font-family:var(--display);font-size:.7rem;
+      letter-spacing:.2em;padding:10px 14px;text-align:left}
+    td{padding:10px 14px;border-bottom:1px solid #333;font-family:var(--body);font-size:.9rem;color:#ccc}
+    tr:last-child td{border-bottom:none}
+    tr:hover td{background:rgba(245,197,24,.06)}
+
+    /* FOOTER */
+    
+    footer p{font-family:var(--mono);font-size:.65rem;color:rgba(232,232,232,.35);letter-spacing:.1em}
+/* === TAREA 2 styles === */
+
+    
+    
+
+    nav{background:#111;border-bottom:2px solid var(--gold);padding:14px 30px;display:flex;align-items:center;gap:16px}
+    nav a{font-family:var(--mono);font-size:.7rem;color:var(--gold);text-decoration:none;letter-spacing:.15em}
+    nav span{color:#444}
+
+    .hero{
+      background:#0d2b1a;
+      background-image:
+        repeating-linear-gradient(0deg,transparent,transparent 29px,rgba(29,185,84,.06) 30px),
+        repeating-linear-gradient(90deg,transparent,transparent 29px,rgba(29,185,84,.06) 30px);
+      padding:60px 40px 50px;text-align:center;border-bottom:2px solid var(--gold);
+    }
+    .hero-label{font-family:var(--mono);font-size:.65rem;letter-spacing:.4em;color:var(--green);margin-bottom:12px}
+    .hero h1{font-family:var(--display);font-size:clamp(1.5rem,4vw,2.8rem);font-weight:900;
+      background:linear-gradient(135deg,#f5c518,#fff176);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
+    .hero-sub{font-family:var(--mono);font-size:.8rem;color:rgba(232,232,232,.5);letter-spacing:.2em}
+
+    .content{max-width:900px;margin:0 auto;padding:40px 24px}
+
+    .section-block{background:var(--panel);border-radius:12px;border:1px solid #333;
+      border-left:4px solid var(--gold);padding:28px;margin-bottom:28px}
+    .block-title{font-family:var(--display);font-size:.8rem;letter-spacing:.3em;
+      color:var(--gold);text-transform:uppercase;margin-bottom:16px;
+      display:flex;align-items:center;gap:10px}
+    .block-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--gold2),transparent)}
+    .block-text{font-family:var(--body);font-size:1rem;line-height:1.75;color:#ccc}
+    .block-text p{margin-bottom:12px}
+
+    /* Lang cards grid */
+    .lang-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:18px;margin-top:8px}
+    .lang-card{background:var(--card);border-radius:10px;padding:20px;border:1px solid #3a3a3a;
+      border-top:3px solid var(--gold);transition:transform .2s}
+    .lang-card:hover{transform:translateY(-4px)}
+    .lang-icon{font-size:2rem;margin-bottom:8px}
+    .lang-name{font-family:var(--display);font-size:.75rem;color:var(--gold);letter-spacing:.2em;margin-bottom:6px}
+    .lang-type{font-family:var(--mono);font-size:.6rem;color:var(--green);margin-bottom:8px}
+    .lang-desc{font-family:var(--body);font-size:.85rem;color:#aaa;line-height:1.5}
+
+    /* Category badges */
+    .badge{display:inline-block;font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;
+      padding:3px 10px;border-radius:20px;margin:3px}
+    .badge-markup{background:rgba(230,100,0,.2);color:#e66400;border:1px solid rgba(230,100,0,.4)}
+    .badge-style{background:rgba(29,185,84,.15);color:var(--green);border:1px solid rgba(29,185,84,.3)}
+    .badge-script{background:rgba(245,197,24,.15);color:var(--gold);border:1px solid rgba(245,197,24,.3)}
+    .badge-backend{background:rgba(80,120,255,.15);color:#7b9fff;border:1px solid rgba(80,120,255,.3)}
+    .badge-data{background:rgba(200,80,200,.15);color:#e06ce0;border:1px solid rgba(200,80,200,.3)}
+
+    table{width:100%;border-collapse:collapse;margin-top:10px}
+    th{background:var(--gold);color:#111;font-family:var(--display);font-size:.7rem;
+      letter-spacing:.2em;padding:10px 14px;text-align:left}
+    td{padding:10px 14px;border-bottom:1px solid #333;font-family:var(--body);font-size:.9rem;color:#ccc}
+    tr:last-child td{border-bottom:none}
+    tr:hover td{background:rgba(245,197,24,.06)}
+
+    
+    footer p{font-family:var(--mono);font-size:.65rem;color:rgba(232,232,232,.35);letter-spacing:.1em}
+/* === TAREA 3 styles === */
+
+    
+    
+
+    nav{background:#111;border-bottom:2px solid var(--gold);padding:14px 30px;display:flex;align-items:center;gap:16px}
+    nav a{font-family:var(--mono);font-size:.7rem;color:var(--gold);text-decoration:none;letter-spacing:.15em}
+    nav span{color:#444}
+
+    .hero{
+      background:#0d2b1a;
+      background-image:
+        repeating-linear-gradient(0deg,transparent,transparent 29px,rgba(29,185,84,.06) 30px),
+        repeating-linear-gradient(90deg,transparent,transparent 29px,rgba(29,185,84,.06) 30px);
+      padding:60px 40px 50px;text-align:center;border-bottom:2px solid var(--gold);
+    }
+    .hero-label{font-family:var(--mono);font-size:.65rem;letter-spacing:.4em;color:var(--green);margin-bottom:12px}
+    .hero h1{font-family:var(--display);font-size:clamp(1.8rem,5vw,3rem);font-weight:900;
+      background:linear-gradient(135deg,#e66400,#f5c518);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
+    .hero-sub{font-family:var(--mono);font-size:.8rem;color:rgba(232,232,232,.5);letter-spacing:.2em}
+
+    .content{max-width:900px;margin:0 auto;padding:40px 24px}
+
+    .section-block{background:var(--panel);border-radius:12px;border:1px solid #333;
+      border-left:4px solid var(--orange);padding:28px;margin-bottom:28px}
+    .block-title{font-family:var(--display);font-size:.8rem;letter-spacing:.3em;
+      color:var(--gold);text-transform:uppercase;margin-bottom:16px;
+      display:flex;align-items:center;gap:10px}
+    .block-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--gold2),transparent)}
+    .block-text{font-family:var(--body);font-size:1rem;line-height:1.75;color:#ccc}
+    .block-text p{margin-bottom:12px}
+
+    /* Code blocks */
+    .code-box{background:#111;border:1px solid #333;border-left:3px solid var(--orange);
+      border-radius:8px;padding:18px 20px;margin:14px 0;overflow-x:auto}
+    .code-box pre{font-family:var(--mono);font-size:.78rem;line-height:1.7;color:#ccc;white-space:pre}
+    .tag{color:#e66400}
+    .attr{color:#f5c518}
+    .val{color:#1db954}
+    .com{color:#666;font-style:italic}
+    .txt{color:#ccc}
+
+    /* Tags reference grid */
+    .tags-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-top:10px}
+    .tag-item{background:var(--card);border-radius:8px;padding:14px 16px;border:1px solid #3a3a3a;
+      display:flex;flex-direction:column;gap:5px}
+    .tag-name{font-family:var(--mono);font-size:.8rem;color:var(--orange)}
+    .tag-desc{font-family:var(--body);font-size:.85rem;color:#aaa;line-height:1.4}
+
+    table{width:100%;border-collapse:collapse;margin-top:10px}
+    th{background:var(--orange);color:#fff;font-family:var(--display);font-size:.7rem;
+      letter-spacing:.15em;padding:10px 14px;text-align:left}
+    td{padding:10px 14px;border-bottom:1px solid #333;font-family:var(--body);font-size:.9rem;color:#ccc}
+    tr:last-child td{border-bottom:none}
+    tr:hover td{background:rgba(230,100,0,.06)}
+    td:first-child{font-family:var(--mono);font-size:.78rem;color:var(--orange)}
+
+    
+    footer p{font-family:var(--mono);font-size:.65rem;color:rgba(232,232,232,.35);letter-spacing:.1em}
+/* === TAREA 4 styles === */
+
+    
+    
+
+    nav{background:#111;border-bottom:2px solid var(--gold);padding:14px 30px;display:flex;align-items:center;gap:16px}
+    nav a{font-family:var(--mono);font-size:.7rem;color:var(--gold);text-decoration:none;letter-spacing:.15em}
+    nav span{color:#444}
+
+    .hero{
+      background:#0d2b1a;
+      background-image:
+        repeating-linear-gradient(0deg,transparent,transparent 29px,rgba(29,185,84,.06) 30px),
+        repeating-linear-gradient(90deg,transparent,transparent 29px,rgba(29,185,84,.06) 30px);
+      padding:60px 40px 50px;text-align:center;border-bottom:2px solid var(--gold);
+    }
+    .hero-label{font-family:var(--mono);font-size:.65rem;letter-spacing:.4em;color:var(--green);margin-bottom:12px}
+    .hero h1{font-family:var(--display);font-size:clamp(1.8rem,5vw,3rem);font-weight:900;
+      background:linear-gradient(135deg,#4fa3e0,#1db954);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
+    .hero-sub{font-family:var(--mono);font-size:.8rem;color:rgba(232,232,232,.5);letter-spacing:.2em}
+
+    .content{max-width:900px;margin:0 auto;padding:40px 24px}
+
+    .section-block{background:var(--panel);border-radius:12px;border:1px solid #333;
+      border-left:4px solid var(--blue);padding:28px;margin-bottom:28px}
+    .block-title{font-family:var(--display);font-size:.8rem;letter-spacing:.3em;
+      color:var(--gold);text-transform:uppercase;margin-bottom:16px;
+      display:flex;align-items:center;gap:10px}
+    .block-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--gold2),transparent)}
+    .block-text{font-family:var(--body);font-size:1rem;line-height:1.75;color:#ccc}
+    .block-text p{margin-bottom:12px}
+
+    .code-box{background:#111;border:1px solid #333;border-left:3px solid var(--blue);
+      border-radius:8px;padding:18px 20px;margin:14px 0;overflow-x:auto}
+    .code-box pre{font-family:var(--mono);font-size:.78rem;line-height:1.8;color:#ccc;white-space:pre}
+    .sel{color:#4fa3e0}
+    .prop{color:#f5c518}
+    .val2{color:#1db954}
+    .com{color:#555;font-style:italic}
+    .punc{color:#888}
+
+    table{width:100%;border-collapse:collapse;margin-top:10px}
+    th{background:var(--blue);color:#fff;font-family:var(--display);font-size:.7rem;
+      letter-spacing:.15em;padding:10px 14px;text-align:left}
+    td{padding:10px 14px;border-bottom:1px solid #333;font-family:var(--body);font-size:.9rem;color:#ccc}
+    tr:last-child td{border-bottom:none}
+    tr:hover td{background:rgba(79,163,224,.06)}
+    td:first-child{font-family:var(--mono);font-size:.78rem;color:var(--blue)}
+
+    /* Flex/Grid demo boxes */
+    .demo-label{font-family:var(--mono);font-size:.6rem;color:var(--blue);letter-spacing:.15em;margin-bottom:8px}
+    .flex-demo{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+    .flex-box{background:rgba(79,163,224,.15);border:1px solid rgba(79,163,224,.3);
+      border-radius:6px;padding:10px 16px;font-family:var(--mono);font-size:.75rem;color:var(--blue)}
+    .grid-demo{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px}
+    .grid-box{background:rgba(29,185,84,.12);border:1px solid rgba(29,185,84,.25);
+      border-radius:6px;padding:12px;font-family:var(--mono);font-size:.7rem;color:var(--green);text-align:center}
+
+    /* Color boxes */
+    .color-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
+    .color-swatch{width:70px;height:50px;border-radius:8px;display:flex;align-items:center;
+      justify-content:center;font-family:var(--mono);font-size:.6rem;color:#fff;border:1px solid #444}
+
+    
+    footer p{font-family:var(--mono);font-size:.65rem;color:rgba(232,232,232,.35);letter-spacing:.1em}
+  </style>
+</head>
+<body>
+
+<div id="page-index">
+
+
+<!-- ═══════════════════ PORTADA ═══════════════════ -->
+<header class="cover">
+  <!-- PCB decorative lines -->
+  <div class="pcb-lines">
+    <svg viewBox="0 0 1000 300" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="80"  x2="300" y2="80"  stroke="#1db954" stroke-width="1.5"/>
+      <line x1="300" y1="80"  x2="300" y2="200" stroke="#1db954" stroke-width="1.5"/>
+      <circle cx="300" cy="80" r="4" fill="#1db954"/>
+      <line x1="700" y1="50"  x2="1000" y2="50"  stroke="#f5c518" stroke-width="1"/>
+      <line x1="700" y1="50"  x2="700" y2="180"  stroke="#f5c518" stroke-width="1"/>
+      <circle cx="700" cy="180" r="3" fill="#f5c518"/>
+      <rect x="120" y="130" width="40" height="24" rx="3" stroke="#1db954" stroke-width="1" fill="none"/>
+      <rect x="860" y="60"  width="30" height="18" rx="3" stroke="#f5c518" stroke-width="1" fill="none"/>
+      <line x1="0" y1="220" x2="200" y2="220" stroke="#1db954" stroke-width=".8" stroke-dasharray="6 4"/>
+      <line x1="800" y1="240" x2="1000" y2="240" stroke="#f5c518" stroke-width=".8" stroke-dasharray="6 4"/>
+    </svg>
+  </div>
+
+  <span class="cover-label">// MÓDULO DIGITAL //</span>
+  <h1>Portafolio</h1>
+  <h2>Cultura Digital 2</h2>
+  <h3>Inteligencia Artificial</h3>
+  <div class="cover-divider"></div>
+  <p class="signature">by <span>Memo</span></p>
+
+  <!-- Redes sociales -->
+  <a class="social-row" href="https://www.instagram.com/" target="_blank" id="ig-link">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="2" width="20" height="20" rx="5" stroke="#f5c518" stroke-width="1.5"/>
+      <circle cx="12" cy="12" r="4.5" stroke="#f5c518" stroke-width="1.5"/>
+      <circle cx="17.5" cy="6.5" r="1.2" fill="#f5c518"/>
+    </svg>
+    <span id="ig-display" style="flex:1;font-family:'Share Tech Mono',monospace;font-size:.8rem;color:#e8e8e8;letter-spacing:.05em">instagram</span>
+    <span style="font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--gold);letter-spacing:.1em">VISITAR →</span>
+  </a>
+  <script>
+    (function(){
+      var saved = localStorage.getItem('ig_user') || '';
+      var link  = document.getElementById('ig-link');
+      var disp  = document.getElementById('ig-display');
+      if(saved){ disp.textContent = '@'+saved; link.href='https://www.instagram.com/'+saved+'/'; }
+      link.addEventListener('dblclick', function(e){
+        e.preventDefault();
+        var u = prompt('Escribe tu usuario de Instagram (sin @):', saved);
+        if(u !== null){
+          u = u.replace(/@/g,'').trim();
+          localStorage.setItem('ig_user', u);
+          disp.textContent = u ? '@'+u : '@tu_usuario_instagram';
+          link.href = u ? 'https://www.instagram.com/'+u+'/' : 'https://www.instagram.com/';
+        }
+      });
+    })();
+  </script>
+
+  <div class="chips-row">
+    <span class="chip">DDR5-4800</span>
+    <span class="chip">AI v2.0</span>
+    <span class="chip">32-bit</span>
+    <span class="chip">CBTIS-144</span>
+  </div>
+</header>
+
+<!-- ═══════════════════ CONTENEDOR PRINCIPAL ═══════════════════ -->
+<main class="main-container">
+  <p class="section-title">Actividades</p>
+
+  <div class="cards-grid">
+
+    <!-- CARD 1 -->
+    <div class="card">
+      <div class="card-top-stripe"></div>
+      <img src="data:image/jpeg;base64,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" alt="El padre del internet" class="card-img"/>
+      <div class="card-body">
+        <p class="card-num">// ACT-001</p>
+        <div class="card-title">El padre del internet</div>
+        <p class="card-desc">Tim Berners-Lee es considerado el padre del internet, creador de la World Wide Web.</p>
+        <a href="#" onclick="showPage(1);return false;" class="card-btn">VER TAREA →</a>
+      </div>
+      <div class="card-fingers">
+        <div class="finger"></div><div class="finger"></div><div class="finger"></div>
+        <div class="finger"></div><div class="finger"></div><div class="finger"></div>
+        <div class="finger"></div><div class="finger"></div>
+      </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="card">
+      <div class="card-top-stripe"></div>
+      <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMTEhUSExMVFRUVFhUWGBcXFRUYGRgYFxUXFhcWFxUYHSggGBolHRcXITEhJSkrLi4uFx8zODMtNygtLisBCgoKDg0OGxAQGy0lICUtLS0tLy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIALEBHAMBEQACEQEDEQH/xAAbAAACAwEBAQAAAAAAAAAAAAACAwEEBQYAB//EAD0QAAIBAgQEBAQEBAUDBQAAAAECEQADBBIhMQVBUWEGEyJxMoGRsUKhwfAUUtHxIzNyguFikrIHNENTY//EABoBAAIDAQEAAAAAAAAAAAAAAAIDAAEEBQb/xAA1EQACAgEEAQIEBAYCAgMBAAAAAQIDEQQSITFBUWEFEyJxFDKBsUKhwdHh8DORI1IVYvEG/9oADAMBAAIRAxEAPwD57d4ofLOGDN5IymGiQ0kkzGgzGIrruzjb4OOtNH5nzmvq/oZroRudP3ypT4NPYs3eQ0Hy/M1NxMEqdJPyqJ8ckYy04AJMydBHT8U/Kji0gZJsaGt/9cadJmdY+VH9HuL+r2BDJ1edxtvz/ShzH3CxL2JXKdSWiCTEb8t9xNFwweelgJHWBq0mc20doq4tFSTIaoyIPMev05+/eiT9ymkGsd6JYAeS42CPli4CCpMaHX5imut43CFct7g+xKnXSqyG+uSTEzp7VHjJXPTCtvHOiTwU1k07N0Fe9aYyTRjnFqRewd8cxNNjIzWwfgI3QDV5B2Nos2sXFXkVKnIV/EHepkqFa6M3FXSdaXJmuuOOChcelNmqMSuTSxuCuzQaU3hjUsoG5cmqcslxjgG8ojShkkFBvJXmlZGk56vcVgFqFhI8KsoBloWgkxLUt8DERNVksiqISKshNsiY3JB15TuI66gUKwEOKvAzBhpMkHUdddxRc+QcxzwJ8v8AfX2qsBZPIxJgGJ+kDX8qibBaPO8nty9qjZAw35UaYLRIYghgdZqdckxnggVOyECoiDlbSmJi2iV0qIj5LVq0SNKfGLfQiUkuwg+UwCdP2avLjwU4qXJLQajwylwLAIquguw6sofZamRYqa8lxG1jpT0/Bna4yNY86JsBLweF41NxHAeMV6YNFu4FurnKKxuzQbsjVHBXIBMUt4bGrKRWvaGJpUuHgfDlZF3E0mhcfIUXzgr56VkbgBjQthIW1AwkBNVkIkmrICpihTwXjIZaiyDgU9Aw0LNLDPCoQIVZQ4WwYZOo35HoeYo1FPlFOWOGdKeEvFplcujBVnWU9UEESdASdR1/DM1rdEuMdHNWsgnOLWGv5/7/ALkocY4Iy4g2syhTLKzGARzHWZ5RSbKGp7R2n1kZ0/Mw8+UiLPAH9aO6pcyh0mYdNSxDAdBO06GoqHyn2XLWxWJRWVnD9mVb3CxFplMK/octJCXBv8IJykEMNOZ6UEqnxgZG/mSfa5Xuv94Zfwvh9lcIxym6p8pyrqJB9SOjKGErPLeOtHGmSYmesi47ks47XH6NNPBnYjAEAMrC4jSAygjVd1KsAQ2oMdDpQODNEbE3h8NeP6/YqPaZdx9qFprsYmn0QxqER5GPSaiZGg8x6UWWDhGhgiVO+kT8601PBmtSkFjOTTv96Kz/ANgav/U9h7WYb/KpCO5dknLa+gGTcHlVYCT8nhVIouJaXy8wb1TGXt1pyS25ESlL5mMcEYfXSauPJJ8DSxFG20AkmD5lVuL2ns81N2SbcE2SJg1I98lSzjgG+hB7VUlhhQeUVri0qSyOTwKJgUHQfYkoaW0xmULahYQM0JeBbUIa6JmoQhhUZSAmhDINUQGqLPVCyZqZKGW1ywc2vQa/8VcVt5ySXPGDrDx5cq+TbNsiG3lc2zDX8JAEjsK6KvWODjLQycn82W5de+P8AcO4inmL5r5Id3DqM2Vn1KneFmfqdqBWLPId1ElW/lrPCWHx1/Ur8T4q+dYyxaYm3cXMSQTvLMZB6HuKGdvOBlGljtbecyXKf+Ci3Ej6oVVV8pIQEAFPhdNfS2/1oPmYH/IXHba9ffwxmM4zcIjQDMLhKoqtn/nJHOpO0GvTRXPnGO+MegjFcauXIzERmLkBVWWOhJygTpprS3buGV6aFfX2/QIulzQnuSBJ5SRI3/em1HxPgt7ocou8a4SgXNh0uOi//IHR1ZTPqIUBkYGNCKuytY+lGbTamTeLmk34w1z+vDKOP4R5WUG6pdlRigVwQrjk0Q0c6XKpxffI+rU/MzhcJtZ48GgOCraAusTcsn0vKFGVXEC6gJMgaEH8taeqdvL6M34t2PYuJeOc9eGHgeEf5iOxDIQM3o8sKfhdmZgYOm1HCvCaYNup/LKK78c5z6IyMSWRmtuIKkg+4pMpNNxZsglKKnF9gWbpQ1UZODLnBTQx72YzFG57uQFDasEzUyVgZmgdqPIOOQlfmKtMFrwxovE6Gj3t8MDYl0CHE1WVkLbwRnqZJtCz1eStoxrsiicuAFHDFWRmmKCP1Bz+nsVdEUEkMjyCrxVJ4LayVbh1pMmOXQuhCPEVMEINUWemqRCGFRloA0LCBihwWRVFnhVkDNwg6ACeg69zV7sPgrblB3CTvMidz++tW2ykkSt3rv1H71q9xW0baxBGjDTqPuKtTfTKlFdoa+UzP1Gx79qJtApNFdrLctencdutA8hpohcM3IfL32iqSYTaHphG5CN+Y5b01R9BTkvJsYTHDDgP5VtnXMFb1BvVMhgCA415jSn5UVnyYbaHc9u5pen29PQq2+KEKAVS5lnL5iZik7hTO3YyKHeuxroTfDaz3h9/ckcbcLlAUyuQkopYp/Jm3gcvYVfzivwkc557z3xn1FDi9xCIPwrkGg+Ea5WBHqA79BVfOcQnpoTTz55Lb8HxN+LzI7ZgDmOUSI06VbqlN7hP4uij/wAaaWPBmXbEDT6UMq8Lg1RnlgW7bnZWPPQH60CUn0W5RXbLGEw1x5yozAbwJj3pkIyl0hdlkIY3PBpPwbLYW6zwTMLlJGnIsNjT/k4jnJjWrUrnBLr3EWOH3Db8wQFk84JI6DnVRrk1kbLUQU9nktrwwhVBgm4JUz05fOmqrjD8iHqU5NrpdhngRyqxYS+y9Y3E9anyPcFa1NuKXXkqcVwS2yCpJVvyPMUu2tR5Q/T3OxPcuSjSjQaOBw5yyVlW2/rWiuDxyZbrFnCfKFjBOhkDXpVKuUXwE7oSXIT4ByZb01HVJvkpXwS45FHhjEwKF6dvhB/iYpZZ4cNCyHPLSoqFHsn4ly/KZty3lMGsslteDXGW5cE3WBFXJpoqKaYiljQCaBhIkGr7KAIoQgTVMs9VEIiqLL1rhtxiqZGLsJUfzDeRNPVMuFgRLUVpOWeF2Mx3A8QiZntEAHU6GPeDpV2aeajloCrWUTltjLsXwvhVy/mW2ASq5tSBI2gd6CuqU+EFfqa6MOfl4EAlSVYazBBncciOtV+XhjeJYaYa6bbd9x37jvU9iBDMNQCRpIidzA02IPWq5ROzVwbW3cBjlE+rqORMEyPr7kbU2CU3gz2OcItpZfg1MXw+2rOlt38y2pYqyxmVQJKsvY7dNorS4JdMw16mclGU4ra+OH0/fJWfhrNbEQS6ZxbGbMVExBy5Z0Ok+wJ1oHF4HLUwUnnhJ4z4z+5Xs4G3aW1cuOHS8GVhlMoIALzyZWI9wO9Ds2pNlyulZKUILDj/AD9vszHxWHe3ca226Ez35gjsRBHvSWmpYNkJRnBSXkWNdZqLkvrg2OEcSy+l9bZGVwP5TzHcHX5Vqrt4wYtRp1L6o99r7/56NDCHy7vk3SP8NgyXP5dQRPW2wg9qbD82GZrVvr+ZDyuV/vlF2zmFy9hVc25cvbYHZviC6fhYEfMUa7cUZ54cIXyWcLDX8v8AtBDFWrbZWKsXCtcyTC3VmG0j5iiTiuGC67bFuSax1n09ATxUZyPOOX/81IAb/S3xCi+YvUi0rUcqPPv/AIK2M4haZiIPl6HSFYNGrKNtelA7Ivh9Da6LYrP8X9PQSuNVz5a6DMChJ1X3PSdaisUntQx0ygt79OfcuHiYRnW4AY5bgMNmHvRuxJ8mf8K5xTh/qMsYm7ezqiZsxkgCY7jpSPmTmmoo2fLqpw5yxgzb1plMOCp6EVnaa7NcZRksxeTQwOPC/FqBtWiu1JcmW6hy6La8WHMc9+1NV6E/hH4Ym7xM3GyqKF3bnhBx0yrjmRSxGPdTG0Umd0kzRCiDRSv4tm1JpErZM0QpjHgEPmOpoc7nyFjauAWFU+C1yKNCGjxFVggNUWQaosE0LLBqiyRVkwdnxrNauYc7OtpfqpjeutZ9MonA0u22Fi7Tf7mqbaz5lqwz+epDsr6DNowynSRTGl2l2Y1KWNlk0tr4yv8AozeFYNLN3EWWeUFthmBExof+6lVwUG4mvUWyurrtiucrgo8XOHviVZluovx3Mqi6ByJGgfvzpFyhPrv9zTpfn0vEknFvpfw/4OcJ6kz7zrWN+51V7Ghwy+s5WYLuQTIE8x0E+4/QnBx6Yu1PGUhmKtAEMI00KyNuw/tpyjWjxteQE8rDL+K8QXPJS0paQCjHSHTTKJ3kDT2inSuwsIx16GHzHZL7r2fkZgeOQgtnUAyFNx0g7kZlPw9j+VErU1gGzSZnuXfrhP8Ak/PuUcVimClSoCM4eNfSYI9JnYiAZnYe9BOWDRCpZz5Sx9/uUMZiWdRmAOUKitzyrMA9dwJPICs83lGiuCi+Pv8AqyorGgTY1oYtwqZFGpOLygGlJYZqYW+AQ8Afn8iDuNPzrVCST3GSyDa25JxnErhuFz8RjUQNgAsRtsKqVkkyqtPWobV17mfdxBZixOpMk9zSHNt5NMa0lhdBG9Iot/BWzB5X+VRSyTaNsJJ0PtTILL7FzeF0HeUzHbfrRSTYMWsHRcAvFcPdW3/mFcw6mNwK018Q47OVrIKV8ZT/ACmFiOIvdZfMMxprv8zWd2uTSkdOGnhXF7DZbhFt7YbzFUqCYA3HetLpTSOctXOFjjtymRgrFh7WVmOYSRFXGMJRwwrZ3Qs3RXBzvwsSORMdaw/leUdX80cMG/czDbXrQzluRcI7WViKUNPRUwQ9cB51Hkix4AoAh1tZFNSyhbeBT6UuXAxci5oAsHqhCGqmWgaos1cTj3uFS7FoECeQrZK1yeWYq6IVpqKwSnEXAygkbnQnpVq+S4I9NB/Uys2Ika0p2ZHKvAgAkhRrJ0HPXpS1l8IZwluZsp4TxZEizp3Kgn3BNO/DWehgfxXSp4czMx2Cu2TluoUnkRvHQ/0pM4ShxJG2m+q5bq5ZL3A8DcxLi2uwGrH8AH72+1Oqi7HhGbV6ivSwc5f9ep0V7wjh09LYvK/cKBPtOn1rR+GS8nKh8WvnzGrKMfjfAL9kB5Fy3AAuJEDpI3Hvr70m2uceezoaTXU3PbzGXozU8M2LV1HsuBmcEo3RgNRv8/kafVFOJk+IW2UyjZHpd/Yw+O2bauAltrTKoFxc2YB51IJ1g1mtSXSwdDSynKOZSUk+n7Gboe/tE0vhmks47DW0yFHzllBYEQUbmvQ0c4KOMMVVZOedyxh8e69RWFxBBKnY6a8vbpUrm08MOyCayi60fLlMVo4M+GZ+JUA6c6y2JJmmDyuQUbeqTLaJU60SKY4XCDIo1Jp5QtxTWGXw2caTIEzWhPeuDM1sfJGCxDWzmBIg7jkaqubiXbXGxYNpLmDuHzLoKNucvwsfblWh/Lf1M5zjq4LZW8r37Rj4niKi6xtelCfSO1Z5X4l9Jvr07daVnLKdq8ZhTvS4zbeEaJQWMs1L/ALgAbMpJExOpp8tNLvJjhrq28YZSwnDbjScphTry+VKhRJsfbqa4pLPZft8HDsAugPXkelaPw6b4M0tW4ReS3a4Pb1RiCOo69KYtPHGGIlrJv6kinjOEgghTIG1Ls06a4H1at5WTnihnLGvSubtecHV3LGRj2XT4lI9xRbZw7QKnCfTFvQy5CQqlhnqhCDVFk6VfBXIZJBiiy0yu0EFlt9/1q8ZZWcITl1jWl4GZN/wgUS+ruNjv0kRMVt0kVnLOX8T3TpcInc8bOJkNZlkgfCRM/v3/WtzbXSPO6JabDjdw/c47xPevvl85GATYlQImN+o+Z96xahyl2j0Ggr09eflNc+5r/8Ap+6KWXmwH1Bn9+1O08Uo8HP+NqUop+Ec5xA3UvXFYnMHYmfcme451mnKcZM69Hyp1Ra6wbPhnjENkeMj6Mhggg6ZgPn9OtaKbN/Zg+IaTMd0O10/Ivi2G/hMTCGA0Pb3012nsRHtFDxXPHqFp7fxmn3SXK4YzxrhA6pjbY0aEuDo2wn/AMf+2g1McfWgfhVri5aWfjlfY5RVj1fTtWZLHJ2u+GOwRDEq2s6j5UVb3cMCa28ojGWgNdh8zB/SpYkuSQbZXYTsZoHz0H9wCD0qmixltes8wdNulXHBUvYt8MVM4NwSs+oAnVeeop1Sjn6hF7ntah3/AFN3iHB1Ku62iioVIZWJW4hO6ltm2rVOmPaX+Uc6nVyTUXLLf/af9huFwYtyUlgoz9rlltCPcUyEFHr/APULsudnEuM8faQ67hUh2FoC2ACCDoyHmJ2cGj2x5eOBcbZ5UXL6v2f9jF8Q2gGVlIKuoII6jQ/OsupS3JrpnQ0U24uMu0zGG9Yzf4G2jl9QpkXjkXL6uDocA5vKFB9a6p3HMV0K5OcceTl3JUy3Pp9mzdvC0VFyJcSR0I5mn7kuznxg7U3DpGdjMUqsfUCG19PI0ErIxfZrqqlKPXXqRieIWxZzAes6H361U7YqGUSvTzdu19GLc403Ib1kerfg6C0UfJY4A6m8GeJotO055fYrWqSq2xG+J+JMWa2VEcj2q9Vc19GAPh2mSippnNGuadghqpkQINUXgI1ZSAoQhxEiZ16frTGsrIvOHggNsar0YWD0ifnU4yTnBatXiNVOop8ZtcoRKKfDN/hHGMSEZkDlV3gSB7jlWuu6Ul0c3U6PTuSU8ZZr8H8UNdPl3FzSwBXJyO5+2kUddqnwYNV8MjVHfB4x7md4iw4weIU2zlS56gB+FlOsdqVOSql7M16Gx6yhqfLXH3L9/wDh8cAXYWr4EB/wv9f+CKOUI2GeHz9C2ordD08o9w7way3AzupQQfTMn6jSqhRtlkq/4zGVbjGLz7lbxfeF/FJZRSzIMugPxMZOnQCNaXc900l4NHwqHyNO7JvCfIfBuIoq3LWIEo0ArH4hAPTp8iBTYyTj9QOr085TjZQ+V59heN4zgVRlTCqZBWfSDroSGgkGkznUotJBU6TWualZa+DjJKkEctQaxdPg73Y29cdhzj2o5OUgIqMQbVttgO/L71UVItyiGQ3NlAJkyfzIHvRc+oPHoO4dZtNcUXLmQEnMQCY031q4Rg5csC6dkYNwWWRoDIIMHQjoKNcPhldrDRqLxa5kULtbmDqRlP4HG0f1rR814yvBkelhuefP+5Q3huMxN3/BsaTJgbDrqdlq42TksRF31aer/wAlpbx/hrFi2Nmy65VY++g2NXOuxrsz0fEtI5+mfLRz2KxVx8qNskgCNuvzrNOcpPD8HVrrhHMo+RaYdmIABJ6UKg28IN2KKy2WeH8Me5IECIkHeCYkDtTaqJS4E3amNaTNjB8Ke1LZoAJE/Y1rrocPJgt1ULeMdljyRcbM51A0n8xTdqk8sVuda2wRi8UsKp9JEHlO1Y74pPg6Gnm5L6kZtxT1rLJe5ri16CO9KGDkuEQwpik1ygHFPhm9ZCYlQrnK42b+tb1svjh9nMlv00sx69BHGuDJYRfWGY9KTfp4Qhx2M0msnfN8YRhMRGtY21g6STyJpYwkGoUeqE5CQgHXarTSfJHyuD3WoT7no11NTHJWeBo30M0xewD65N/gPHDh5A0nfmDFbKblFYZzNZolfyzfueMUUZhbXN2/tT5XQSOZH4POTw5PBg4/iL4q5lvQAwD2xmAUCDGu8n335VklYrJYkdejTQ0tf/j/AF9SncXKoyaRMxz66do5fQVOYr6TRhSf1E2OL3FIgkRsQYirWofkVPSQkjq+DeKw7AXiiSpAukRryB7b9Kcr4vs42p+EyjHNeX/9cmbw7iCteui4BcS62VnIGmpAZN4AHL2pdc90mb9Rp3CmLr4cel/RnQjw7gbYllTT+d/0kCmqiteDjv4jrrXiP8kVvEHBrV3DF8MqA25YZFAzAfEu2p5juO9DdWnH6fA7Qa22rUbNQ39Xr49D5yLh69/lzrn7meq2o0OFcEv4gxaAK82JgL0nnPamQqnLoy6jWU6dZsf+TbveAr4WVuW2YDbVdezRr84pr0ksdnPh8eocsNNGRgcELdzJftEFZzqSRK7bjY6zPtUqrSeJI3XXOcN1MuH0/c1fEvh1QgxGF1tQMyiSV7jn7jlRX0NLdAw6D4g5TdOo/N4fqaPg/Ldw92wdmUn6iD+YFaKcSgZPijlVfC1eGZfDcccISUAJOhB5x1qLFa4Nl9K1aSmavBHx10+adFJkFjAI7L0oqpTf5kYtYtFUti79hPjrg22IQdBcA68mpWprz9SGfB9ZnNMv0OXs3ChBBg7gzSYtx5OxOKlw0PscSKNmGp1/PejjfteRc9Opx2sY/G7sH1fs1b1MsAx0VeejPv4pm/EfrSJ2yfk0wqivAu0uYgGhitzSYcmorKNzE8HUqPLJOkkxpHOtstNHH0nOr1ck/rQzA8NQLD6g/sUddEUsMC7UybzHgO5wxACIiQYmidEEuEDHUzb7yc210rIGhFcxzceEdZQUuWLe6zbkn50DnKXYahGPSAZKFxCTFgUATZMVZCKhBkSI58qLCawD08kq/blBqJkaBddu9U10WmFaaCRVxeGVJZRYGI605TEuALvNDJ5CSwLv3JYsFVZM5VHpHspnTtS33kOKwsDFxdw7fPpHQzy99uVEpyfRHCPk9bxAUEfET9B/WorNvHZThu9gbbMzCdf7UOW3yW0kjQsvlJKmJY+2nUfOnRlteUIlHdwyyrNckqcpHfSPnsPfTvRO1z6YrYocNHWeFMUUbym0zfTNyInaR17VppsyuTh/FdPmPzI+P2MnxD4cW1fJAOR5cbQP5gPYkfKNTtWWyqKmdD4fr5XUc9rh/wBAuG8WOFRraAGZKg8iRo3f2PTlTVdGuO1A6jQLVzU5j+EHH3GDgOVOuZmAU/7SdR7Cjpssk+VwI1kdDXHY2s+hp+MODm9Y8wAC7bEkrrIGrDv1Hzpl0N0fcwfC9Yqrvl5+l+pzvhfjnlkq2oJhhyI/mE86Ci5S4fZ1viOh3rcuH4ZuYTh4w99b1kzYumIH4C2kf6Zj2p8YbXx0c23UPUUuuzicf54OZ8S4fJi3BPpLBwOza/eazWL6+ejr6CxT00Wu8Y/6OpN+5dwgGHP+IkAqDBIHQ1rk3jMTi/Lrq1Wbl9L8lvhODORxcDZHUSH3zEQaPtCNTct6cMZT8eh8943wp7N1kbYaqeq8q5ltTUj1Ok1ULqlJfqZkzSM5NmMDMnLcxRbfAOfI9sHcAzeW0DnlMUfy5rnApXVt7dyz9wU9WoGtWueS3xwb2A4pltFP33Fbq7cROZdpt1u4C/xMrbAWIblzHapO7EeAoaZSn9XgoDjDBpPqgaTyrP8Aimn6mr8JFxwuDJvXS7FuZM1inJyk2boxUYpArprVLgt8heYJotyB2vADigaCTBIqgiBUIEjEa1Eyml0eLdNjUb9CJeoRFEUDkMTQ48hZ8DBGmtEAwgemp5UWfQoYltNc7QYJAAmSBoCeUnSr2ryU5S/hRWuPOmw6DaluQxIgCg6CLGG+IVcXyDJcD/6H6kn9KGUsEjHJb4e0MP39KXG3DCsq3RwdJhYG07iNNBzkHl8o+e9OjqNjyYZaVzWGjt72A/isLoB5i6ieTj22zD71qsnvjwebpqej1XP5X+3+DhU4YzMA/LbSIPMe0/f3rFXJzmlI9VYlGtuHk67xRfu27C3MOPSYkgA5VjTTkOX0rpTscY5R4/4fpqrNRKF/fjJj+Ecbduu5csVgzmJIBERHTc6UentdiyzV8Y01VEUoYT9jmvFHBv4e/mUEW2llI5f9PyP5Gk2V7J7kdT4drfxNGH2uH/ct+HuPZDkcSh+Ib/7gPuK1V3KXZm12g3rdHvx/Yd40Fq6VZHUsF1g6xIK++9S6KkvcX8JVtUWpp4yc/wAN4pcsHc6fboRzpNdrr4kdPUaWF66N48bxGJXKisRscinX/dsK0xs3LMTmrRUaaWZNfqzF4ngsQCPOS4Z0DMZG+2as84zb5WTo6e7TuL+VJfoDj+G+SbV0ENbubyNmHxIaqdeySl4Lp1HzlKHUl+3qbNyzbGTE2kCgHK6/ynk3sa1qMU9yRz1ObzTZLPoy5xfjN2EuWyMjelliYboR0NXObjhoz6XR15lGffa+xz/iLABCl0DKt1c2XoeYrLqK0nuXk6mhv3p1vlx4yY64kDasysS6Nzqb7PcQxAYgqMojapdNS6JTBx4byVQaSnwPZCqeVUk/BG0NWwzbUxVyl0A7Ix7IawVaGBB71Tg4vEi1NSWYkROlTsgEUAQJqgskAVRA1A25USwinlksNPY1fSKXZ4Aczp2qsIsYtqJzaDl1PyotqXYO7PRLYgxCrlA3I3Puat2P+EpQXcuRDqdzzpbz2MR4UOSYGKm33qmWi3h7YzwDIzaGCJHIwdqBP6iPOzJaWzsPb7R+lKslzgZXHjJo4TA6wNaQ5cjkuMn0XgnhLPZVs0NrIOo3MRzGnvWn5W6Hucmetdd7jtyjs+D8E8pIOpMTG2k/1o65bFhsRqafxD3JcHPcW4Yq3mYpmQsSRsdd4PuaV85Rnk1xpnKlRTw8Gdhcf5RYDW3JIVviAPt/atlWpUjl634V8xJ9S9UZ3GfEyKhFpNTzJAA5EwNz+9dqe9Uorgw0fApynm2XRxvGuONeUIxGVYgZQTIETP8Az9KCWpjM6+m+Gx08nKK5Zzt28eRInQx0oPmehu+X6gvoDDHcfMe/Ll9aN8Lspc9oFjmJ1JHKd45SamXJk4ijsvCGOyjywcoeRP8AK+yt+n0ro0P6eDgfE6N73tZxz915C4fjLzXmw9+Xk5HU677OvTkauEnJtMl9NUaVdVx5T/ox+HwaFrmEuyULbzqHHwsDykUxwUk4sVZdNKOor7x/IamPwtoth1Rv5XLbx113qRlFPb6C5Uam1K6UvdYJsYlLN42ysKY31G3pcdqPKzgqdU7qd+eV/rRyXizHXnvFLsDJIAG0dfnXM1U5OW1nc+G0VV1bq/PZihaypHQyW8JhWulUUSSYp0K3ZhITZbGpOUuixd4Q4uiyMrN2Onzpj08lLYhUdXB1/MfCLmF4SVDlmAK7gayOcVor0+3OWZ7NWpOKS7NTBWkRcqpmJ1B6jtWmuMYrEUYrZznLdJ4Rl8fw+YkkgMg26is2rr3c55Rt0Vm1YS4ZzqtFctPHJ1WsjT1o++QATVFgCqCC0ir4wVybPCuCXL6XChX0Rud+elaq6XOLwYNTra6JxUs8nrPAcRllbLHuY/IVa01iXC5JLX0bsSmZ9yy8kMpDLv1B70lxnnDXJqjODWU+GWU4HiSufynynnHLrFF+GtazgU9dp1LbuWSjctQSDOnakyhh4ZpUsrIAnofpS2mHlDUY0vkIv8KsNcuKqKWO8ASYG505VVdcpTWAL7oV1tyeC5h7bEzlPzFIshJvI+E447Ok4VZGkn7D70vYi3Yz6DwLjC2xDER2NOVjXDMc6IyeUdKviWyBEjakztiaaoySxg5bjnHlOYiddDED+v76UhWZY35XqcdfxnmuEQepjAlo199Ip9ScniKFXuNUHOb4QzivA3vKpY2bNwAoFmDcKkjMe56iZ0NdJ6aU1l4T/c89X8WqpnJQ3Tj3n0yfPuIIUZkdSGUwQeo+9Ztri8NHehZG2KnF5TKDGd9u3SmxKeACx2puWDgm00Grg8MGSyjRwF3IwP4Toa11ScXnwZbob448nc3OMt/Dm7aRWuJAcka5Y0fuK2zlhZR5yOji71XY2ovr7+hxjcVc3M1x5zHWP3yrItQ1LlnfWkgq8QXRZ8QcRRmt3FnzIi5powGx94q77EpKS7FaLTyjGUH+Xx7A2r97FFESJtqQCYHp7sdwKinO1/T4LlCnTJyn5E4nhd65cKQWujfWQR1k8qGdM5v3Dhqqq693UQcPwF83+J6YYB15gHZu4qq9JLP1BT10MfRz6f2N7AcOQKQoyMhjOW1LcgB0Nbq6oxWEjmXaibllvKfj2G4a1nzObaoyzLgxqNwR3o0s84AslsxBSyn4Mm7ibKetWJcnVOUHes8rK4cp8m2Nds/pkuF5KVvjJVvToAZH9KR+K2vg0y0akuTNxuJNxyxnWsltjnLJrqrVcEhGSg2jNx6KmCZyECKtYKwAKEtkgVEWzd8L6XkkkCYOu/Y1v0ie45nxHDpeFyavijiV5bxUEqBGUDaOtPvtlF4Ri+H6aqVKk1n1M21w5yoxLmczer686XGpvFkjXLURTdMfTg6PiCX7ty2+HY5SoAgwFYcmHStM1JtOL4OVQ6aq5RuXP7r2MLxtggtxG9Kuyy4n8Q5xWLWQWU0dP4Tc5VyXaT4+xi4dRqCTDcxoJHIZtKywx58nSm348A5gJ3kdSaVJ4DSyXsBxW5ZYXLZyvy9ucjnUVkocrsXdpq71ssWUWsD5mIvBcwBuMTLaCTryFKVcrZY9Q7La9LTuxxHwi9hmezdKPIKNE7gEHQ+xoI0ShZiXgL8TC6lTg+0dvesnEm1etEIHEXeiMg3jv/Sn3aV2NNfqcbT/ABJaNSqs5a/L75FcQwmS2btu8LoVgGyx6RrJIBPb86zW6DbHKeTdpfjPzLFXZHa31nyXrPE1s4TzVUFi+V2InLO09tvrToVRphnBmvnPU6r5UnhYyl6mPjRbvo19VVLluDcC6K6nZwOREa/2rVXXHO7BnldZTNUt5jLrPafoZniC8btpL8km3Fq6OxMpc7an6ntWifh+PP8AcVo4qm2VOPzcx/qjI8RDzrK4nQuhFq8Ov/13fmIH9qXdHjd/2a9E/lWOn+F8x/qjlmE7fTn/AM1nx6HVz6iqosmrRRctXCUMDaJPvzrRGX08CJRW4JOKXVUqrkZgVMc1PI1TvnjBX4atvLXX7lQtAjn9qVnCwPxl5IzzE6xVbs9kxjodYvlDodDTITcHwLnBTXPZ1dgM1oXPUPLiSJGe0TET1G1dSLe1P/cHFntjY4ev8mXOI4q2FV86AjS2AdSkbNRSnFciKarG3HDw+/v7GPe8Qw7OixMAg6iRzFIlqknlI3R0GYqMmYmL4nccsWY6nXlWKeom85Z0a9NXBLCKyIWMAEmlJOTwhraissPF4VrZhuYke1XZXKD+oqq2NizESDQJhktVsiPMtRoiYFCEQKhB2YQOtHmOBeHkuWsSQQQNulaI2NPgRKtNNM6WzxG3dQeembLsw0MVujOM1mRyJ6eymX/heM+BfEOMWvKNmwsA7k7/ACoLLo7dsQ6NHb835lzMrDcVuWxKEjXWD+lIV0kuDbZpK7H9SG8NwD424S1yGjciZHSqjX8/6mwL9RDQ1rbHg1W8OYK0cty+5cdOR9qatLVHsxL4lrLfqhBYMjjHh7ymV1cPZc6P07ECs9ukxLKfBv0vxH5sXGSxJeAcfwS5ZZZIdLg0dfhPbtQT0soy9UxlOvhcnhYa8G3irNrDHD3UXRlDEEkgsDr960uEKmmkc6qy3VKyub6f8jR8Q8Te7hRctwFLZbqwCQeRnpt9RU1GXXlGb4dRCjVOE++4sT4Y4oCDZYwt0FCejEQD+n0oaWpRwO+J6dqStS5i8/oK4PxFrF5rd3kTbujkVOgaPofYmgrTy1Idq61fTGyr7r7+ha/j/wCGu3LDgPbYCVJ0dD8LA8mH6e1C4qLcWCovVVRug8SXn0flfYVjeN4a1YuJhw5e4pT1kekHfUHXf/mqlOEIbYlV6PVX3xne1iLzx5Zz1ri1wo6qyqGXK8ldVPLXn7daCFrnHHR0rNLWpqTWcPK+5i3bhO+sfaltt9mtRS6EgVRYRYHf6/1FXlEBIqYIMtNoZ7feiiwWg15kLoAd+dEvVIH2bEXGJMnnSm8vIxLAFUWOtrpTIrgCT5NZ+I3fK8sMQnNRt1rXKyWzBiWnr+bva5Mm4STqdaySy2bY4SLdu8fKNsgakGec05SezaxEoJWKaNTguFR1NsopY65m/l5weorVRXCUcNcmPVWzhLfl49EXbWHW0GIKrl68+WnUEU9RjWuODPKydrSeXkw+MYm22ignaD06j2rDqbIS4R0dLVOPMjKIrG0bUeqiDVYRrTE+OQGueCBZnWq2ZJvwJoBhINQrBZ/idyAAD9Kb8zzgU615YLXyI1P1qOxotQTJzmcw2qbmnuRNqxtZYskZpGx5b02PMsoVLiOGafBcR5dwRoQZ1rTRLa8GPV1/Nhyb/G+BnEXEv2phx6oMQY3ptlW6SZzNJro6eEqrPHQXG7a4fBG2zAuSCoBmDNXc1GsrSSeo1e+K48mXwPiy5fKujNabcc1P8y0uqxSWGbNXpZbt9fEl/P7mh4twmXCWiDmCOYPVWmKmpj9H2M3wy7dqZJrGV/NGZ4f4uqZkuDNbcZWHXowpdViaxI2a7SSnidfEl0VuKY/DrcUYdGVQIYk/EZkH370qVkISxFDtPTfKt/PeWyrjONvcvC62UsABtAIH80b0p3Nz3GinSQrq+XHr/eirexBJnrS7HnkfXBR4Qm5d5fL586S0OQGkTOs7Ry6zRJLBTbzgiZ+X2oihuH4fcuBzbQsEXMxHJevfY7dKtQk+hc7oQaUnjPCNHwxwcYm6qOxVdSY3MCYE0+mnf2Zdfq3p63KKyy1h+G4Z8V5aNcNktlIj1gxEnTUZufSjjVFy46Fz1F8NPukluxn2/wBwev8AhDEILjELlTNHqEsFMyoHbWDU/DS5Bh8Vom4pPl48dZ9TCJncwANB+lJfPZ0euiJGwHXU1WV0ic+RDDlS2g0xtujiCy2lm5kLhCVByluQJ2BpyUsZSEOde/a3yOxvDjZW1dkMtwHUD4WB1U9xVyrdeJeoFV6ulKvpr9vUXeZY96ubWAopjbGMVbZGouTKntzBoo2qMPcCVLlYn/CV/PLrDGg3744Yz5ahLMSjFZjSSIqLHknIaAdKJJAtsG5QyLRAeopMtoGAD1FVwmX2gQaEsZazH0DrMd6KO5/SgXtX1C4oQgkOkVafGCn3ksYS5G/Wm1ywLsjkt5sxDDcdK0Z3PchGNq2s7XgGOzWmtM+UlSQZiD0roQeUed1un22qxLPJxfELmozuzPLTI0AB9JVp1nWubbJ5xJnoaYrH0pJcCrQMiKqKeeA5NY5Ou40EtYE22uq7MylQD7Hatt7Ua+ThaTdbrVOMcJdnEXGke32rlt5WT0aWBRahbyEeqixvmEmTr/xRZbeWCkl0Bm1mhCPVCglXpRRRTZ0PDBfsqrCbYuAw3pMppm9POJkVtqUtuDm3umybT5xjj0fgvWcGMHiEls6HK6MPTmEaxr+XT3ptcdjwzLO38XS8LD5TXoWvEmNCCzes20VHYsXUQ4ufiDRp/Y1Jy2PKQrQ1Oe+q2TbXGH1j2KnFi2Jw3nAk3bAh4/FabUPp05+xpdqbjleP2H6ZR01/y8fTPr2kvByhM6MNdO2+1ZM57OxjHRIsNyGhMSdIPer2Mm5G1wvwdiLy55W2p2zTJ7gDl3pkdLKXL4Odqfi9FEtvLfsI4x4cvYYZnylZjMp0npB1FSdEoLIzS/EadS8Q79GbPhK015HtlT5bqVc8lYaqw71rpe6Bg+JTjTJTzyuV7ryjdwPA7aW/JvutzMwYLt6gPw89aaoLGHycy7XWWT+ZSmsLGfY4fxElvzS1pSqkwFOmo0OnSsWoik8o9HoZWOpKx5fqZVyZ7is0uzasYNB7dsW1hvWfiHStLUVBc8mZSm5vjjwZ12DWaXJpiANKBcMJ8lvDrnB1inwW8TN7CtdU0qSY2LBCUOC8ixEd6DwGE3tRdlHiDvU57JlLgK4oEQZkSe3arkksclJt5ygCaEsfb5GmR9QH6Fm24t7NmkDltO416U+MlDpiZJz7WBdy8dgd/wA6BzYUYIc2ITMcql0ylQLm6yPiEbEGYq96z6r3B2S28vD9greHcELBEmBOn3pkYyWEgJTg02A2FuXXyqhYjTTX86CcJ2SwkEra6oZk8CcThXtPluKVPTselKlCUHiSGQtjbHdB5K5EUGMDOyVWatLJG8HYcB8MWvJ8/EuQp2AMaTzO+p5Ct1emio5kcLWfE7Vb8qhZZneIsJhFy/wzksSQyksYEaESKVdXBYUDXobdVLP4hL2IHh0mwL6PnKn/ABEiCo6jXUVPw3GS/wD5BK75UljPT9To8LwixcwlsQqXA2VXAAl9SA55giBr2rV8mO1YOVZq769TJ9xxyvb2+wnGoy4Qggh8NdBjor6fSSfpVze1Z9BlLjLU5T4nH+aPKn8ThjaH+ZbHmWupH4k/T6dKk1ujlfoTP4a/e/yy4l9/DK/BMQl+0+HuGFuDRj+C4uzdp0+g60GVZEbqa502K2Ha/mmZfDeJPhiG3gsk7qwESs8xzpcLNi+o136eGoWPs/de5T45xZsTcFwqqwAoCjkOp571nsm5yyaNLpo6evYm355L2Bti4QXMAnU6DX2HvWyqKlyzPfNwTUTqfGfFnw6W0t6Z82vQKAAB9fyo7rHDo4nwrSw1E5zs5wcbf4xdurkdyySDB1gjmCdRvWV3OXZ34aSqqW6McMucN4y9n0KcoaJPPsRT4WqOIsz36KF31S5wbWJw9zEeVftAm4Dkfsyaq/sR96a020zBCden3VWfl7X2faC8Q+HbUPiblzyyVByyMueNYPOTQW1Qf1SA0PxGzKorjlZ784OFN3T3/OOdYHLg9IoiDShh6amSHiahBuFJDSKZXlSAsw4hYy4WaTV2yyyqopIVNBkPABAHcULwglyQpP1qk2W0eyawdKmOcMrPGUH6QDuTy7Gr+lIr6mw7wMKoynTNI315E0Us4SBj22aPhm1Ya4VvtlXLoe9O0qg21Iy6+V8YJ0rLK+LwJzwnqBMKeo5VLKZbvp6GV3LZmXD8gpgbmfyspzdKFVT3bMBO+vZ8zPBvcN4MZFq8gAYkhgJaYiJHLtW2rTNcTRzdRrVhzqfXgt/wxdblovmKMMmY+vQbRzECnbMpw/6EfN2yjYl33joG1ilTLcEKHBt3VHI7ZgKm5L6vXhlyqlPMHzjmLMLimJVkFvVijEK/VDyNYb5xcdvp0zpaeuUZuXSa5XuUAkjMBOXf9KQo5WV4NLlh49S0VAhxEHWBy7U7CWJITlvMWdhw3HWLtk4e+YXkeh335Qa3fTOODg30XVXfOq7APhbBtomIOblqppT00H0Evimrj+avj9Spba7g72RiCQND+F1PI/vSri3F7WPkq9ZVuj1/NM3RhEuWLxtfA65snNLiawPfT6U1rg53zZV3QVnaeM+qZSwnGLNzD3FvsAxtFM+vqEemY3YE0tyi4cs02aS2u+LqXGc49PX9GctwriT2vh+NDKnfsQR0is1dritp2b9PG383T7Gi+XzEiCxJYekCTuYEBZ/2+7bUvc8sNQUUkvBTvWWk24mI110J9WkxqZ2iT0qPPQccfmKjWyp1/esfLbnQYaGZTLdm7lZTy2p8ZbZJmeUd0Wjr+OWDisErr6rlncDcgCGj5Q3yp98d0DiaOf4XVuEuFPr7nAkHcVzuez0vHTNrDWBcXMwMLBJA0E9elb4RU1lmCybhLCfZ1/C/ECsEtqoQEZcwgQdgQPeK0qSfRwdR8Pkm5yeX3gycRflb2HxT7yQzfhuJqI7EUqxpxambq68Shdp1/lP+xxMkmuV2z0OMIYbcb79B1nY9KLbjsBP0AC1WC2w2twaJxwUpZIDQamSNZRN951qTeSQWAZFUWKJ0peeA8chDX5UXZXRDDnNU15Injg8xHKpx4JySCdxU5JwNuAQBzpjS4QEW8s67woUZcjfh9QrqaVpxwcL4lvjLdHyFkCXDfRsykmQdxR7dst6ZW5zrVUlhgYriNtEKo7FmbMDsU+dDZbCMcJhV6eyc8ySwlj7lfEY8E2s7gaBi1uM4Gogz+LtS5Wp4WR0KNqltX6Pow8S5JJ13/ZrHNtnRhFJIRM70v7jAspXTWGH1q8OP6lZT/Qs2MQWISBHQdqdGxt7cCZVqK3ZCsrmeBI1/vVxW6WEDN7Y5fJ1uF8JENmGIBQ9tfvFaoVOLzk4lvxZOO118lLxzjbbNbtowY2wQxBneIE9dKVqJLo0fCKbIxlOawpGJh+O3UUqjFSRBI5ilfiHjB0Z6KuclKSyZqtvqaz5NeCRdIMjTapu5JgM3CNVMZvqD0nlv+dRkXuXcDfhjbmQ+kQBDTlX1cxHy12NNjJZx6irI/wAXp+wPERJkkDUK0co2lfr09hUny/3JXhLj7kLhhBFw5YYAj8UETIU8oo1DjEgHPnMf8Gz4Y4s9ptiRsdIzDkfcU+meeGc/4hpY2xz/AKmbGP8AC1q/NzD3AmYyyxKk+wMqd6k6E3xwYqfitlH0Xxzjp+S/YwVrA4e4zGfTqTGpgwoHuaZiNcTJK+3X6iMYrHP+s+d28VlkiYM7nSewG1YVbt6PVSq3rknjXFTiGDlQDlUHWZIET86C675ngml0y08dqeeTOy0nBpyeBqZLaPVZQ03ZEUTnlAbeci1FCg2Tc00q5cFR5AFBlFgJvQoNj7OzU2PTFy7Qk0AZ4VSIOPwD3NMf5Rf8QKVSLZ0Phr4/ka6OkOXr/wAotvif3NW+2EvyxKOMrNaaqyv0pYwsWd2pi7Yt9IGz8Y96CPYyXRZxH/tx/qP3p1n/ABIRH/mYjD/H8v1FBD8wdn5Q8J/m/M0df/IBZ/xm+Pgre+jl/wARyr7n3NcmXbO3HpCaWxgQokUeqihtvYf6hRLoryKPOqCLXEv81/l9hTLP+RiqfyIvYL/NPsv/AIin1/8AIIs/4/8AfULinxp7D7mjt/MgKfys6fwp8fyrQujjfEPyiP8A1K+G1/qP2rPqfyDf/wCf7mcGa57PSEJzqolsm3z9quJUgOdAF4DO1H4B8kChRYVv4qOP5gX+UZit6u3sGvoQtLQw/9k=" alt="Lenguajes de diseño y programación" class="card-img"/>
+      <div class="card-body">
+        <p class="card-num">// ACT-002</p>
+        <div class="card-title">Lenguajes de diseño y programación</div>
+        <p class="card-desc">Existen diferentes lenguajes, cada uno con un enfoque específico: diseño, maquetación y programación.</p>
+        <a href="#" onclick="showPage(2);return false;" class="card-btn">VER TAREA →</a>
+      </div>
+      <div class="card-fingers">
+        <div class="finger"></div><div class="finger"></div><div class="finger"></div>
+        <div class="finger"></div><div class="finger"></div><div class="finger"></div>
+        <div class="finger"></div><div class="finger"></div>
+      </div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="card">
+      <div class="card-top-stripe"></div>
+      <img src="data:image/jpeg;base64,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" alt="Guía rápida de HTML5" class="card-img logo"/>
+      <div class="card-body">
+        <p class="card-num">// ACT-003</p>
+        <div class="card-title">Guía rápida de HTML5</div>
+        <p class="card-desc">Resumen de las etiquetas, atributos y estructura básica del lenguaje HTML5 para el desarrollo de páginas web modernas.</p>
+        <a href="#" onclick="showPage(3);return false;" class="card-btn">VER TAREA →</a>
+      </div>
+      <div class="card-fingers">
+        <div class="finger"></div><div class="finger"></div><div class="finger"></div>
+        <div class="finger"></div><div class="finger"></div><div class="finger"></div>
+        <div class="finger"></div><div class="finger"></div>
+      </div>
+    </div>
+
+    <!-- CARD 4 -->
+    <div class="card">
+      <div class="card-top-stripe"></div>
+      <img src="data:image/jpeg;base64,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" alt="Guía rápida de CSS3" class="card-img logo"/>
+      <div class="card-body">
+        <p class="card-num">// ACT-004</p>
+        <div class="card-title">Guía rápida de CSS3</div>
+        <p class="card-desc">Referencia de selectores, propiedades, flexbox, grid y animaciones en CSS3 para diseñar interfaces web visualmente atractivas.</p>
+        <a href="#" onclick="showPage(4);return false;" class="card-btn">VER TAREA →</a>
+      </div>
+      <div class="card-fingers">
+        <div class="finger"></div><div class="finger"></div><div class="finger"></div>
+        <div class="finger"></div><div class="finger"></div><div class="finger"></div>
+        <div class="finger"></div><div class="finger"></div>
+      </div>
+    </div>
+
+
+    <!-- CARD 5 -->
+    <div class="card">
+      <div class="card-top-stripe"></div>
+      <!-- Portada SVG: Python conceptos -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 150" class="card-img" style="display:block;background:#1e1e2e;">
+        <!-- fondo degradado azul/morado Python -->
+        <defs>
+          <linearGradient id="pyBg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#1e3a5f"/>
+            <stop offset="100%" style="stop-color:#2d1b4e"/>
+          </linearGradient>
+          <linearGradient id="pyBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#4b8bbe"/>
+            <stop offset="100%" style="stop-color:#306998"/>
+          </linearGradient>
+          <linearGradient id="pyYellow" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#ffe873"/>
+            <stop offset="100%" style="stop-color:#ffd43b"/>
+          </linearGradient>
+        </defs>
+        <rect width="340" height="150" fill="url(#pyBg)"/>
+        <!-- cuadrícula decorativa -->
+        <g opacity="0.08" stroke="#4b8bbe" stroke-width="1">
+          <line x1="0" y1="30" x2="340" y2="30"/><line x1="0" y1="60" x2="340" y2="60"/>
+          <line x1="0" y1="90" x2="340" y2="90"/><line x1="0" y1="120" x2="340" y2="120"/>
+          <line x1="60" y1="0" x2="60" y2="150"/><line x1="120" y1="0" x2="120" y2="150"/>
+          <line x1="180" y1="0" x2="180" y2="150"/><line x1="240" y1="0" x2="240" y2="150"/>
+          <line x1="300" y1="0" x2="300" y2="150"/>
+        </g>
+        <!-- Logo Python (serpiente simplificada) -->
+        <!-- Cuerpo azul -->
+        <path d="M130 45 Q130 32 143 32 L157 32 Q170 32 170 45 L170 65 Q170 72 163 72 L137 72 Q130 72 130 79 L130 86 Q130 93 137 93 L170 93" stroke="url(#pyBlue)" stroke-width="12" fill="none" stroke-linecap="round"/>
+        <!-- Cuerpo amarillo -->
+        <path d="M210 105 Q210 118 197 118 L183 118 Q170 118 170 105 L170 85 Q170 78 177 78 L203 78 Q210 78 210 71 L210 64 Q210 57 203 57 L170 57" stroke="url(#pyYellow)" stroke-width="12" fill="none" stroke-linecap="round"/>
+        <!-- Cabeza azul -->
+        <circle cx="130" cy="36" r="7" fill="url(#pyBlue)"/>
+        <circle cx="127" cy="34" r="2" fill="white"/>
+        <!-- Cabeza amarilla -->
+        <circle cx="210" cy="114" r="7" fill="url(#pyYellow)"/>
+        <circle cx="213" cy="116" r="2" fill="white"/>
+        <!-- Texto -->
+        <text x="170" y="138" font-family="monospace" font-size="13" font-weight="bold" text-anchor="middle" fill="#ffd43b" letter-spacing="2">PYTHON</text>
+        <text x="170" y="150" font-family="monospace" font-size="8" text-anchor="middle" fill="#4b8bbe" letter-spacing="1">conceptos generales</text>
+        <!-- chips de código -->
+        <rect x="10" y="8" rx="3" ry="3" width="50" height="12" fill="rgba(75,139,190,0.25)" stroke="rgba(75,139,190,0.4)" stroke-width="0.7"/>
+        <text x="35" y="17" font-family="monospace" font-size="6" text-anchor="middle" fill="#4b8bbe">variables</text>
+        <rect x="68" y="8" rx="3" ry="3" width="40" height="12" fill="rgba(75,139,190,0.25)" stroke="rgba(75,139,190,0.4)" stroke-width="0.7"/>
+        <text x="88" y="17" font-family="monospace" font-size="6" text-anchor="middle" fill="#4b8bbe">loops</text>
+        <rect x="116" y="8" rx="3" ry="3" width="48" height="12" fill="rgba(75,139,190,0.25)" stroke="rgba(75,139,190,0.4)" stroke-width="0.7"/>
+        <text x="140" y="17" font-family="monospace" font-size="6" text-anchor="middle" fill="#4b8bbe">funciones</text>
+        <rect x="272" y="8" rx="3" ry="3" width="58" height="12" fill="rgba(255,212,59,0.2)" stroke="rgba(255,212,59,0.4)" stroke-width="0.7"/>
+        <text x="301" y="17" font-family="monospace" font-size="6" text-anchor="middle" fill="#ffd43b">clases/OOP</text>
+      </svg>
+      <div class="card-body">
+        <p class="card-num">// ACT-005</p>
+        <div class="card-title">Conceptos generales de Python</div>
+        <p class="card-desc">Fundamentos del lenguaje Python: variables, tipos de datos, estructuras de control, funciones y programación orientada a objetos.</p>
+        <a href="#" onclick="showPage(5);return false;" class="card-btn">VER TAREA →</a>
+      </div>
+      <div class="card-fingers">
+        <div class="finger"></div><div class="finger"></div><div class="finger"></div>
+        <div class="finger"></div><div class="finger"></div><div class="finger"></div>
+        <div class="finger"></div><div class="finger"></div>
+      </div>
+    </div>
+
+    <!-- CARD 6 -->
+    <div class="card">
+      <div class="card-top-stripe"></div>
+      <!-- Portada SVG: Arduino componentes -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 150" class="card-img" style="display:block;background:#0d2b1a;">
+        <defs>
+          <linearGradient id="ardBg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#062a16"/>
+            <stop offset="100%" style="stop-color:#0a3d22"/>
+          </linearGradient>
+        </defs>
+        <rect width="340" height="150" fill="url(#ardBg)"/>
+        <!-- cuadrícula PCB -->
+        <g opacity="0.1" stroke="#1db954" stroke-width="0.8">
+          <line x1="0" y1="25" x2="340" y2="25"/><line x1="0" y1="50" x2="340" y2="50"/>
+          <line x1="0" y1="75" x2="340" y2="75"/><line x1="0" y1="100" x2="340" y2="100"/>
+          <line x1="0" y1="125" x2="340" y2="125"/>
+          <line x1="40" y1="0" x2="40" y2="150"/><line x1="80" y1="0" x2="80" y2="150"/>
+          <line x1="120" y1="0" x2="120" y2="150"/><line x1="160" y1="0" x2="160" y2="150"/>
+          <line x1="200" y1="0" x2="200" y2="150"/><line x1="240" y1="0" x2="240" y2="150"/>
+          <line x1="280" y1="0" x2="280" y2="150"/><line x1="320" y1="0" x2="320" y2="150"/>
+        </g>
+        <!-- Placa Arduino UNO simplificada -->
+        <rect x="15" y="25" rx="5" ry="5" width="130" height="100" fill="#1a7a3c" stroke="#1db954" stroke-width="1.5"/>
+        <!-- pin headers izquierda -->
+        <g fill="#c8a800">
+          <rect x="13" y="38" width="5" height="5" rx="1"/><rect x="13" y="46" width="5" height="5" rx="1"/>
+          <rect x="13" y="54" width="5" height="5" rx="1"/><rect x="13" y="62" width="5" height="5" rx="1"/>
+          <rect x="13" y="70" width="5" height="5" rx="1"/><rect x="13" y="78" width="5" height="5" rx="1"/>
+        </g>
+        <!-- pin headers derecha -->
+        <g fill="#c8a800">
+          <rect x="142" y="38" width="5" height="5" rx="1"/><rect x="142" y="46" width="5" height="5" rx="1"/>
+          <rect x="142" y="54" width="5" height="5" rx="1"/><rect x="142" y="62" width="5" height="5" rx="1"/>
+          <rect x="142" y="70" width="5" height="5" rx="1"/>
+        </g>
+        <!-- microcontrolador -->
+        <rect x="45" y="50" rx="2" ry="2" width="50" height="40" fill="#111" stroke="#444" stroke-width="1"/>
+        <text x="70" y="74" font-family="monospace" font-size="6" text-anchor="middle" fill="#1db954">ATmega328P</text>
+        <!-- cristal oscilador -->
+        <rect x="100" y="58" rx="3" ry="3" width="16" height="24" fill="#888" stroke="#aaa" stroke-width="0.8"/>
+        <!-- LED power -->
+        <circle cx="35" cy="110" r="4" fill="#1db954" opacity="0.9"/>
+        <text x="35" y="120" font-family="monospace" font-size="5" text-anchor="middle" fill="#1db954">PWR</text>
+        <!-- conector USB -->
+        <rect x="20" y="30" rx="2" ry="2" width="18" height="12" fill="#3366cc" stroke="#4477dd" stroke-width="0.8"/>
+        <text x="29" y="39" font-family="monospace" font-size="5" text-anchor="middle" fill="white">USB</text>
+        <!-- Jack DC -->
+        <rect x="120" y="28" rx="2" ry="2" width="18" height="10" fill="#333" stroke="#555" stroke-width="0.8"/>
+        <text x="129" y="36" font-family="monospace" font-size="4" text-anchor="middle" fill="#aaa">DC</text>
+
+        <!-- Sensor ultrasonico derecho -->
+        <rect x="170" y="30" rx="4" ry="4" width="60" height="35" fill="#1a7a3c" stroke="#1db954" stroke-width="1"/>
+        <circle cx="185" cy="47" r="10" fill="#333" stroke="#1db954" stroke-width="1"/>
+        <circle cx="185" cy="47" r="6" fill="#1db954" opacity="0.3"/>
+        <circle cx="215" cy="47" r="10" fill="#333" stroke="#1db954" stroke-width="1"/>
+        <circle cx="215" cy="47" r="6" fill="#1db954" opacity="0.3"/>
+        <text x="200" y="74" font-family="monospace" font-size="6" text-anchor="middle" fill="#1db954">HC-SR04</text>
+        <text x="200" y="82" font-family="monospace" font-size="5" text-anchor="middle" fill="#aaa">ultrasónico</text>
+
+        <!-- Sensor temp -->
+        <rect x="245" y="30" rx="4" ry="4" width="80" height="35" fill="#1a3a6e" stroke="#4b8bbe" stroke-width="1"/>
+        <rect x="263" y="38" rx="2" ry="2" width="10" height="20" fill="#4b8bbe" opacity="0.7"/>
+        <rect x="277" y="42" rx="2" ry="2" width="10" height="16" fill="#4b8bbe" opacity="0.7"/>
+        <rect x="291" y="36" rx="2" ry="2" width="10" height="22" fill="#4b8bbe" opacity="0.7"/>
+        <text x="285" y="74" font-family="monospace" font-size="6" text-anchor="middle" fill="#4b8bbe">DHT11</text>
+        <text x="285" y="82" font-family="monospace" font-size="5" text-anchor="middle" fill="#aaa">temp/humedad</text>
+
+        <!-- Servo motor -->
+        <rect x="170" y="90" rx="4" ry="4" width="60" height="40" fill="#333" stroke="#f5c518" stroke-width="1"/>
+        <circle cx="200" cy="108" r="12" fill="#222" stroke="#f5c518" stroke-width="1"/>
+        <line x1="200" y1="108" x2="208" y2="100" stroke="#f5c518" stroke-width="2" stroke-linecap="round"/>
+        <text x="200" y="138" font-family="monospace" font-size="6" text-anchor="middle" fill="#f5c518">SERVO</text>
+
+        <!-- LED + resistencia -->
+        <circle cx="255" cy="108" r="8" fill="#ff3300" opacity="0.8"/>
+        <line x1="263" y1="108" x2="275" y2="108" stroke="#aaa" stroke-width="1.5"/>
+        <rect x="275" y="104" rx="2" ry="2" width="16" height="8" fill="#c8a800" stroke="#aaa" stroke-width="0.7"/>
+        <line x1="291" y1="108" x2="300" y2="108" stroke="#aaa" stroke-width="1.5"/>
+        <text x="265" y="125" font-family="monospace" font-size="6" text-anchor="middle" fill="#ff6644">LED</text>
+        <text x="290" y="125" font-family="monospace" font-size="5" text-anchor="middle" fill="#c8a800">330Ω</text>
+
+        <!-- trazas PCB decorativas -->
+        <g stroke="#1db954" stroke-width="1" opacity="0.4" fill="none">
+          <polyline points="155,75 163,75 163,55 170,55"/>
+          <polyline points="155,90 163,90 163,110 170,110"/>
+        </g>
+
+        <!-- título -->
+        <text x="170" y="145" font-family="monospace" font-size="9" font-weight="bold" text-anchor="middle" fill="#f5c518" letter-spacing="2">ARDUINO — HARDWARE</text>
+      </svg>
+      <div class="card-body">
+        <p class="card-num">// ACT-006</p>
+        <div class="card-title">Componentes de Arduino</div>
+        <p class="card-desc">Sensores, actuadores y hardware compatible con Arduino: ultrasonido, temperatura, servos, LEDs y más componentes esenciales.</p>
+        <a href="#" onclick="showPage(6);return false;" class="card-btn">VER TAREA →</a>
+      </div>
+      <div class="card-fingers">
+        <div class="finger"></div><div class="finger"></div><div class="finger"></div>
+        <div class="finger"></div><div class="finger"></div><div class="finger"></div>
+        <div class="finger"></div><div class="finger"></div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer>
+  <p class="f-school">Centro de Bachillerato Tecnológico Industrial y de Servicios 144</p>
+  <div class="f-line"></div>
+  <p class="f-esp">Especialidad: Inteligencia Artificial</p>
+  <p class="f-prof">Docente: Chirino Balcázar Jordy</p>
+</footer>
+
+
+</div>
+
+
+<div id="page-1">
+  <div class="task-nav">
+    <a onclick="showPage(0);return false;" href="#">← Portafolio</a>
+    <span>/</span>
+    <a href="#">Actividad 1</a>
+  </div>
+  <div class="hero">
+  <p class="hero-label">// ACT-001 //</p>
+  <h1>El padre del internet</h1>
+  <p class="hero-sub">Cultura Digital 2 &nbsp;·&nbsp; Inteligencia Artificial</p>
+</div>
+
+<div class="content">
+
+  <!-- Perfil -->
+  <div class="profile-card">
+    <div class="profile-avatar">🌐</div>
+    <div class="profile-info">
+      <h2>Vint Cerf &amp; Bob Kahn</h2>
+      <p>Considerados los <strong style="color:var(--gold)">padres del internet</strong>, crearon en 1974 el protocolo <strong style="color:var(--gold)">TCP/IP</strong>, la base técnica sobre la que opera toda la Internet moderna. Su trabajo transformó redes militares aisladas en una red global de comunicación abierta.</p>
+    </div>
+  </div>
+
+  <!-- ¿Quién es? -->
+  <div class="section-block">
+    <p class="block-title">¿Quiénes son?</p>
+    <div class="block-text">
+      <p><strong>Vinton Gray "Vint" Cerf</strong> (nacido en 1943, Nuevo Haven, EE. UU.) es informático y uno de los pioneros de Internet. Trabajó en DARPA y co-diseñó el protocolo TCP/IP junto a Bob Kahn. Actualmente es vicepresidente de Google y "Chief Internet Evangelist".</p>
+      <p><strong>Robert Elliot "Bob" Kahn</strong> (nacido en 1938, Brooklyn, EE. UU.) es ingeniero eléctrico. Fue quien originalmente diseñó ARPANET, la red precursora de Internet, y junto a Cerf publicó el histórico artículo de TCP/IP en 1974.</p>
+    </div>
+  </div>
+
+  <!-- Historia -->
+  <div class="section-block">
+    <p class="block-title">Historia del internet</p>
+    <div class="block-text">
+      <p>La Internet no fue inventada por una sola persona, sino que es el resultado de décadas de colaboración científica. Todo comenzó durante la Guerra Fría, cuando el gobierno de los Estados Unidos buscaba una red de comunicación que pudiera sobrevivir un ataque nuclear.</p>
+      <p>En <strong>1969</strong>, la <strong>ARPA</strong> (Agencia de Investigación Avanzada de Defensa) creó <strong>ARPANET</strong>, la primera red de computadoras que conectó cuatro universidades estadounidenses. El primer mensaje enviado fue "LO" (intento de escribir "LOGIN" que colapsó el sistema).</p>
+      <p>Para <strong>1974</strong>, Cerf y Kahn publicaron el protocolo <strong>TCP/IP</strong>, que permitía que distintas redes se comunicaran entre sí de forma estándar. Este fue el momento fundacional de lo que hoy llamamos Internet.</p>
+    </div>
+  </div>
+
+  <!-- Línea del tiempo -->
+  <div class="section-block">
+    <p class="block-title">Línea del tiempo</p>
+    <div class="timeline">
+      <div class="tl-item">
+        <p class="tl-year">1958</p>
+        <p class="tl-event">EE. UU. crea DARPA (Agencia de Proyectos de Investigación Avanzada de Defensa).</p>
+      </div>
+      <div class="tl-item">
+        <p class="tl-year">1969</p>
+        <p class="tl-event">Nace ARPANET. Se envía el primer mensaje entre UCLA y Stanford.</p>
+      </div>
+      <div class="tl-item">
+        <p class="tl-year">1972</p>
+        <p class="tl-event">Bob Kahn organiza la primera demostración pública de ARPANET con 40 máquinas conectadas.</p>
+      </div>
+      <div class="tl-item">
+        <p class="tl-year">1974</p>
+        <p class="tl-event">Cerf y Kahn publican "A Protocol for Packet Network Interconnection": nace TCP/IP.</p>
+      </div>
+      <div class="tl-item">
+        <p class="tl-year">1983</p>
+        <p class="tl-event">ARPANET adopta TCP/IP oficialmente. Este momento se considera el "nacimiento real" de Internet.</p>
+      </div>
+      <div class="tl-item">
+        <p class="tl-year">1991</p>
+        <p class="tl-event">Tim Berners-Lee crea la World Wide Web (WWW), haciendo Internet accesible al público general.</p>
+      </div>
+      <div class="tl-item">
+        <p class="tl-year">2004</p>
+        <p class="tl-event">Cerf y Kahn reciben la Medalla Presidencial de la Libertad y el Premio Turing de la ACM por su trabajo.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabla comparativa -->
+  <div class="section-block">
+    <p class="block-title">Comparativa de contribuciones</p>
+    <table>
+      <thead>
+        <tr><th>Aspecto</th><th>Vint Cerf</th><th>Bob Kahn</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Nacimiento</td><td>1943, New Haven</td><td>1938, Brooklyn</td></tr>
+        <tr><td>Rol principal</td><td>Arquitectura TCP/IP, evangelista</td><td>Diseño de ARPANET y TCP</td></tr>
+        <tr><td>Empleador clave</td><td>DARPA → MCI → Google</td><td>DARPA → CNRI</td></tr>
+        <tr><td>Premio más notable</td><td>Premio Turing (2004), Presidential Medal</td><td>Premio Turing (2004), National Medal of Tech</td></tr>
+        <tr><td>Legado</td><td>Co-creador TCP/IP, "El padre del internet"</td><td>Co-creador TCP/IP, diseñó ARPANET</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Importancia actual -->
+  <div class="section-block">
+    <p class="block-title">¿Por qué es importante hoy?</p>
+    <div class="block-text">
+      <p>El protocolo <strong>TCP/IP</strong> sigue siendo la base de toda comunicación en Internet hoy en día. Cada vez que abres una página web, envías un correo o usas una app, tu dispositivo usa TCP/IP para fragmentar, enviar y reensamblar los datos.</p>
+      <p>Sin el trabajo de Cerf y Kahn, no existiría el comercio electrónico, las redes sociales, el streaming de video, las videollamadas, ni la Inteligencia Artificial conectada a la nube que estudias en esta especialidad.</p>
+      <p>Su legado demuestra que <strong>una idea técnica bien fundamentada puede cambiar la humanidad entera</strong>.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>CBTIS 144 &nbsp;·&nbsp; Inteligencia Artificial &nbsp;·&nbsp; Chirino Balcázar Jordy &nbsp;·&nbsp; by Memo</p>
+</footer>
+  <footer>
+    <p class="f-school">Centro de Bachillerato Tecnológico Industrial y de Servicios 144</p>
+    <div class="f-line"></div>
+    <p class="f-esp">Especialidad: Inteligencia Artificial</p>
+    <p class="f-prof">Docente: Chirino Balcázar Jordy</p>
+  </footer>
+</div>
+
+<div id="page-2">
+  <div class="task-nav">
+    <a onclick="showPage(0);return false;" href="#">← Portafolio</a>
+    <span>/</span>
+    <a href="#">Actividad 2</a>
+  </div>
+  <div class="hero">
+  <p class="hero-label">// ACT-002 //</p>
+  <h1>Lenguajes de diseño y programación</h1>
+  <p class="hero-sub">Cultura Digital 2 &nbsp;·&nbsp; Inteligencia Artificial</p>
+</div>
+
+<div class="content">
+
+  <!-- Introducción -->
+  <div class="section-block">
+    <p class="block-title">¿Qué es un lenguaje de programación?</p>
+    <div class="block-text">
+      <p>Un <strong style="color:var(--gold)">lenguaje de programación</strong> es un conjunto formal de reglas, símbolos e instrucciones que permiten a los humanos comunicarse con una computadora para indicarle qué tareas debe realizar.</p>
+      <p>Existen cientos de lenguajes, cada uno diseñado con un propósito específico: diseño web, desarrollo de aplicaciones, análisis de datos, inteligencia artificial, videojuegos, entre otros.</p>
+      <p>Los lenguajes se clasifican en <strong style="color:var(--gold)">lenguajes de alto nivel</strong> (cercanos al lenguaje humano, como Python o JavaScript) y <strong style="color:var(--gold)">bajo nivel</strong> (más cercanos al hardware, como Assembly).</p>
+    </div>
+  </div>
+
+  <!-- Categorías -->
+  <div class="section-block">
+    <p class="block-title">Categorías de lenguajes</p>
+    <div style="margin-bottom:16px">
+      <span class="badge badge-markup">MARCADO / MARKUP</span>
+      <span class="badge badge-style">ESTILOS / STYLE</span>
+      <span class="badge badge-script">SCRIPTING / FRONTEND</span>
+      <span class="badge badge-backend">BACKEND / SERVIDOR</span>
+      <span class="badge badge-data">DATOS / DATA SCIENCE</span>
+    </div>
+    <div class="block-text">
+      <p>Los lenguajes de <strong style="color:#e66400">marcado</strong> describen la estructura del contenido (HTML, XML). Los de <strong style="color:var(--green)">estilos</strong> controlan la apariencia visual (CSS, SASS). Los de <strong style="color:var(--gold)">scripting</strong> agregan interactividad (JavaScript, TypeScript). Los de <strong style="color:#7b9fff">backend</strong> procesan la lógica del servidor (Python, PHP, Java, Node.js). Y los de <strong style="color:#e06ce0">datos</strong> analizan y modelan información (Python, R, SQL).</p>
+    </div>
+  </div>
+
+  <!-- Tarjetas de lenguajes -->
+  <div class="section-block">
+    <p class="block-title">Principales lenguajes</p>
+    <div class="lang-grid">
+      <div class="lang-card">
+        <div class="lang-icon">🌐</div>
+        <p class="lang-name">HTML5</p>
+        <p class="lang-type">Marcado · Diseño Web</p>
+        <p class="lang-desc">Lenguaje base de la web. Define la estructura y el contenido de las páginas mediante etiquetas.</p>
+      </div>
+      <div class="lang-card">
+        <div class="lang-icon">🎨</div>
+        <p class="lang-name">CSS3</p>
+        <p class="lang-type">Estilos · Diseño Visual</p>
+        <p class="lang-desc">Controla la presentación visual: colores, tipografías, layouts, animaciones y responsividad.</p>
+      </div>
+      <div class="lang-card">
+        <div class="lang-icon">⚡</div>
+        <p class="lang-name">JavaScript</p>
+        <p class="lang-type">Scripting · Frontend/Backend</p>
+        <p class="lang-desc">El único lenguaje nativo del navegador. Añade interactividad y dinamismo a las páginas web.</p>
+      </div>
+      <div class="lang-card">
+        <div class="lang-icon">🐍</div>
+        <p class="lang-name">Python</p>
+        <p class="lang-type">Backend · IA · Data Science</p>
+        <p class="lang-desc">Lenguaje versátil y legible, favorito para inteligencia artificial, machine learning y automatización.</p>
+      </div>
+      <div class="lang-card">
+        <div class="lang-icon">☕</div>
+        <p class="lang-name">Java</p>
+        <p class="lang-type">Backend · Mobile · Sistemas</p>
+        <p class="lang-desc">Lenguaje robusto y multiplataforma usado en aplicaciones empresariales y desarrollo Android.</p>
+      </div>
+      <div class="lang-card">
+        <div class="lang-icon">🐘</div>
+        <p class="lang-name">PHP</p>
+        <p class="lang-type">Backend · Web Server</p>
+        <p class="lang-desc">Lenguaje de servidor muy usado en sitios dinámicos. Potencia plataformas como WordPress.</p>
+      </div>
+      <div class="lang-card">
+        <div class="lang-icon">📊</div>
+        <p class="lang-name">SQL</p>
+        <p class="lang-type">Datos · Bases de datos</p>
+        <p class="lang-desc">Lenguaje estándar para consultar, insertar y manipular datos en bases de datos relacionales.</p>
+      </div>
+      <div class="lang-card">
+        <div class="lang-icon">📈</div>
+        <p class="lang-name">R</p>
+        <p class="lang-type">Estadística · Data Science</p>
+        <p class="lang-desc">Especializado en análisis estadístico, visualización de datos y modelado matemático.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabla comparativa -->
+  <div class="section-block">
+    <p class="block-title">Tabla comparativa</p>
+    <table>
+      <thead>
+        <tr><th>Lenguaje</th><th>Tipo</th><th>Dificultad</th><th>Uso principal</th><th>Creado en</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>HTML5</td><td>Marcado</td><td>⭐ Básica</td><td>Estructura web</td><td>1991 (HTML), 2014 (HTML5)</td></tr>
+        <tr><td>CSS3</td><td>Estilos</td><td>⭐⭐ Básica-Media</td><td>Diseño visual web</td><td>1996 (CSS), 2011 (CSS3)</td></tr>
+        <tr><td>JavaScript</td><td>Scripting</td><td>⭐⭐⭐ Media</td><td>Interactividad web</td><td>1995</td></tr>
+        <tr><td>Python</td><td>Multipropósito</td><td>⭐⭐ Básica-Media</td><td>IA, datos, automatización</td><td>1991</td></tr>
+        <tr><td>Java</td><td>Orientado a objetos</td><td>⭐⭐⭐⭐ Alta</td><td>Empresarial, Android</td><td>1995</td></tr>
+        <tr><td>PHP</td><td>Backend web</td><td>⭐⭐⭐ Media</td><td>Sitios dinámicos</td><td>1994</td></tr>
+        <tr><td>SQL</td><td>Consulta datos</td><td>⭐⭐ Básica</td><td>Bases de datos</td><td>1974</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Lenguajes en IA -->
+  <div class="section-block">
+    <p class="block-title">Lenguajes en Inteligencia Artificial</p>
+    <div class="block-text">
+      <p>En la especialidad de <strong style="color:var(--gold)">Inteligencia Artificial</strong>, los lenguajes más utilizados son:</p>
+      <p><strong style="color:#aaa">🐍 Python</strong>: es el rey de la IA. Librerías como TensorFlow, PyTorch, Scikit-learn y Keras están escritas en Python. Es el lenguaje que usarás para crear modelos de machine learning y redes neuronales.</p>
+      <p><strong style="color:#aaa">📊 R</strong>: excelente para estadística y análisis de datos, muy usado en investigación académica relacionada con IA.</p>
+      <p><strong style="color:#aaa">⚡ JavaScript</strong>: con TensorFlow.js puedes ejecutar modelos de IA directamente en el navegador.</p>
+      <p><strong style="color:#aaa">☕ Java</strong>: usado en sistemas de IA empresarial y procesamiento de grandes volúmenes de datos.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>CBTIS 144 &nbsp;·&nbsp; Inteligencia Artificial &nbsp;·&nbsp; Chirino Balcázar Jordy &nbsp;·&nbsp; by Memo</p>
+</footer>
+  <footer>
+    <p class="f-school">Centro de Bachillerato Tecnológico Industrial y de Servicios 144</p>
+    <div class="f-line"></div>
+    <p class="f-esp">Especialidad: Inteligencia Artificial</p>
+    <p class="f-prof">Docente: Chirino Balcázar Jordy</p>
+  </footer>
+</div>
+
+<div id="page-3">
+  <div class="task-nav">
+    <a onclick="showPage(0);return false;" href="#">← Portafolio</a>
+    <span>/</span>
+    <a href="#">Actividad 3</a>
+  </div>
+  <div class="hero">
+  <p class="hero-label">// ACT-003 //</p>
+  <h1>Guía rápida de HTML5</h1>
+  <p class="hero-sub">Cultura Digital 2 &nbsp;·&nbsp; Inteligencia Artificial</p>
+</div>
+
+<div class="content">
+
+  <!-- ¿Qué es HTML5? -->
+  <div class="section-block">
+    <p class="block-title">¿Qué es HTML5?</p>
+    <div class="block-text">
+      <p><strong style="color:var(--gold)">HTML5</strong> (HyperText Markup Language versión 5) es el lenguaje estándar para crear y estructurar el contenido de páginas web. No es un lenguaje de programación, sino un <strong style="color:var(--orange)">lenguaje de marcado</strong>: usa etiquetas (tags) para describir qué es cada elemento del contenido.</p>
+      <p>Fue desarrollado por el <strong style="color:var(--gold)">W3C</strong> (World Wide Web Consortium) y el <strong style="color:var(--gold)">WHATWG</strong>, y se convirtió en estándar oficial en <strong style="color:var(--gold)">2014</strong>. HTML5 introdujo elementos semánticos, soporte nativo para audio/video y mejoras para aplicaciones web.</p>
+    </div>
+  </div>
+
+  <!-- Estructura básica -->
+  <div class="section-block">
+    <p class="block-title">Estructura básica de un documento HTML5</p>
+    <div class="code-box"><pre>
+<span class="com">&lt;!-- Declaración del tipo de documento --&gt;</span>
+<span class="tag">&lt;!DOCTYPE html&gt;</span>
+
+<span class="com">&lt;!-- Elemento raíz --&gt;</span>
+<span class="tag">&lt;html</span> <span class="attr">lang</span>=<span class="val">"es"</span><span class="tag">&gt;</span>
+
+  <span class="com">&lt;!-- Cabecera (no visible en pantalla) --&gt;</span>
+  <span class="tag">&lt;head&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">charset</span>=<span class="val">"UTF-8"</span><span class="tag">/&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="val">"viewport"</span> <span class="attr">content</span>=<span class="val">"width=device-width, initial-scale=1.0"</span><span class="tag">/&gt;</span>
+    <span class="tag">&lt;title&gt;</span><span class="txt">Mi Página</span><span class="tag">&lt;/title&gt;</span>
+    <span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="val">"stylesheet"</span> <span class="attr">href</span>=<span class="val">"estilos.css"</span><span class="tag">/&gt;</span>
+  <span class="tag">&lt;/head&gt;</span>
+
+  <span class="com">&lt;!-- Cuerpo (contenido visible) --&gt;</span>
+  <span class="tag">&lt;body&gt;</span>
+    <span class="tag">&lt;h1&gt;</span><span class="txt">Hola, mundo</span><span class="tag">&lt;/h1&gt;</span>
+    <span class="tag">&lt;p&gt;</span><span class="txt">Mi primer párrafo.</span><span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;/body&gt;</span>
+
+<span class="tag">&lt;/html&gt;</span>
+    </pre></div>
+  </div>
+
+  <!-- Etiquetas principales -->
+  <div class="section-block">
+    <p class="block-title">Etiquetas principales</p>
+    <div class="tags-grid">
+      <div class="tag-item"><span class="tag-name">&lt;h1&gt; … &lt;h6&gt;</span><span class="tag-desc">Encabezados de nivel 1 al 6. h1 es el más importante.</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;p&gt;</span><span class="tag-desc">Párrafo de texto.</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;a href=""&gt;</span><span class="tag-desc">Enlace/hipervínculo. href indica la URL destino.</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;img src="" alt=""&gt;</span><span class="tag-desc">Inserta una imagen. alt describe la imagen (accesibilidad).</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;ul&gt; / &lt;ol&gt;</span><span class="tag-desc">Lista desordenada (viñetas) u ordenada (números).</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;li&gt;</span><span class="tag-desc">Elemento de lista. Siempre va dentro de ul u ol.</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;div&gt;</span><span class="tag-desc">Contenedor genérico en bloque para agrupar elementos.</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;span&gt;</span><span class="tag-desc">Contenedor en línea para aplicar estilos a fragmentos de texto.</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;table&gt;</span><span class="tag-desc">Define una tabla. Contiene tr, th, td.</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;form&gt;</span><span class="tag-desc">Formulario para recopilar datos del usuario.</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;input&gt;</span><span class="tag-desc">Campo de entrada de datos. type define su comportamiento.</span></div>
+      <div class="tag-item"><span class="tag-name">&lt;button&gt;</span><span class="tag-desc">Botón interactivo.</span></div>
+    </div>
+  </div>
+
+  <!-- Etiquetas semánticas HTML5 -->
+  <div class="section-block">
+    <p class="block-title">Etiquetas semánticas de HTML5</p>
+    <div class="block-text">
+      <p>HTML5 introdujo etiquetas semánticas que <strong style="color:var(--gold)">describen el significado</strong> del contenido, no solo su apariencia. Esto mejora la accesibilidad, el SEO y la organización del código.</p>
+    </div>
+    <table>
+      <thead><tr><th>Etiqueta</th><th>Significado</th><th>Ejemplo de uso</th></tr></thead>
+      <tbody>
+        <tr><td>&lt;header&gt;</td><td>Encabezado de la página o sección</td><td>Logo, menú principal</td></tr>
+        <tr><td>&lt;nav&gt;</td><td>Navegación principal</td><td>Menú de links</td></tr>
+        <tr><td>&lt;main&gt;</td><td>Contenido principal único</td><td>Contenido central de la página</td></tr>
+        <tr><td>&lt;section&gt;</td><td>Sección temática</td><td>Sección "Sobre mí", "Proyectos"</td></tr>
+        <tr><td>&lt;article&gt;</td><td>Contenido independiente</td><td>Post de blog, noticia</td></tr>
+        <tr><td>&lt;aside&gt;</td><td>Contenido secundario/lateral</td><td>Barra lateral, publicidad</td></tr>
+        <tr><td>&lt;footer&gt;</td><td>Pie de página o sección</td><td>Créditos, contacto</td></tr>
+        <tr><td>&lt;figure&gt;</td><td>Imagen con descripción</td><td>Imagen + caption</td></tr>
+        <tr><td>&lt;figcaption&gt;</td><td>Descripción de una figura</td><td>Pie de foto</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Ejemplo de layout semántico -->
+  <div class="section-block">
+    <p class="block-title">Ejemplo: Layout semántico</p>
+    <div class="code-box"><pre>
+<span class="tag">&lt;body&gt;</span>
+
+  <span class="tag">&lt;header&gt;</span>
+    <span class="tag">&lt;nav&gt;</span>
+      <span class="tag">&lt;ul&gt;</span>
+        <span class="tag">&lt;li&gt;&lt;a</span> <span class="attr">href</span>=<span class="val">"#inicio"</span><span class="tag">&gt;</span><span class="txt">Inicio</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span>
+        <span class="tag">&lt;li&gt;&lt;a</span> <span class="attr">href</span>=<span class="val">"#proyectos"</span><span class="tag">&gt;</span><span class="txt">Proyectos</span><span class="tag">&lt;/a&gt;&lt;/li&gt;</span>
+      <span class="tag">&lt;/ul&gt;</span>
+    <span class="tag">&lt;/nav&gt;</span>
+  <span class="tag">&lt;/header&gt;</span>
+
+  <span class="tag">&lt;main&gt;</span>
+    <span class="tag">&lt;section</span> <span class="attr">id</span>=<span class="val">"inicio"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;h1&gt;</span><span class="txt">Bienvenido a mi portafolio</span><span class="tag">&lt;/h1&gt;</span>
+      <span class="tag">&lt;p&gt;</span><span class="txt">Especialidad en Inteligencia Artificial</span><span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;/section&gt;</span>
+
+    <span class="tag">&lt;section</span> <span class="attr">id</span>=<span class="val">"proyectos"</span><span class="tag">&gt;</span>
+      <span class="tag">&lt;article&gt;</span>
+        <span class="tag">&lt;h2&gt;</span><span class="txt">Proyecto 1</span><span class="tag">&lt;/h2&gt;</span>
+        <span class="tag">&lt;p&gt;</span><span class="txt">Descripción del proyecto...</span><span class="tag">&lt;/p&gt;</span>
+      <span class="tag">&lt;/article&gt;</span>
+    <span class="tag">&lt;/section&gt;</span>
+  <span class="tag">&lt;/main&gt;</span>
+
+  <span class="tag">&lt;footer&gt;</span>
+    <span class="tag">&lt;p&gt;</span><span class="txt">&amp;copy; 2025 Memo · CBTIS 144</span><span class="tag">&lt;/p&gt;</span>
+  <span class="tag">&lt;/footer&gt;</span>
+
+<span class="tag">&lt;/body&gt;</span>
+    </pre></div>
+  </div>
+
+  <!-- Atributos comunes -->
+  <div class="section-block">
+    <p class="block-title">Atributos más comunes</p>
+    <table>
+      <thead><tr><th>Atributo</th><th>Aplica a</th><th>Función</th></tr></thead>
+      <tbody>
+        <tr><td>id</td><td>Cualquier elemento</td><td>Identificador único en la página</td></tr>
+        <tr><td>class</td><td>Cualquier elemento</td><td>Clase CSS para aplicar estilos</td></tr>
+        <tr><td>style</td><td>Cualquier elemento</td><td>Estilos CSS en línea (inline)</td></tr>
+        <tr><td>href</td><td>&lt;a&gt;</td><td>URL de destino del enlace</td></tr>
+        <tr><td>src</td><td>&lt;img&gt;, &lt;script&gt;, &lt;video&gt;</td><td>Ruta del recurso externo</td></tr>
+        <tr><td>alt</td><td>&lt;img&gt;</td><td>Texto alternativo (accesibilidad)</td></tr>
+        <tr><td>type</td><td>&lt;input&gt;, &lt;button&gt;</td><td>Tipo de campo (text, email, number…)</td></tr>
+        <tr><td>placeholder</td><td>&lt;input&gt;</td><td>Texto de ayuda dentro del campo</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<footer>
+  <p>CBTIS 144 &nbsp;·&nbsp; Inteligencia Artificial &nbsp;·&nbsp; Chirino Balcázar Jordy &nbsp;·&nbsp; by Memo</p>
+</footer>
+  <footer>
+    <p class="f-school">Centro de Bachillerato Tecnológico Industrial y de Servicios 144</p>
+    <div class="f-line"></div>
+    <p class="f-esp">Especialidad: Inteligencia Artificial</p>
+    <p class="f-prof">Docente: Chirino Balcázar Jordy</p>
+  </footer>
+</div>
+
+<div id="page-4">
+  <div class="task-nav">
+    <a onclick="showPage(0);return false;" href="#">← Portafolio</a>
+    <span>/</span>
+    <a href="#">Actividad 4</a>
+  </div>
+  <div class="hero">
+  <p class="hero-label">// ACT-004 //</p>
+  <h1>Guía rápida de CSS3</h1>
+  <p class="hero-sub">Cultura Digital 2 &nbsp;·&nbsp; Inteligencia Artificial</p>
+</div>
+
+<div class="content">
+
+  <!-- ¿Qué es CSS3? -->
+  <div class="section-block">
+    <p class="block-title">¿Qué es CSS3?</p>
+    <div class="block-text">
+      <p><strong style="color:var(--gold)">CSS3</strong> (Cascading Style Sheets versión 3) es el lenguaje utilizado para controlar la <strong style="color:var(--blue)">presentación visual</strong> de las páginas HTML. Mientras HTML define la estructura, CSS define cómo se ve: colores, tipografías, espaciado, layouts y animaciones.</p>
+      <p>CSS3 introdujo módulos poderosos como <strong style="color:var(--gold)">Flexbox</strong>, <strong style="color:var(--gold)">CSS Grid</strong>, <strong style="color:var(--gold)">variables CSS</strong>, <strong style="color:var(--gold)">media queries</strong> y <strong style="color:var(--gold)">animaciones</strong> que revolucionaron el diseño web moderno.</p>
+      <p>CSS se "cascada" significa que las reglas se aplican en orden de especificidad: estilos del navegador → estilos del autor → estilos en línea.</p>
+    </div>
+  </div>
+
+  <!-- Sintaxis básica -->
+  <div class="section-block">
+    <p class="block-title">Sintaxis básica</p>
+    <div class="code-box"><pre>
+<span class="com">/* Estructura: selector { propiedad: valor; } */</span>
+
+<span class="sel">h1</span> <span class="punc">{</span>
+  <span class="prop">color</span><span class="punc">:</span> <span class="val2">#f5c518</span><span class="punc">;</span>
+  <span class="prop">font-size</span><span class="punc">:</span> <span class="val2">2rem</span><span class="punc">;</span>
+  <span class="prop">font-family</span><span class="punc">:</span> <span class="val2">'Orbitron', sans-serif</span><span class="punc">;</span>
+  <span class="prop">text-align</span><span class="punc">:</span> <span class="val2">center</span><span class="punc">;</span>
+<span class="punc">}</span>
+
+<span class="sel">.mi-clase</span> <span class="punc">{</span>           <span class="com">/* selector por clase */</span>
+  <span class="prop">background-color</span><span class="punc">:</span> <span class="val2">#222</span><span class="punc">;</span>
+  <span class="prop">padding</span><span class="punc">:</span> <span class="val2">20px</span><span class="punc">;</span>
+  <span class="prop">border-radius</span><span class="punc">:</span> <span class="val2">8px</span><span class="punc">;</span>
+<span class="punc">}</span>
+
+<span class="sel">#mi-id</span> <span class="punc">{</span>              <span class="com">/* selector por id */</span>
+  <span class="prop">width</span><span class="punc">:</span> <span class="val2">100%</span><span class="punc">;</span>
+  <span class="prop">max-width</span><span class="punc">:</span> <span class="val2">800px</span><span class="punc">;</span>
+<span class="punc">}</span>
+    </pre></div>
+  </div>
+
+  <!-- Selectores -->
+  <div class="section-block">
+    <p class="block-title">Tipos de selectores</p>
+    <table>
+      <thead><tr><th>Selector</th><th>Sintaxis</th><th>Selecciona</th></tr></thead>
+      <tbody>
+        <tr><td>Elemento</td><td>h1, p, div</td><td>Todos los elementos de ese tipo</td></tr>
+        <tr><td>Clase</td><td>.mi-clase</td><td>Elementos con esa clase CSS</td></tr>
+        <tr><td>ID</td><td>#mi-id</td><td>El elemento único con ese ID</td></tr>
+        <tr><td>Universal</td><td>*</td><td>Todos los elementos</td></tr>
+        <tr><td>Descendiente</td><td>div p</td><td>Párrafos dentro de cualquier div</td></tr>
+        <tr><td>Hijo directo</td><td>div > p</td><td>Párrafos hijos directos de div</td></tr>
+        <tr><td>Pseudo-clase</td><td>a:hover</td><td>El enlace cuando se pasa el ratón</td></tr>
+        <tr><td>Pseudo-elemento</td><td>p::first-line</td><td>La primera línea de un párrafo</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Box Model -->
+  <div class="section-block">
+    <p class="block-title">El modelo de caja (Box Model)</p>
+    <div class="block-text">
+      <p>Todo elemento HTML es una <strong style="color:var(--gold)">caja rectangular</strong> compuesta por capas concéntricas:</p>
+    </div>
+    <div class="code-box"><pre>
+<span class="com">/* Desde adentro hacia afuera: */</span>
+
+<span class="sel">.caja</span> <span class="punc">{</span>
+  <span class="prop">width</span><span class="punc">:</span>   <span class="val2">200px</span><span class="punc">;</span>       <span class="com">/* ancho del CONTENIDO */</span>
+  <span class="prop">height</span><span class="punc">:</span>  <span class="val2">100px</span><span class="punc">;</span>       <span class="com">/* alto del CONTENIDO */</span>
+  <span class="prop">padding</span><span class="punc">:</span> <span class="val2">20px</span><span class="punc">;</span>        <span class="com">/* espacio interior */</span>
+  <span class="prop">border</span><span class="punc">:</span>  <span class="val2">2px solid gold</span><span class="punc">;</span> <span class="com">/* borde */</span>
+  <span class="prop">margin</span><span class="punc">:</span>  <span class="val2">16px</span><span class="punc">;</span>        <span class="com">/* espacio exterior */</span>
+  <span class="prop">box-sizing</span><span class="punc">:</span> <span class="val2">border-box</span><span class="punc">;</span> <span class="com">/* padding incluido en width */</span>
+<span class="punc">}</span>
+    </pre></div>
+  </div>
+
+  <!-- Flexbox -->
+  <div class="section-block">
+    <p class="block-title">Flexbox — Layout flexible</p>
+    <div class="block-text">
+      <p>Flexbox permite distribuir elementos en una <strong style="color:var(--gold)">fila o columna</strong> de forma flexible y alineada.</p>
+    </div>
+    <div class="code-box"><pre>
+<span class="sel">.contenedor</span> <span class="punc">{</span>
+  <span class="prop">display</span><span class="punc">:</span>         <span class="val2">flex</span><span class="punc">;</span>
+  <span class="prop">flex-direction</span><span class="punc">:</span>  <span class="val2">row</span><span class="punc">;</span>           <span class="com">/* row | column */</span>
+  <span class="prop">justify-content</span><span class="punc">:</span><span class="val2">space-between</span><span class="punc">;</span>  <span class="com">/* alineación eje principal */</span>
+  <span class="prop">align-items</span><span class="punc">:</span>     <span class="val2">center</span><span class="punc">;</span>        <span class="com">/* alineación eje secundario */</span>
+  <span class="prop">gap</span><span class="punc">:</span>             <span class="val2">16px</span><span class="punc">;</span>          <span class="com">/* espacio entre items */</span>
+  <span class="prop">flex-wrap</span><span class="punc">:</span>       <span class="val2">wrap</span><span class="punc">;</span>          <span class="com">/* permite salto de línea */</span>
+<span class="punc">}</span>
+    </pre></div>
+    <p class="demo-label">// DEMO VISUAL</p>
+    <div class="flex-demo">
+      <div class="flex-box">Item 1</div>
+      <div class="flex-box">Item 2</div>
+      <div class="flex-box">Item 3</div>
+      <div class="flex-box">Item 4</div>
+    </div>
+  </div>
+
+  <!-- CSS Grid -->
+  <div class="section-block">
+    <p class="block-title">CSS Grid — Layout en cuadrícula</p>
+    <div class="block-text">
+      <p>CSS Grid permite diseñar layouts en <strong style="color:var(--gold)">filas y columnas simultáneamente</strong>. Es ideal para estructuras de página completas.</p>
+    </div>
+    <div class="code-box"><pre>
+<span class="sel">.grid</span> <span class="punc">{</span>
+  <span class="prop">display</span><span class="punc">:</span>               <span class="val2">grid</span><span class="punc">;</span>
+  <span class="prop">grid-template-columns</span><span class="punc">:</span> <span class="val2">repeat(3, 1fr)</span><span class="punc">;</span>  <span class="com">/* 3 columnas iguales */</span>
+  <span class="prop">grid-template-rows</span><span class="punc">:</span>    <span class="val2">auto</span><span class="punc">;</span>
+  <span class="prop">gap</span><span class="punc">:</span>                   <span class="val2">16px</span><span class="punc">;</span>
+<span class="punc">}</span>
+    </pre></div>
+    <p class="demo-label">// DEMO VISUAL</p>
+    <div class="grid-demo">
+      <div class="grid-box">Col 1</div><div class="grid-box">Col 2</div><div class="grid-box">Col 3</div>
+      <div class="grid-box">Col 1</div><div class="grid-box">Col 2</div><div class="grid-box">Col 3</div>
+    </div>
+  </div>
+
+  <!-- Variables CSS -->
+  <div class="section-block">
+    <p class="block-title">Variables CSS (Custom Properties)</p>
+    <div class="code-box"><pre>
+<span class="com">/* Se definen en :root para alcance global */</span>
+<span class="sel">:root</span> <span class="punc">{</span>
+  <span class="prop">--color-primario</span><span class="punc">:</span> <span class="val2">#f5c518</span><span class="punc">;</span>
+  <span class="prop">--fuente-principal</span><span class="punc">:</span> <span class="val2">'Rajdhani', sans-serif</span><span class="punc">;</span>
+  <span class="prop">--radio-borde</span><span class="punc">:</span> <span class="val2">12px</span><span class="punc">;</span>
+<span class="punc">}</span>
+
+<span class="com">/* Se usan con var() */</span>
+<span class="sel">.boton</span> <span class="punc">{</span>
+  <span class="prop">background-color</span><span class="punc">:</span> <span class="val2">var(--color-primario)</span><span class="punc">;</span>
+  <span class="prop">font-family</span><span class="punc">:</span>      <span class="val2">var(--fuente-principal)</span><span class="punc">;</span>
+  <span class="prop">border-radius</span><span class="punc">:</span>   <span class="val2">var(--radio-borde)</span><span class="punc">;</span>
+<span class="punc">}</span>
+    </pre></div>
+  </div>
+
+  <!-- Animaciones -->
+  <div class="section-block">
+    <p class="block-title">Animaciones y transiciones</p>
+    <div class="code-box"><pre>
+<span class="com">/* Transición suave al pasar el ratón */</span>
+<span class="sel">.btn</span> <span class="punc">{</span>
+  <span class="prop">background</span><span class="punc">:</span>   <span class="val2">#f5c518</span><span class="punc">;</span>
+  <span class="prop">transition</span><span class="punc">:</span>  <span class="val2">background 0.3s ease, transform 0.2s</span><span class="punc">;</span>
+<span class="punc">}</span>
+<span class="sel">.btn:hover</span> <span class="punc">{</span>
+  <span class="prop">background</span><span class="punc">:</span>  <span class="val2">#fff176</span><span class="punc">;</span>
+  <span class="prop">transform</span><span class="punc">:</span>  <span class="val2">scale(1.05)</span><span class="punc">;</span>
+<span class="punc">}</span>
+
+<span class="com">/* Animación con @keyframes */</span>
+<span class="sel">@keyframes pulsar</span> <span class="punc">{</span>
+  <span class="sel">0%</span>   <span class="punc">{</span> <span class="prop">opacity</span><span class="punc">:</span> <span class="val2">1</span><span class="punc">;</span>   <span class="prop">transform</span><span class="punc">:</span> <span class="val2">scale(1)</span><span class="punc">;</span> <span class="punc">}</span>
+  <span class="sel">50%</span>  <span class="punc">{</span> <span class="prop">opacity</span><span class="punc">:</span> <span class="val2">0.5</span><span class="punc">;</span> <span class="prop">transform</span><span class="punc">:</span> <span class="val2">scale(1.1)</span><span class="punc">;</span> <span class="punc">}</span>
+  <span class="sel">100%</span> <span class="punc">{</span> <span class="prop">opacity</span><span class="punc">:</span> <span class="val2">1</span><span class="punc">;</span>   <span class="prop">transform</span><span class="punc">:</span> <span class="val2">scale(1)</span><span class="punc">;</span> <span class="punc">}</span>
+<span class="punc">}</span>
+<span class="sel">.icono</span> <span class="punc">{</span>
+  <span class="prop">animation</span><span class="punc">:</span> <span class="val2">pulsar 2s infinite ease-in-out</span><span class="punc">;</span>
+<span class="punc">}</span>
+    </pre></div>
+  </div>
+
+  <!-- Media Queries -->
+  <div class="section-block">
+    <p class="block-title">Media Queries — Diseño responsivo</p>
+    <div class="block-text">
+      <p>Las <strong style="color:var(--gold)">media queries</strong> permiten aplicar estilos diferentes según el tamaño de pantalla, haciendo el diseño <strong style="color:var(--blue)">responsivo</strong>.</p>
+    </div>
+    <div class="code-box"><pre>
+<span class="com">/* Mobile first: estilos base para móvil */</span>
+<span class="sel">.contenedor</span> <span class="punc">{</span>
+  <span class="prop">width</span><span class="punc">:</span> <span class="val2">100%</span><span class="punc">;</span>
+  <span class="prop">padding</span><span class="punc">:</span> <span class="val2">16px</span><span class="punc">;</span>
+<span class="punc">}</span>
+
+<span class="com">/* Tablet (768px o más) */</span>
+<span class="sel">@media (min-width: 768px)</span> <span class="punc">{</span>
+  <span class="sel">.contenedor</span> <span class="punc">{</span>
+    <span class="prop">max-width</span><span class="punc">:</span> <span class="val2">720px</span><span class="punc">;</span>
+    <span class="prop">margin</span><span class="punc">:</span> <span class="val2">0 auto</span><span class="punc">;</span>
+  <span class="punc">}</span>
+<span class="punc">}</span>
+
+<span class="com">/* Desktop (1200px o más) */</span>
+<span class="sel">@media (min-width: 1200px)</span> <span class="punc">{</span>
+  <span class="sel">.contenedor</span> <span class="punc">{</span>
+    <span class="prop">max-width</span><span class="punc">:</span> <span class="val2">1100px</span><span class="punc">;</span>
+  <span class="punc">}</span>
+<span class="punc">}</span>
+    </pre></div>
+  </div>
+
+  <!-- Propiedades más usadas -->
+  <div class="section-block">
+    <p class="block-title">Propiedades más usadas</p>
+    <table>
+      <thead><tr><th>Propiedad</th><th>¿Qué controla?</th><th>Ejemplo de valor</th></tr></thead>
+      <tbody>
+        <tr><td>color</td><td>Color del texto</td><td>#f5c518 / red / rgb(255,0,0)</td></tr>
+        <tr><td>background-color</td><td>Color de fondo</td><td>#222 / transparent</td></tr>
+        <tr><td>font-size</td><td>Tamaño de fuente</td><td>1rem / 16px / 1.2em</td></tr>
+        <tr><td>font-weight</td><td>Grosor de fuente</td><td>400 / 700 / bold</td></tr>
+        <tr><td>margin</td><td>Espaciado externo</td><td>16px / 0 auto / 10px 20px</td></tr>
+        <tr><td>padding</td><td>Espaciado interno</td><td>20px / 10px 24px</td></tr>
+        <tr><td>border</td><td>Borde del elemento</td><td>1px solid #gold</td></tr>
+        <tr><td>border-radius</td><td>Bordes redondeados</td><td>8px / 50% (círculo)</td></tr>
+        <tr><td>display</td><td>Tipo de caja</td><td>flex / grid / block / none</td></tr>
+        <tr><td>position</td><td>Posicionamiento</td><td>relative / absolute / fixed</td></tr>
+        <tr><td>opacity</td><td>Transparencia</td><td>0 (invisible) a 1 (opaco)</td></tr>
+        <tr><td>box-shadow</td><td>Sombra de caja</td><td>0 4px 20px rgba(0,0,0,.4)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<footer>
+  <p>CBTIS 144 &nbsp;·&nbsp; Inteligencia Artificial &nbsp;·&nbsp; Chirino Balcázar Jordy &nbsp;·&nbsp; by Memo</p>
+</footer>
+  <footer>
+    <p class="f-school">Centro de Bachillerato Tecnológico Industrial y de Servicios 144</p>
+    <div class="f-line"></div>
+    <p class="f-esp">Especialidad: Inteligencia Artificial</p>
+    <p class="f-prof">Docente: Chirino Balcázar Jordy</p>
+  </footer>
+</div>
+
+
+
+<!-- ═══════════════════ PÁGINA 5 — PYTHON ═══════════════════ -->
+<div id="page-5">
+  <div class="task-nav">
+    <a onclick="showPage(0);return false;" href="#">← Portafolio</a>
+    <span>/</span>
+    <a href="#">Actividad 5</a>
+  </div>
+  <div class="hero" style="background:linear-gradient(135deg,#1e3a5f 0%,#2d1b4e 100%);background-image:repeating-linear-gradient(0deg,transparent,transparent 29px,rgba(75,139,190,.06) 30px),repeating-linear-gradient(90deg,transparent,transparent 29px,rgba(75,139,190,.06) 30px);">
+    <p class="hero-label">// ACT-005 //</p>
+    <h1 style="background:linear-gradient(135deg,#ffd43b,#4b8bbe);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Conceptos Generales de Python</h1>
+    <p class="hero-sub">Cultura Digital 2 &nbsp;·&nbsp; Inteligencia Artificial</p>
+  </div>
+
+  <div class="content">
+
+    <!-- ¿Qué es Python? -->
+    <div class="section-block" style="border-left-color:#4b8bbe;">
+      <p class="block-title" style="color:#4b8bbe;">¿Qué es Python?</p>
+      <div class="block-text">
+        <p>Python es un lenguaje de programación de <strong style="color:#ffd43b">alto nivel, interpretado y multiparadigma</strong> creado por <strong style="color:#ffd43b">Guido van Rossum</strong> y publicado en 1991. Su filosofía hace hincapié en la legibilidad del código usando una sintaxis limpia y expresiva.</p>
+        <p>Es uno de los lenguajes más populares del mundo gracias a su versatilidad: se usa en <strong style="color:#4b8bbe">ciencia de datos, inteligencia artificial, desarrollo web, automatización, ciberseguridad</strong> y mucho más.</p>
+      </div>
+    </div>
+
+    <!-- Características -->
+    <div class="section-block" style="border-left-color:#ffd43b;">
+      <p class="block-title">Características principales</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-top:8px;">
+        <div style="background:#2a2a2a;border-radius:10px;padding:18px;border:1px solid #3a3a3a;border-top:3px solid #4b8bbe;">
+          <div style="font-size:1.8rem;margin-bottom:6px;">📖</div>
+          <div style="font-family:'Orbitron',sans-serif;font-size:.7rem;color:#ffd43b;letter-spacing:.15em;margin-bottom:6px;">LEGIBLE</div>
+          <div style="font-size:.85rem;color:#aaa;line-height:1.5;">Sintaxis clara, parecida al inglés natural. Fácil de leer y mantener.</div>
+        </div>
+        <div style="background:#2a2a2a;border-radius:10px;padding:18px;border:1px solid #3a3a3a;border-top:3px solid #4b8bbe;">
+          <div style="font-size:1.8rem;margin-bottom:6px;">🔄</div>
+          <div style="font-family:'Orbitron',sans-serif;font-size:.7rem;color:#ffd43b;letter-spacing:.15em;margin-bottom:6px;">INTERPRETADO</div>
+          <div style="font-size:.85rem;color:#aaa;line-height:1.5;">No necesita compilación previa; el intérprete ejecuta el código línea por línea.</div>
+        </div>
+        <div style="background:#2a2a2a;border-radius:10px;padding:18px;border:1px solid #3a3a3a;border-top:3px solid #4b8bbe;">
+          <div style="font-size:1.8rem;margin-bottom:6px;">🌐</div>
+          <div style="font-family:'Orbitron',sans-serif;font-size:.7rem;color:#ffd43b;letter-spacing:.15em;margin-bottom:6px;">MULTIPLATAFORMA</div>
+          <div style="font-size:.85rem;color:#aaa;line-height:1.5;">Corre en Windows, macOS, Linux sin modificar el código.</div>
+        </div>
+        <div style="background:#2a2a2a;border-radius:10px;padding:18px;border:1px solid #3a3a3a;border-top:3px solid #4b8bbe;">
+          <div style="font-size:1.8rem;margin-bottom:6px;">📦</div>
+          <div style="font-family:'Orbitron',sans-serif;font-size:.7rem;color:#ffd43b;letter-spacing:.15em;margin-bottom:6px;">LIBRERÍAS</div>
+          <div style="font-size:.85rem;color:#aaa;line-height:1.5;">Vasta colección de módulos: NumPy, Pandas, TensorFlow, Flask, Django…</div>
+        </div>
+        <div style="background:#2a2a2a;border-radius:10px;padding:18px;border:1px solid #3a3a3a;border-top:3px solid #4b8bbe;">
+          <div style="font-size:1.8rem;margin-bottom:6px;">🤝</div>
+          <div style="font-family:'Orbitron',sans-serif;font-size:.7rem;color:#ffd43b;letter-spacing:.15em;margin-bottom:6px;">OPEN SOURCE</div>
+          <div style="font-size:.85rem;color:#aaa;line-height:1.5;">Gratuito y con una enorme comunidad activa worldwide.</div>
+        </div>
+        <div style="background:#2a2a2a;border-radius:10px;padding:18px;border:1px solid #3a3a3a;border-top:3px solid #4b8bbe;">
+          <div style="font-size:1.8rem;margin-bottom:6px;">🧩</div>
+          <div style="font-family:'Orbitron',sans-serif;font-size:.7rem;color:#ffd43b;letter-spacing:.15em;margin-bottom:6px;">MULTIPARADIGMA</div>
+          <div style="font-size:.85rem;color:#aaa;line-height:1.5;">Soporta programación orientada a objetos, funcional e imperativa.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Variables y tipos de datos -->
+    <div class="section-block" style="border-left-color:#4b8bbe;">
+      <p class="block-title" style="color:#4b8bbe;">Variables y tipos de datos</p>
+      <div class="block-text"><p>En Python <strong style="color:#ffd43b">no se declara el tipo</strong> de una variable; el intérprete lo infiere automáticamente (tipado dinámico).</p></div>
+      <div class="code-box" style="border-left-color:#4b8bbe;">
+<pre><span class="com"># Tipos de datos básicos</span>
+<span class="prop">nombre</span>   = <span class="val">"Python"</span>       <span class="com"># str  — cadena de texto</span>
+<span class="prop">version</span>  = <span class="val2">3.12</span>           <span class="com"># float — número decimal</span>
+<span class="prop">año</span>      = <span class="val2">1991</span>           <span class="com"># int  — número entero</span>
+<span class="prop">activo</span>   = <span class="val2">True</span>           <span class="com"># bool — booleano</span>
+<span class="prop">nulo</span>     = <span class="val2">None</span>           <span class="com"># NoneType</span>
+
+<span class="com"># Estructuras de datos</span>
+<span class="prop">lista</span>   = [<span class="val">"a"</span>, <span class="val2">1</span>, <span class="val2">True</span>] <span class="com"># list  — mutable, ordenada</span>
+<span class="prop">tupla</span>   = (<span class="val2">10</span>, <span class="val2">20</span>, <span class="val2">30</span>)   <span class="com"># tuple — inmutable</span>
+<span class="prop">dicts</span>   = {<span class="val">"clave"</span>: <span class="val">"valor"</span>} <span class="com"># dict  — clave-valor</span>
+<span class="prop">conjunt</span> = {<span class="val2">1</span>, <span class="val2">2</span>, <span class="val2">3</span>}      <span class="com"># set   — sin duplicados</span>
+
+<span class="com"># type() muestra el tipo</span>
+<span class="sel">print</span>(<span class="sel">type</span>(<span class="prop">nombre</span>))       <span class="com"># &lt;class 'str'&gt;</span></pre>
+      </div>
+    </div>
+
+    <!-- Estructuras de control -->
+    <div class="section-block" style="border-left-color:#ffd43b;">
+      <p class="block-title">Estructuras de control</p>
+      <div class="code-box" style="border-left-color:#ffd43b;">
+<pre><span class="com"># if / elif / else</span>
+<span class="prop">nota</span> = <span class="val2">85</span>
+<span class="sel">if</span> <span class="prop">nota</span> &gt;= <span class="val2">90</span>:
+    <span class="sel">print</span>(<span class="val">"Excelente"</span>)
+<span class="sel">elif</span> <span class="prop">nota</span> &gt;= <span class="val2">70</span>:
+    <span class="sel">print</span>(<span class="val">"Aprobado"</span>)
+<span class="sel">else</span>:
+    <span class="sel">print</span>(<span class="val">"Reprobado"</span>)
+
+<span class="com"># for — itera sobre secuencias</span>
+<span class="sel">for</span> <span class="prop">i</span> <span class="sel">in</span> <span class="sel">range</span>(<span class="val2">5</span>):
+    <span class="sel">print</span>(<span class="prop">i</span>)              <span class="com"># 0 1 2 3 4</span>
+
+<span class="sel">for</span> <span class="prop">fruta</span> <span class="sel">in</span> [<span class="val">"manzana"</span>, <span class="val">"pera"</span>]:
+    <span class="sel">print</span>(<span class="prop">fruta</span>)
+
+<span class="com"># while — mientras condición sea True</span>
+<span class="prop">contador</span> = <span class="val2">0</span>
+<span class="sel">while</span> <span class="prop">contador</span> &lt; <span class="val2">3</span>:
+    <span class="sel">print</span>(<span class="prop">contador</span>)
+    <span class="prop">contador</span> += <span class="val2">1</span>
+
+<span class="com"># break / continue</span>
+<span class="sel">for</span> <span class="prop">n</span> <span class="sel">in</span> <span class="sel">range</span>(<span class="val2">10</span>):
+    <span class="sel">if</span> <span class="prop">n</span> == <span class="val2">5</span>: <span class="sel">break</span>    <span class="com"># termina el bucle</span>
+    <span class="sel">if</span> <span class="prop">n</span> % <span class="val2">2</span> == <span class="val2">0</span>: <span class="sel">continue</span> <span class="com"># salta pares</span>
+    <span class="sel">print</span>(<span class="prop">n</span>)</pre>
+      </div>
+    </div>
+
+    <!-- Funciones -->
+    <div class="section-block" style="border-left-color:#4b8bbe;">
+      <p class="block-title" style="color:#4b8bbe;">Funciones</p>
+      <div class="block-text"><p>Las funciones se definen con <strong style="color:#ffd43b">def</strong>. Python soporta argumentos por defecto, *args y **kwargs para flexibilidad.</p></div>
+      <div class="code-box" style="border-left-color:#4b8bbe;">
+<pre><span class="com"># Función básica</span>
+<span class="sel">def</span> <span class="prop">saludar</span>(<span class="prop">nombre</span> = <span class="val">"Mundo"</span>):
+    <span class="sel">return</span> <span class="val">f"¡Hola, {</span><span class="prop">nombre</span><span class="val">}!"</span>
+
+<span class="sel">print</span>(<span class="prop">saludar</span>())           <span class="com"># ¡Hola, Mundo!</span>
+<span class="sel">print</span>(<span class="prop">saludar</span>(<span class="val">"Python"</span>))  <span class="com"># ¡Hola, Python!</span>
+
+<span class="com"># *args — número variable de args</span>
+<span class="sel">def</span> <span class="prop">sumar</span>(*<span class="prop">nums</span>):
+    <span class="sel">return</span> <span class="sel">sum</span>(<span class="prop">nums</span>)
+
+<span class="sel">print</span>(<span class="prop">sumar</span>(<span class="val2">1</span>, <span class="val2">2</span>, <span class="val2">3</span>, <span class="val2">4</span>)) <span class="com"># 10</span>
+
+<span class="com"># Función lambda (anónima)</span>
+<span class="prop">cuadrado</span> = <span class="sel">lambda</span> <span class="prop">x</span>: <span class="prop">x</span> ** <span class="val2">2</span>
+<span class="sel">print</span>(<span class="prop">cuadrado</span>(<span class="val2">5</span>))        <span class="com"># 25</span></pre>
+      </div>
+    </div>
+
+    <!-- POO -->
+    <div class="section-block" style="border-left-color:#ffd43b;">
+      <p class="block-title">Programación Orientada a Objetos (POO)</p>
+      <div class="block-text"><p>Python soporta <strong style="color:#ffd43b">clases, herencia, encapsulamiento y polimorfismo</strong> de manera sencilla.</p></div>
+      <div class="code-box" style="border-left-color:#ffd43b;">
+<pre><span class="sel">class</span> <span class="prop">Animal</span>:
+    <span class="sel">def</span> <span class="prop">__init__</span>(<span class="sel">self</span>, <span class="prop">nombre</span>):
+        <span class="sel">self</span>.<span class="prop">nombre</span> = <span class="prop">nombre</span>
+
+    <span class="sel">def</span> <span class="prop">hablar</span>(<span class="sel">self</span>):
+        <span class="sel">return</span> <span class="val">"..."</span>
+
+<span class="sel">class</span> <span class="prop">Perro</span>(<span class="prop">Animal</span>):      <span class="com"># hereda de Animal</span>
+    <span class="sel">def</span> <span class="prop">hablar</span>(<span class="sel">self</span>):       <span class="com"># sobreescribe el método</span>
+        <span class="sel">return</span> <span class="val">f"{</span><span class="sel">self</span>.<span class="prop">nombre</span><span class="val">} dice: ¡Guau!"</span>
+
+<span class="prop">rex</span> = <span class="prop">Perro</span>(<span class="val">"Rex"</span>)
+<span class="sel">print</span>(<span class="prop">rex</span>.<span class="prop">hablar</span>())        <span class="com"># Rex dice: ¡Guau!</span>
+<span class="sel">print</span>(<span class="sel">isinstance</span>(<span class="prop">rex</span>, <span class="prop">Animal</span>)) <span class="com"># True</span></pre>
+      </div>
+    </div>
+
+    <!-- Tabla resumen -->
+    <div class="section-block" style="border-left-color:#4b8bbe;">
+      <p class="block-title" style="color:#4b8bbe;">Resumen de conceptos clave</p>
+      <table>
+        <thead><tr><th>Concepto</th><th>Descripción</th><th>Ejemplo</th></tr></thead>
+        <tbody>
+          <tr><td>Variable</td><td>Almacena un valor en memoria</td><td>x = 10</td></tr>
+          <tr><td>Lista</td><td>Colección mutable y ordenada</td><td>[1, 2, 3]</td></tr>
+          <tr><td>Diccionario</td><td>Pares clave-valor</td><td>{"a": 1}</td></tr>
+          <tr><td>Función</td><td>Bloque reutilizable de código</td><td>def suma(a, b):</td></tr>
+          <tr><td>Clase</td><td>Plantilla para crear objetos</td><td>class Perro:</td></tr>
+          <tr><td>Módulo</td><td>Archivo Python importable</td><td>import math</td></tr>
+          <tr><td>Excepción</td><td>Manejo de errores</td><td>try / except</td></tr>
+          <tr><td>Comprensión</td><td>Crear listas en una línea</td><td>[x**2 for x in range(5)]</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <footer>
+    <p class="f-school">Centro de Bachillerato Tecnológico Industrial y de Servicios 144</p>
+    <div class="f-line"></div>
+    <p class="f-esp">Especialidad: Inteligencia Artificial</p>
+    <p class="f-prof">Docente: Chirino Balcázar Jordy</p>
+  </footer>
+</div><!-- /page-5 -->
+
+
+<!-- ═══════════════════ PÁGINA 6 — ARDUINO ═══════════════════ -->
+<div id="page-6">
+  <div class="task-nav">
+    <a onclick="showPage(0);return false;" href="#">← Portafolio</a>
+    <span>/</span>
+    <a href="#">Actividad 6</a>
+  </div>
+  <div class="hero" style="background:linear-gradient(135deg,#062a16 0%,#0a3d22 100%);background-image:repeating-linear-gradient(0deg,transparent,transparent 29px,rgba(29,185,84,.06) 30px),repeating-linear-gradient(90deg,transparent,transparent 29px,rgba(29,185,84,.06) 30px);">
+    <p class="hero-label">// ACT-006 //</p>
+    <h1 style="background:linear-gradient(135deg,#f5c518,#1db954);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Componentes de Arduino</h1>
+    <p class="hero-sub">Sensores, actuadores y hardware compatible</p>
+  </div>
+
+  <div class="content">
+
+    <!-- ¿Qué es Arduino? -->
+    <div class="section-block">
+      <p class="block-title">¿Qué es Arduino?</p>
+      <div class="block-text">
+        <p><strong style="color:#f5c518">Arduino</strong> es una plataforma de desarrollo de hardware y software de código abierto que permite crear proyectos electrónicos interactivos. Su núcleo es un <strong style="color:#1db954">microcontrolador</strong> (generalmente ATmega) con pines de entrada y salida que se pueden conectar a sensores, actuadores y otros módulos.</p>
+        <p>El entorno de programación usa un lenguaje basado en <strong style="color:#f5c518">C/C++</strong> y ofrece una estructura sencilla con dos funciones principales: <code style="color:#1db954;background:#1a1a1a;padding:2px 6px;border-radius:4px;">setup()</code> que se ejecuta una sola vez, y <code style="color:#1db954;background:#1a1a1a;padding:2px 6px;border-radius:4px;">loop()</code> que corre indefinidamente.</p>
+      </div>
+    </div>
+
+    <!-- Modelos de placas -->
+    <div class="section-block" style="border-left-color:#1db954;">
+      <p class="block-title" style="color:#1db954;">Modelos de placas Arduino</p>
+      <table>
+        <thead><tr><th>Modelo</th><th>Microcontrolador</th><th>Pines E/S</th><th>Voltaje</th><th>Uso típico</th></tr></thead>
+        <tbody>
+          <tr><td>Arduino UNO</td><td>ATmega328P</td><td>14 dig / 6 anal</td><td>5 V</td><td>Aprendizaje y prototipado</td></tr>
+          <tr><td>Arduino Nano</td><td>ATmega328P</td><td>14 dig / 8 anal</td><td>5 V</td><td>Proyectos compactos</td></tr>
+          <tr><td>Arduino Mega</td><td>ATmega2560</td><td>54 dig / 16 anal</td><td>5 V</td><td>Proyectos con muchos sensores</td></tr>
+          <tr><td>Arduino Leonardo</td><td>ATmega32u4</td><td>20 dig / 12 anal</td><td>5 V</td><td>Emulación USB (teclado/mouse)</td></tr>
+          <tr><td>Arduino Due</td><td>SAM3X8E (ARM)</td><td>54 dig / 12 anal</td><td>3.3 V</td><td>Procesamiento avanzado</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Sensores -->
+    <div class="section-block" style="border-left-color:#f5c518;">
+      <p class="block-title">Sensores</p>
+      <div class="block-text"><p>Los <strong style="color:#f5c518">sensores</strong> capturan información del mundo físico y la convierten en señales eléctricas que el microcontrolador puede leer.</p></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:10px;">
+
+        <div style="background:#2a2a2a;border-radius:10px;padding:18px;border:1px solid #3a3a3a;border-top:3px solid #1db954;">
+          <div style="font-size:1.6rem;margin-bottom:6px;">📡</div>
+          <div style="font-family:'Orbitron',sans-serif;font-size:.7rem;color:#1db954;letter-spacing:.15em;margin-bottom:4px;">HC-SR04</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:.6rem;color:#f5c518;margin-bottom:6px;">ULTRASONIDO</div>
+          <div style="font-size:.82rem;color:#aaa;line-height:1.5;">Mide distancias de 2 cm a 4 m usando pulsos de ultrasonido. Ideal para detección de obstáculos y robots.</div>
+        </div>
+
+        <div style="background:#2a2a2a;border-radius:10px;padding:18px;border:1px solid #3a3a3a;border-top:3px solid #1db954;">
+          <div style="font-size:1.6rem;margin-bottom:6px;">🌡️</div>
+          <div style="font-family:'Orbitron',sans-serif;font-size:.7rem;color:#1db954;letter-spacing:.15em;margin-bottom:4px;">DHT11 / DHT22</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:.6rem;color:#f5c518;margin-bottom:6px;">TEMP &amp; HUMEDAD</div>
+          <div style="font-size:.82rem;color:#aaa;line-height:1.5;">Mide temperatura (0-50°C) y humedad relativa (20-80%). DHT22 es más preciso y con mayor rango.</div>
+        </div>
+
+        <div style="background:#2a2a2a;border-radius:10px;padding:18px;border:1px solid #3a3a3a;border-top:3px solid #1db954;">
+          <div style="font-size:1.6rem;margin-bottom:6px;">☀️</div>
+          <div style="font-family:'Orbitron',sans-serif;font-size:.7rem;color:#1db954;letter-spacing:.15em;margin-bottom:4px;">LDR (Fotoresistor)</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:.6rem;color:#f5c518;margin-bottom:6px;">LUZ</div>
+          <div style="font-size:.82rem;color:#aaa;line-height:1.5;">Resistencia que varía según la intensidad de luz. Útil para encendido automático y automatización lumínica.</div>
+        </div>
+
+        <div style="background:#2a2a2a;border-radius:10px;padding:18px;border:1px solid #3a3a3a;border-top:3px solid #1db954;">
+          <div style="font-size:1.6rem;margin-bottom:6px;">📳</div>
+          <div style="font-family:'Orbitron',sans-serif;font-size:.7rem;color:#1db954;letter-spacing:.15em;margin-bottom:4px;">MPU-6050</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:.6rem;color:#f5c518;margin-bottom:6px;">GIROSCOPIO / ACELERÓMETRO</div>
+          <div style="font-size:.82rem;color:#aaa;line-height:1.5;">Mide aceleración y velocidad angular en 3 ejes. Usado en drones, robots de equilibrio y wearables.</div>
+        </div>
+
+        <div style="background:#2a2a2a;border-radius:10px;padding:18px;border:1px solid #3a3a3a;border-top:3px solid #1db954;">
+          <div style="font-size:1.6rem;margin-bottom:6px;">🔥</div>
+          <div style="font-family:'Orbitron',sans-serif;font-size:.7rem;color:#1db954;letter-spacing:.15em;margin-bottom:4px;">MQ-2 / MQ-135</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:.6rem;color:#f5c518;margin-bottom:6px;">GAS / CALIDAD AIRE</div>
+          <div style="font-size:.82rem;color:#aaa;line-height:1.5;">Detecta gases como humo, CO, CO₂ y vapores inflamables. Muy usado en sistemas de alarma.</div>
+        </div>
+
+        <div style="background:#2a2a2a;border-radius:10px;padding:18px;border:1px solid #3a3a3a;border-top:3px solid #1db954;">
+          <div style="font-size:1.6rem;margin-bottom:6px;">💧</div>
+          <div style="font-family:'Orbitron',sans-serif;font-size:.7rem;color:#1db954;letter-spacing:.15em;margin-bottom:4px;">YL-83 / FC-28</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:.6rem;color:#f5c518;margin-bottom:6px;">HUMEDAD DE SUELO</div>
+          <div style="font-size:.82rem;color:#aaa;line-height:1.5;">Detecta el nivel de humedad en tierra. Fundamental para sistemas de riego automático.</div>
+        </div>
+
+        <div style="background:#2a2a2a;border-radius:10px;padding:18px;border:1px solid #3a3a3a;border-top:3px solid #1db954;">
+          <div style="font-size:1.6rem;margin-bottom:6px;">🔍</div>
+          <div style="font-family:'Orbitron',sans-serif;font-size:.7rem;color:#1db954;letter-spacing:.15em;margin-bottom:4px;">PIR HC-SR501</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:.6rem;color:#f5c518;margin-bottom:6px;">MOVIMIENTO / INFRAROJO</div>
+          <div style="font-size:.82rem;color:#aaa;line-height:1.5;">Detecta movimiento de personas y animales mediante radiación infrarroja. Rango típico: 7 m.</div>
+        </div>
+
+        <div style="background:#2a2a2a;border-radius:10px;padding:18px;border:1px solid #3a3a3a;border-top:3px solid #1db954;">
+          <div style="font-size:1.6rem;margin-bottom:6px;">🔊</div>
+          <div style="font-family:'Orbitron',sans-serif;font-size:.7rem;color:#1db954;letter-spacing:.15em;margin-bottom:4px;">KY-037 / KY-038</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:.6rem;color:#f5c518;margin-bottom:6px;">SONIDO / MICRÓFONO</div>
+          <div style="font-size:.82rem;color:#aaa;line-height:1.5;">Detecta niveles de sonido. KY-037 ofrece salida analógica para medir intensidad.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actuadores -->
+    <div class="section-block" style="border-left-color:#1db954;">
+      <p class="block-title" style="color:#1db954;">Actuadores</p>
+      <div class="block-text"><p>Los <strong style="color:#1db954">actuadores</strong> convierten señales eléctricas en acciones físicas: movimiento, luz, sonido, calor.</p></div>
+      <table>
+        <thead><tr><th>Actuador</th><th>Tipo</th><th>Tensión</th><th>Descripción</th></tr></thead>
+        <tbody>
+          <tr><td>LED</td><td>Luz</td><td>2–3.3 V</td><td>Diodo emisor de luz. Requiere resistencia limitadora.</td></tr>
+          <tr><td>Servo SG90</td><td>Motor</td><td>4.8–6 V</td><td>Gira de 0° a 180°. Control por PWM. Muy usado en robótica.</td></tr>
+          <tr><td>Motor DC + L298N</td><td>Motor</td><td>5–35 V</td><td>Motor de corriente continua con driver H-bridge para control de velocidad y dirección.</td></tr>
+          <tr><td>Buzzer pasivo</td><td>Sonido</td><td>3.3–5 V</td><td>Genera tonos y melodías mediante señal PWM.</td></tr>
+          <tr><td>Relay 5 V</td><td>Interruptor</td><td>5 V control</td><td>Controla cargas de 220 V CA desde Arduino. Ideal para domótica.</td></tr>
+          <tr><td>Pantalla LCD 16×2</td><td>Pantalla</td><td>5 V</td><td>Muestra texto. Con módulo I2C se controla con sólo 2 pines.</td></tr>
+          <tr><td>Pantalla OLED 0.96"</td><td>Pantalla</td><td>3.3–5 V</td><td>Display gráfico pequeño I2C/SPI. Bajo consumo energético.</td></tr>
+          <tr><td>Stepper 28BYJ-48</td><td>Motor</td><td>5 V</td><td>Motor de pasos con driver ULN2003. Control preciso de posición angular.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Módulos de comunicación -->
+    <div class="section-block" style="border-left-color:#f5c518;">
+      <p class="block-title">Módulos de comunicación</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin-top:10px;">
+
+        <div style="background:#2a2a2a;border-radius:10px;padding:18px;border:1px solid #3a3a3a;border-top:3px solid #f5c518;">
+          <div style="font-size:1.6rem;margin-bottom:6px;">📶</div>
+          <div style="font-family:'Orbitron',sans-serif;font-size:.7rem;color:#f5c518;letter-spacing:.15em;margin-bottom:4px;">ESP8266 / ESP32</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:.6rem;color:#1db954;margin-bottom:6px;">WI-FI</div>
+          <div style="font-size:.82rem;color:#aaa;line-height:1.5;">Módulos Wi-Fi para IoT. El ESP32 incluye además Bluetooth y puede funcionar autónomo sin Arduino.</div>
+        </div>
+
+        <div style="background:#2a2a2a;border-radius:10px;padding:18px;border:1px solid #3a3a3a;border-top:3px solid #f5c518;">
+          <div style="font-size:1.6rem;margin-bottom:6px;">🔵</div>
+          <div style="font-family:'Orbitron',sans-serif;font-size:.7rem;color:#f5c518;letter-spacing:.15em;margin-bottom:4px;">HC-05 / HC-06</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:.6rem;color:#1db954;margin-bottom:6px;">BLUETOOTH</div>
+          <div style="font-size:.82rem;color:#aaa;line-height:1.5;">Comunicación inalámbrica Bluetooth con smartphone o PC. Rango ~10 m. Protocolo UART serial.</div>
+        </div>
+
+        <div style="background:#2a2a2a;border-radius:10px;padding:18px;border:1px solid #3a3a3a;border-top:3px solid #f5c518;">
+          <div style="font-size:1.6rem;margin-bottom:6px;">📡</div>
+          <div style="font-family:'Orbitron',sans-serif;font-size:.7rem;color:#f5c518;letter-spacing:.15em;margin-bottom:4px;">nRF24L01</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:.6rem;color:#1db954;margin-bottom:6px;">RADIO 2.4 GHz</div>
+          <div style="font-size:.82rem;color:#aaa;line-height:1.5;">Comunicación bidireccional de bajo consumo a 2.4 GHz. Rango hasta 100 m en exteriores.</div>
+        </div>
+
+        <div style="background:#2a2a2a;border-radius:10px;padding:18px;border:1px solid #3a3a3a;border-top:3px solid #f5c518;">
+          <div style="font-size:1.6rem;margin-bottom:6px;">📍</div>
+          <div style="font-family:'Orbitron',sans-serif;font-size:.7rem;color:#f5c518;letter-spacing:.15em;margin-bottom:4px;">NEO-6M / NEO-8M</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:.6rem;color:#1db954;margin-bottom:6px;">GPS</div>
+          <div style="font-size:.82rem;color:#aaa;line-height:1.5;">Módulo GPS UART. Obtiene latitud, longitud, altitud y tiempo con precisión de metros.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Esquema de conexión básico -->
+    <div class="section-block" style="border-left-color:#1db954;">
+      <p class="block-title" style="color:#1db954;">Ejemplo de código — LED parpadeante</p>
+      <div class="code-box" style="border-left-color:#1db954;">
+<pre><span class="com">// Estructura básica de un sketch de Arduino</span>
+<span class="sel">const int</span> <span class="prop">LED_PIN</span> = <span class="val2">13</span>;   <span class="com">// pin digital 13</span>
+
+<span class="sel">void</span> <span class="prop">setup</span>() {
+  <span class="sel">pinMode</span>(<span class="prop">LED_PIN</span>, <span class="val2">OUTPUT</span>); <span class="com">// configurar como salida</span>
+  <span class="sel">Serial</span>.<span class="prop">begin</span>(<span class="val2">9600</span>);       <span class="com">// iniciar comunicación serial</span>
+}
+
+<span class="sel">void</span> <span class="prop">loop</span>() {
+  <span class="sel">digitalWrite</span>(<span class="prop">LED_PIN</span>, <span class="val2">HIGH</span>); <span class="com">// LED encendido</span>
+  <span class="sel">delay</span>(<span class="val2">1000</span>);                 <span class="com">// esperar 1 segundo</span>
+  <span class="sel">digitalWrite</span>(<span class="prop">LED_PIN</span>, <span class="val2">LOW</span>);  <span class="com">// LED apagado</span>
+  <span class="sel">delay</span>(<span class="val2">1000</span>);                 <span class="com">// esperar 1 segundo</span>
+  <span class="sel">Serial</span>.<span class="prop">println</span>(<span class="val">"Parpadeo!"</span>); <span class="com">// imprimir en monitor</span>
+}</pre>
+      </div>
+    </div>
+
+    <!-- Tabla resumen -->
+    <div class="section-block" style="border-left-color:#f5c518;">
+      <p class="block-title">Resumen de componentes por categoría</p>
+      <table>
+        <thead><tr><th>Categoría</th><th>Componente</th><th>Tipo</th><th>Comunicación</th></tr></thead>
+        <tbody>
+          <tr><td>Sensor distancia</td><td>HC-SR04</td><td>Digital</td><td>GPIO (trigger/echo)</td></tr>
+          <tr><td>Sensor ambiente</td><td>DHT11/DHT22</td><td>Digital</td><td>Single-wire</td></tr>
+          <tr><td>Sensor luz</td><td>LDR</td><td>Analógico</td><td>ADC pin</td></tr>
+          <tr><td>Sensor movimiento</td><td>PIR HC-SR501</td><td>Digital</td><td>GPIO</td></tr>
+          <tr><td>Sensor gas</td><td>MQ-2</td><td>Analógico/Digital</td><td>ADC / GPIO</td></tr>
+          <tr><td>Sensor 6 ejes</td><td>MPU-6050</td><td>Digital</td><td>I2C</td></tr>
+          <tr><td>Actuador luz</td><td>LED</td><td>Salida</td><td>GPIO + resistencia</td></tr>
+          <tr><td>Actuador motor</td><td>Servo SG90</td><td>PWM</td><td>GPIO (PWM)</td></tr>
+          <tr><td>Actuador sonido</td><td>Buzzer</td><td>PWM</td><td>GPIO (PWM)</td></tr>
+          <tr><td>Comunicación</td><td>ESP8266</td><td>Wi-Fi</td><td>UART / SPI</td></tr>
+          <tr><td>Comunicación</td><td>HC-05</td><td>Bluetooth</td><td>UART</td></tr>
+          <tr><td>Pantalla</td><td>LCD 16×2</td><td>Salida</td><td>Paralelo / I2C</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <footer>
+    <p class="f-school">Centro de Bachillerato Tecnológico Industrial y de Servicios 144</p>
+    <div class="f-line"></div>
+    <p class="f-esp">Especialidad: Inteligencia Artificial</p>
+    <p class="f-prof">Docente: Chirino Balcázar Jordy</p>
+  </footer>
+</div><!-- /page-6 -->
+
+
+  document.getElementById('page-index').style.display = 'none';
+  for(var i=1;i<=6;i++){
+    var el = document.getElementById('page-'+i);
+    if(el) el.style.display = 'none';
+  }
+  if(n === 0){
+    document.getElementById('page-index').style.display = 'block';
+  } else {
+    document.getElementById('page-'+n).style.display = 'block';
+  }
+  window.scrollTo(0,0);
+}
+</script>
+
+</body>
+</html>

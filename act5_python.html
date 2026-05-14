@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ACT-005 – Conceptos Generales de Python</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:       #1a1a1a;
+      --panel:    #222;
+      --card:     #2a2a2a;
+      --gold:     #f5c518;
+      --gold2:    #e0a800;
+      --green:    #1db954;
+      --blue:     #4b8bbe;
+      --yellow:   #ffd43b;
+      --light:    #e8e8e8;
+      --mono:     'Share Tech Mono', monospace;
+      --display:  'Orbitron', sans-serif;
+      --body:     'Rajdhani', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); font-family: var(--body); color: var(--light); min-height: 100vh; }
+
+    /* NAV */
+    nav { background: #111; border-bottom: 2px solid var(--gold); padding: 14px 30px; display: flex; align-items: center; gap: 16px; }
+    nav a { font-family: var(--mono); font-size: .7rem; color: var(--gold); text-decoration: none; letter-spacing: .15em; }
+    nav a:hover { color: #fff; }
+    nav span { color: #444; }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #1e3a5f 0%, #2d1b4e 100%);
+      background-image:
+        repeating-linear-gradient(0deg,transparent,transparent 29px,rgba(75,139,190,.06) 30px),
+        repeating-linear-gradient(90deg,transparent,transparent 29px,rgba(75,139,190,.06) 30px);
+      padding: 60px 40px 50px; text-align: center; border-bottom: 2px solid var(--gold);
+    }
+    .hero-label { font-family: var(--mono); font-size: .65rem; letter-spacing: .4em; color: var(--blue); margin-bottom: 12px; }
+    .hero h1 {
+      font-family: var(--display); font-size: clamp(1.8rem,5vw,3.2rem); font-weight: 900;
+      background: linear-gradient(135deg, #ffd43b, #4b8bbe);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px;
+    }
+    .hero-sub { font-family: var(--mono); font-size: .8rem; color: rgba(232,232,232,.5); letter-spacing: .2em; }
+
+    /* CONTENT */
+    .content { max-width: 860px; margin: 0 auto; padding: 40px 24px; }
+
+    .section-block {
+      background: var(--panel); border-radius: 12px; border: 1px solid #333;
+      border-left: 4px solid var(--gold); padding: 28px; margin-bottom: 28px;
+    }
+    .block-title {
+      font-family: var(--display); font-size: .8rem; letter-spacing: .3em;
+      color: var(--gold); text-transform: uppercase; margin-bottom: 14px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .block-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--gold2), transparent); }
+    .block-text { font-family: var(--body); font-size: 1rem; line-height: 1.75; color: #ccc; }
+    .block-text strong { color: var(--gold); }
+    .block-text p { margin-bottom: 12px; }
+
+    /* CODE BOX */
+    .code-box {
+      background: #111; border: 1px solid #333; border-left: 3px solid var(--blue);
+      border-radius: 8px; padding: 18px 20px; margin: 14px 0; overflow-x: auto;
+    }
+    .code-box pre { font-family: var(--mono); font-size: .78rem; line-height: 1.7; color: #ccc; white-space: pre; }
+    .sel  { color: #c792ea; }
+    .prop { color: #82aaff; }
+    .val  { color: #c3e88d; }
+    .val2 { color: #f78c6c; }
+    .com  { color: #546e7a; font-style: italic; }
+
+    /* CARDS GRID */
+    .feat-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(200px,1fr)); gap: 14px; margin-top: 8px; }
+    .feat-card {
+      background: var(--card); border-radius: 10px; padding: 18px;
+      border: 1px solid #3a3a3a; border-top: 3px solid var(--blue);
+    }
+    .feat-icon  { font-size: 1.8rem; margin-bottom: 6px; }
+    .feat-label { font-family: var(--display); font-size: .7rem; color: var(--yellow); letter-spacing: .15em; margin-bottom: 6px; }
+    .feat-desc  { font-size: .85rem; color: #aaa; line-height: 1.5; }
+
+    /* TABLE */
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th { background: var(--gold); color: #111; font-family: var(--display); font-size: .7rem; letter-spacing: .2em; padding: 10px 14px; text-align: left; }
+    td { padding: 10px 14px; border-bottom: 1px solid #333; font-family: var(--body); font-size: .9rem; color: #ccc; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(245,197,24,.06); }
+    td:first-child { font-family: var(--mono); font-size: .78rem; color: var(--blue); }
+
+    /* FOOTER */
+    footer { background: #111; border-top: 2px solid var(--gold); margin-top: 40px; padding: 28px 40px; text-align: center; display: flex; flex-direction: column; gap: 6px; align-items: center; }
+    footer .f-school { font-family: var(--display); font-size: .75rem; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); }
+    footer .f-esp    { font-family: var(--mono); font-size: .7rem; color: var(--green); letter-spacing: .1em; }
+    footer .f-prof   { font-family: var(--mono); font-size: .68rem; color: rgba(232,232,232,.45); letter-spacing: .08em; }
+    footer .f-line   { width: 60px; height: 1px; background: var(--gold); margin: 6px 0; }
+
+    @media (max-width: 520px) {
+      .hero { padding: 40px 18px 32px; }
+      .content { padding: 24px 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="portafolio_todo_en_uno.html">← Portafolio</a>
+  <span>/</span>
+  <a href="#">Actividad 5</a>
+</nav>
+
+<div class="hero">
+  <p class="hero-label">// ACT-005 //</p>
+  <h1>Conceptos Generales de Python</h1>
+  <p class="hero-sub">Cultura Digital 2 &nbsp;·&nbsp; Inteligencia Artificial</p>
+</div>
+
+<div class="content">
+
+  <!-- ¿Qué es Python? -->
+  <div class="section-block" style="border-left-color:#4b8bbe;">
+    <p class="block-title" style="color:#4b8bbe;">¿Qué es Python?</p>
+    <div class="block-text">
+      <p>Python es un lenguaje de programación de <strong style="color:#ffd43b">alto nivel, interpretado y multiparadigma</strong> creado por <strong style="color:#ffd43b">Guido van Rossum</strong> y publicado en 1991. Su filosofía hace hincapié en la legibilidad del código usando una sintaxis limpia y expresiva.</p>
+      <p>Es uno de los lenguajes más populares del mundo gracias a su versatilidad: se usa en <strong style="color:#4b8bbe">ciencia de datos, inteligencia artificial, desarrollo web, automatización, ciberseguridad</strong> y mucho más.</p>
+    </div>
+  </div>
+
+  <!-- Características -->
+  <div class="section-block" style="border-left-color:#ffd43b;">
+    <p class="block-title">Características principales</p>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="feat-icon">📖</div><div class="feat-label">LEGIBLE</div><div class="feat-desc">Sintaxis clara, parecida al inglés natural. Fácil de leer y mantener.</div></div>
+      <div class="feat-card"><div class="feat-icon">🔄</div><div class="feat-label">INTERPRETADO</div><div class="feat-desc">No necesita compilación previa; el intérprete ejecuta el código línea por línea.</div></div>
+      <div class="feat-card"><div class="feat-icon">🌐</div><div class="feat-label">MULTIPLATAFORMA</div><div class="feat-desc">Corre en Windows, macOS, Linux sin modificar el código.</div></div>
+      <div class="feat-card"><div class="feat-icon">📦</div><div class="feat-label">LIBRERÍAS</div><div class="feat-desc">Vasta colección de módulos: NumPy, Pandas, TensorFlow, Flask, Django…</div></div>
+      <div class="feat-card"><div class="feat-icon">🤝</div><div class="feat-label">OPEN SOURCE</div><div class="feat-desc">Gratuito y con una enorme comunidad activa worldwide.</div></div>
+      <div class="feat-card"><div class="feat-icon">🧩</div><div class="feat-label">MULTIPARADIGMA</div><div class="feat-desc">Soporta programación orientada a objetos, funcional e imperativa.</div></div>
+    </div>
+  </div>
+
+  <!-- Variables y tipos de datos -->
+  <div class="section-block" style="border-left-color:#4b8bbe;">
+    <p class="block-title" style="color:#4b8bbe;">Variables y tipos de datos</p>
+    <div class="block-text"><p>En Python <strong style="color:#ffd43b">no se declara el tipo</strong> de una variable; el intérprete lo infiere automáticamente (tipado dinámico).</p></div>
+    <div class="code-box" style="border-left-color:#4b8bbe;">
+<pre><span class="com"># Tipos de datos básicos</span>
+<span class="prop">nombre</span>   = <span class="val">"Python"</span>         <span class="com"># str  — cadena de texto</span>
+<span class="prop">version</span>  = <span class="val2">3.12</span>             <span class="com"># float — número decimal</span>
+<span class="prop">año</span>      = <span class="val2">1991</span>             <span class="com"># int  — número entero</span>
+<span class="prop">activo</span>   = <span class="val2">True</span>             <span class="com"># bool — booleano</span>
+<span class="prop">nulo</span>     = <span class="val2">None</span>             <span class="com"># NoneType</span>
+
+<span class="com"># Estructuras de datos</span>
+<span class="prop">lista</span>   = [<span class="val">"a"</span>, <span class="val2">1</span>, <span class="val2">True</span>]   <span class="com"># list  — mutable, ordenada</span>
+<span class="prop">tupla</span>   = (<span class="val2">10</span>, <span class="val2">20</span>, <span class="val2">30</span>)     <span class="com"># tuple — inmutable</span>
+<span class="prop">dicts</span>   = {<span class="val">"clave"</span>: <span class="val">"valor"</span>} <span class="com"># dict  — clave-valor</span>
+<span class="prop">conjunt</span> = {<span class="val2">1</span>, <span class="val2">2</span>, <span class="val2">3</span>}        <span class="com"># set   — sin duplicados</span>
+
+<span class="com"># type() muestra el tipo</span>
+<span class="sel">print</span>(<span class="sel">type</span>(<span class="prop">nombre</span>))         <span class="com"># &lt;class 'str'&gt;</span></pre>
+    </div>
+  </div>
+
+  <!-- Estructuras de control -->
+  <div class="section-block" style="border-left-color:#ffd43b;">
+    <p class="block-title">Estructuras de control</p>
+    <div class="code-box" style="border-left-color:#ffd43b;">
+<pre><span class="com"># if / elif / else</span>
+<span class="prop">nota</span> = <span class="val2">85</span>
+<span class="sel">if</span> <span class="prop">nota</span> >= <span class="val2">90</span>:
+    <span class="sel">print</span>(<span class="val">"Excelente"</span>)
+<span class="sel">elif</span> <span class="prop">nota</span> >= <span class="val2">70</span>:
+    <span class="sel">print</span>(<span class="val">"Aprobado"</span>)
+<span class="sel">else</span>:
+    <span class="sel">print</span>(<span class="val">"Reprobado"</span>)
+
+<span class="com"># for — itera sobre secuencias</span>
+<span class="sel">for</span> <span class="prop">i</span> <span class="sel">in</span> <span class="sel">range</span>(<span class="val2">5</span>):
+    <span class="sel">print</span>(<span class="prop">i</span>)               <span class="com"># 0 1 2 3 4</span>
+
+<span class="sel">for</span> <span class="prop">fruta</span> <span class="sel">in</span> [<span class="val">"manzana"</span>, <span class="val">"pera"</span>]:
+    <span class="sel">print</span>(<span class="prop">fruta</span>)
+
+<span class="com"># while — mientras condición sea True</span>
+<span class="prop">contador</span> = <span class="val2">0</span>
+<span class="sel">while</span> <span class="prop">contador</span> &lt; <span class="val2">3</span>:
+    <span class="sel">print</span>(<span class="prop">contador</span>)
+    <span class="prop">contador</span> += <span class="val2">1</span>
+
+<span class="com"># break / continue</span>
+<span class="sel">for</span> <span class="prop">n</span> <span class="sel">in</span> <span class="sel">range</span>(<span class="val2">10</span>):
+    <span class="sel">if</span> <span class="prop">n</span> == <span class="val2">5</span>: <span class="sel">break</span>      <span class="com"># termina el bucle</span>
+    <span class="sel">if</span> <span class="prop">n</span> % <span class="val2">2</span> == <span class="val2">0</span>: <span class="sel">continue</span> <span class="com"># salta pares</span>
+    <span class="sel">print</span>(<span class="prop">n</span>)</pre>
+    </div>
+  </div>
+
+  <!-- Funciones -->
+  <div class="section-block" style="border-left-color:#4b8bbe;">
+    <p class="block-title" style="color:#4b8bbe;">Funciones</p>
+    <div class="block-text"><p>Las funciones se definen con <strong style="color:#ffd43b">def</strong>. Python soporta argumentos por defecto, *args y **kwargs para mayor flexibilidad.</p></div>
+    <div class="code-box" style="border-left-color:#4b8bbe;">
+<pre><span class="com"># Función básica con valor por defecto</span>
+<span class="sel">def</span> <span class="prop">saludar</span>(<span class="prop">nombre</span> = <span class="val">"Mundo"</span>):
+    <span class="sel">return</span> <span class="val">f"¡Hola, {nombre}!"</span>
+
+<span class="sel">print</span>(<span class="prop">saludar</span>())            <span class="com"># ¡Hola, Mundo!</span>
+<span class="sel">print</span>(<span class="prop">saludar</span>(<span class="val">"Python"</span>))   <span class="com"># ¡Hola, Python!</span>
+
+<span class="com"># *args — número variable de argumentos</span>
+<span class="sel">def</span> <span class="prop">sumar</span>(*<span class="prop">nums</span>):
+    <span class="sel">return</span> <span class="sel">sum</span>(<span class="prop">nums</span>)
+
+<span class="sel">print</span>(<span class="prop">sumar</span>(<span class="val2">1</span>, <span class="val2">2</span>, <span class="val2">3</span>, <span class="val2">4</span>))  <span class="com"># 10</span>
+
+<span class="com"># **kwargs — argumentos con nombre</span>
+<span class="sel">def</span> <span class="prop">perfil</span>(**<span class="prop">datos</span>):
+    <span class="sel">for</span> <span class="prop">k</span>, <span class="prop">v</span> <span class="sel">in</span> <span class="prop">datos</span>.<span class="sel">items</span>():
+        <span class="sel">print</span>(<span class="val">f"{k}: {v}"</span>)
+
+<span class="prop">perfil</span>(<span class="prop">nombre</span>=<span class="val">"Ana"</span>, <span class="prop">edad</span>=<span class="val2">20</span>)
+
+<span class="com"># Función lambda (anónima)</span>
+<span class="prop">cuadrado</span> = <span class="sel">lambda</span> <span class="prop">x</span>: <span class="prop">x</span> ** <span class="val2">2</span>
+<span class="sel">print</span>(<span class="prop">cuadrado</span>(<span class="val2">5</span>))         <span class="com"># 25</span></pre>
+    </div>
+  </div>
+
+  <!-- POO -->
+  <div class="section-block" style="border-left-color:#ffd43b;">
+    <p class="block-title">Programación Orientada a Objetos (POO)</p>
+    <div class="block-text"><p>Python soporta <strong style="color:#ffd43b">clases, herencia, encapsulamiento y polimorfismo</strong> de manera sencilla y elegante.</p></div>
+    <div class="code-box" style="border-left-color:#ffd43b;">
+<pre><span class="sel">class</span> <span class="prop">Animal</span>:
+    <span class="sel">def</span> <span class="prop">__init__</span>(<span class="sel">self</span>, <span class="prop">nombre</span>):
+        <span class="sel">self</span>.<span class="prop">nombre</span> = <span class="prop">nombre</span>   <span class="com"># atributo de instancia</span>
+
+    <span class="sel">def</span> <span class="prop">hablar</span>(<span class="sel">self</span>):
+        <span class="sel">return</span> <span class="val">"..."</span>
+
+<span class="sel">class</span> <span class="prop">Perro</span>(<span class="prop">Animal</span>):           <span class="com"># hereda de Animal</span>
+    <span class="sel">def</span> <span class="prop">hablar</span>(<span class="sel">self</span>):            <span class="com"># polimorfismo</span>
+        <span class="sel">return</span> <span class="val">f"{self.nombre} dice: ¡Guau!"</span>
+
+<span class="prop">rex</span> = <span class="prop">Perro</span>(<span class="val">"Rex"</span>)
+<span class="sel">print</span>(<span class="prop">rex</span>.<span class="prop">hablar</span>())           <span class="com"># Rex dice: ¡Guau!</span>
+<span class="sel">print</span>(<span class="sel">isinstance</span>(<span class="prop">rex</span>, <span class="prop">Animal</span>)) <span class="com"># True</span>
+
+<span class="com"># Manejo de excepciones</span>
+<span class="sel">try</span>:
+    <span class="prop">resultado</span> = <span class="val2">10</span> / <span class="val2">0</span>
+<span class="sel">except</span> <span class="prop">ZeroDivisionError</span>:
+    <span class="sel">print</span>(<span class="val">"Error: división entre cero"</span>)
+<span class="sel">finally</span>:
+    <span class="sel">print</span>(<span class="val">"Bloque finally siempre corre"</span>)</pre>
+    </div>
+  </div>
+
+  <!-- Tabla resumen -->
+  <div class="section-block" style="border-left-color:#4b8bbe;">
+    <p class="block-title" style="color:#4b8bbe;">Resumen de conceptos clave</p>
+    <table>
+      <thead><tr><th>Concepto</th><th>Descripción</th><th>Ejemplo</th></tr></thead>
+      <tbody>
+        <tr><td>Variable</td><td>Almacena un valor en memoria</td><td>x = 10</td></tr>
+        <tr><td>Lista</td><td>Colección mutable y ordenada</td><td>[1, 2, 3]</td></tr>
+        <tr><td>Diccionario</td><td>Pares clave-valor</td><td>{"a": 1}</td></tr>
+        <tr><td>Función</td><td>Bloque reutilizable de código</td><td>def suma(a, b):</td></tr>
+        <tr><td>Clase</td><td>Plantilla para crear objetos</td><td>class Perro:</td></tr>
+        <tr><td>Módulo</td><td>Archivo Python importable</td><td>import math</td></tr>
+        <tr><td>Excepción</td><td>Manejo de errores en tiempo de ejecución</td><td>try / except</td></tr>
+        <tr><td>Comprensión</td><td>Crear listas en una sola línea</td><td>[x**2 for x in range(5)]</td></tr>
+        <tr><td>Lambda</td><td>Función anónima de una expresión</td><td>lambda x: x*2</td></tr>
+        <tr><td>Herencia</td><td>Una clase reutiliza atributos de otra</td><td>class Perro(Animal):</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<footer>
+  <p class="f-school">Centro de Bachillerato Tecnológico Industrial y de Servicios 144</p>
+  <div class="f-line"></div>
+  <p class="f-esp">Especialidad: Inteligencia Artificial</p>
+  <p class="f-prof">Docente: Chirino Balcázar Jordy</p>
+</footer>
+
+</body>
+</html>
